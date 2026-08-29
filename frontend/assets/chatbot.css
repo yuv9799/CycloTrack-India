@@ -1,0 +1,432 @@
+/* ============================================================
+   CycloTrack India — Cyclone Info Chatbot Widget
+   Self-contained styles. Uses its own variable scope so it looks
+   right on every page even if a host page's :root vars differ.
+   ============================================================ */
+
+#cycai-widget {
+    --cycai-navy: #0B1E3A;
+    --cycai-navy-mid: #112444;
+    --cycai-navy-dark: #070F1E;
+    --cycai-orange: #F47B20;
+    --cycai-orange-dark: #D9660E;
+    --cycai-white: #FFFFFF;
+    --cycai-off-white: #F4F6F8;
+    --cycai-gray-light: #E8ECF0;
+    --cycai-gray-mid: #9AAAB8;
+    --cycai-text: #2D3E50;
+    --cycai-font-head: 'Barlow Condensed', sans-serif;
+    --cycai-font-body: 'Barlow', sans-serif;
+
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    z-index: 9999;
+    font-family: var(--cycai-font-body);
+    box-sizing: border-box;
+}
+
+#cycai-widget *,
+#cycai-widget *::before,
+#cycai-widget *::after {
+    box-sizing: border-box;
+}
+
+/* ---------- Launcher button ---------- */
+.cycai-launcher {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(145deg, var(--cycai-orange), var(--cycai-orange-dark));
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 8px 24px rgba(11, 30, 58, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--cycai-white);
+    transition: transform .2s ease, box-shadow .2s ease;
+    position: relative;
+}
+
+.cycai-launcher:hover {
+    transform: translateY(-2px) scale(1.04);
+    box-shadow: 0 10px 28px rgba(11, 30, 58, 0.45);
+}
+
+.cycai-launcher svg {
+    width: 28px;
+    height: 28px;
+}
+
+.cycai-launcher .cycai-badge {
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    width: 14px;
+    height: 14px;
+    background: #2ECC71;
+    border: 2px solid var(--cycai-white);
+    border-radius: 50%;
+}
+
+#cycai-widget.cycai-open .cycai-launcher {
+    display: none;
+}
+
+/* ---------- Chat panel ---------- */
+.cycai-panel {
+    display: none;
+    flex-direction: column;
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    width: 380px;
+    max-width: calc(100vw - 32px);
+    height: 560px;
+    max-height: calc(100vh - 48px);
+    background: var(--cycai-white);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(7, 15, 30, 0.35);
+    border: 1px solid var(--cycai-gray-light);
+}
+
+#cycai-widget.cycai-open .cycai-panel {
+    display: flex;
+    animation: cycai-pop .18s ease-out;
+}
+
+@keyframes cycai-pop {
+    from { opacity: 0; transform: translateY(12px) scale(.98); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* ---------- Header ---------- */
+.cycai-header {
+    background: var(--cycai-navy-dark);
+    border-bottom: 2px solid var(--cycai-orange);
+    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+.cycai-header-icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: var(--cycai-orange);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.cycai-header-icon svg {
+    width: 18px;
+    height: 18px;
+    color: var(--cycai-white);
+}
+
+.cycai-header-text {
+    flex: 1;
+    min-width: 0;
+}
+
+.cycai-header-title {
+    font-family: var(--cycai-font-head);
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--cycai-white);
+    letter-spacing: .3px;
+    line-height: 1.2;
+}
+
+.cycai-header-title span {
+    color: var(--cycai-orange);
+}
+
+.cycai-header-sub {
+    font-size: 11.5px;
+    color: rgba(255, 255, 255, .6);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 2px;
+}
+
+.cycai-status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #2ECC71;
+    flex-shrink: 0;
+}
+
+.cycai-close {
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, .7);
+    cursor: pointer;
+    padding: 6px;
+    display: flex;
+    border-radius: 6px;
+    transition: background .15s, color .15s;
+}
+
+.cycai-close:hover {
+    background: rgba(255, 255, 255, .1);
+    color: var(--cycai-white);
+}
+
+.cycai-close svg {
+    width: 18px;
+    height: 18px;
+}
+
+/* ---------- Messages ---------- */
+.cycai-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px;
+    background: var(--cycai-off-white);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.cycai-body::-webkit-scrollbar {
+    width: 6px;
+}
+
+.cycai-body::-webkit-scrollbar-thumb {
+    background: var(--cycai-gray-mid);
+    border-radius: 3px;
+}
+
+.cycai-msg {
+    display: flex;
+    gap: 8px;
+    max-width: 100%;
+    animation: cycai-fade .2s ease-out;
+}
+
+@keyframes cycai-fade {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.cycai-msg-avatar {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--cycai-font-head);
+    font-weight: 700;
+    font-size: 12px;
+    color: var(--cycai-white);
+}
+
+.cycai-msg.bot .cycai-msg-avatar {
+    background: var(--cycai-navy);
+}
+
+.cycai-msg.user {
+    flex-direction: row-reverse;
+    margin-left: auto;
+}
+
+.cycai-msg.user .cycai-msg-avatar {
+    background: var(--cycai-orange);
+}
+
+.cycai-bubble {
+    padding: 10px 13px;
+    border-radius: 12px;
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--cycai-text);
+    background: var(--cycai-white);
+    border: 1px solid var(--cycai-gray-light);
+    max-width: 260px;
+    word-wrap: break-word;
+}
+
+.cycai-msg.bot .cycai-bubble {
+    border-top-left-radius: 3px;
+}
+
+.cycai-msg.user .cycai-bubble {
+    background: var(--cycai-navy);
+    color: var(--cycai-white);
+    border-color: var(--cycai-navy);
+    border-top-right-radius: 3px;
+}
+
+.cycai-bubble p + p {
+    margin-top: 6px;
+}
+
+.cycai-bubble ul {
+    margin: 6px 0 0 16px;
+    padding: 0;
+}
+
+.cycai-bubble li {
+    margin-bottom: 3px;
+}
+
+.cycai-bubble strong {
+    color: var(--cycai-navy);
+}
+
+.cycai-msg.user .cycai-bubble strong {
+    color: var(--cycai-white);
+}
+
+.cycai-offline-note {
+    display: inline-block;
+    font-size: 11.5px;
+    font-style: italic;
+    opacity: 0.7;
+    line-height: 1.4;
+}
+
+/* ---------- Typing indicator ---------- */
+.cycai-typing .cycai-bubble {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 12px 14px;
+}
+
+.cycai-typing span {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--cycai-gray-mid);
+    animation: cycai-blink 1.2s infinite ease-in-out;
+}
+
+.cycai-typing span:nth-child(2) { animation-delay: .2s; }
+.cycai-typing span:nth-child(3) { animation-delay: .4s; }
+
+@keyframes cycai-blink {
+    0%, 80%, 100% { opacity: .3; transform: scale(.85); }
+    40% { opacity: 1; transform: scale(1); }
+}
+
+/* ---------- Quick reply chips ---------- */
+.cycai-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding: 0 16px 12px;
+    background: var(--cycai-off-white);
+    flex-shrink: 0;
+}
+
+.cycai-chip {
+    background: var(--cycai-white);
+    border: 1px solid var(--cycai-gray-light);
+    color: var(--cycai-navy);
+    font-family: var(--cycai-font-body);
+    font-size: 12px;
+    font-weight: 600;
+    padding: 7px 11px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background .15s, border-color .15s, color .15s;
+}
+
+.cycai-chip:hover {
+    background: var(--cycai-orange);
+    border-color: var(--cycai-orange);
+    color: var(--cycai-white);
+}
+
+/* ---------- Input row ---------- */
+.cycai-input-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px;
+    background: var(--cycai-white);
+    border-top: 1px solid var(--cycai-gray-light);
+    flex-shrink: 0;
+}
+
+.cycai-input {
+    flex: 1;
+    border: 1px solid var(--cycai-gray-light);
+    background: var(--cycai-off-white);
+    border-radius: 22px;
+    padding: 10px 15px;
+    font-family: var(--cycai-font-body);
+    font-size: 13.5px;
+    color: var(--cycai-text);
+    outline: none;
+    transition: border-color .15s;
+}
+
+.cycai-input:focus {
+    border-color: var(--cycai-orange);
+}
+
+.cycai-send {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: var(--cycai-orange);
+    border: none;
+    color: var(--cycai-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: background .15s, transform .15s;
+}
+
+.cycai-send:hover {
+    background: var(--cycai-orange-dark);
+}
+
+.cycai-send:active {
+    transform: scale(.93);
+}
+
+.cycai-send svg {
+    width: 16px;
+    height: 16px;
+}
+
+.cycai-disclaimer {
+    font-size: 10px;
+    color: var(--cycai-gray-mid);
+    text-align: center;
+    padding: 0 12px 10px;
+    background: var(--cycai-white);
+    flex-shrink: 0;
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 480px) {
+    .cycai-panel {
+        right: 12px;
+        left: 12px;
+        bottom: 12px;
+        width: auto;
+        height: calc(100vh - 24px);
+    }
+
+    #cycai-widget {
+        right: 12px;
+        bottom: 12px;
+    }
+}

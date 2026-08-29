@@ -1,0 +1,52 @@
+# ============================================================
+# CycloneAI ML Module — requirements.txt
+# Python 3.11+
+# ============================================================
+
+# --- Core data / numerics ---
+numpy>=1.26,<2.0
+pandas>=2.1,<2.3
+scipy>=1.11,<1.14
+
+# --- Config / IO ---
+PyYAML>=6.0
+pathlib2; python_version < "3.11"
+
+# --- Classical ML ---
+scikit-learn>=1.3,<1.6
+xgboost>=2.0,<2.2          # optional but recommended for intensity/trajectory baselines
+joblib>=1.3
+
+# --- Deep learning (image models: detection / classification) ---
+torch>=2.1,<2.4
+torchvision>=0.16,<0.19
+
+# --- Image handling ---
+Pillow>=10.0
+opencv-python-headless>=4.8
+
+# --- Geospatial / distance ---
+# (Haversine implemented natively — no extra geo dependency required)
+
+# --- Explainability ---
+grad-cam>=1.4.8             # pytorch-grad-cam
+shap>=0.44
+
+# --- Visualization ---
+matplotlib>=3.8
+seaborn>=0.13
+
+# --- Testing ---
+pytest>=7.4
+pytest-cov>=4.1
+
+# --- Notebooks (EDA only — not used in production src/) ---
+jupyter>=1.0
+ipykernel>=6.25
+
+# --- NetCDF support (optional, for satellite-derived gridded data) ---
+netCDF4>=1.6
+xarray>=2023.1
+
+# --- Logging niceties ---
+rich>=13.6

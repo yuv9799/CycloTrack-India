@@ -1,0 +1,1774 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyclone Region — CycloTrack India</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Barlow:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="assets/chatbot.css">
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --navy: #0B1E3A;
+            --navy-mid: #112444;
+            --navy-dark: #070F1E;
+            --charcoal: #1C2A3A;
+            --orange: #F47B20;
+            --orange-dark: #D9660E;
+            --white: #FFFFFF;
+            --off-white: #F4F6F8;
+            --gray-light: #E8ECF0;
+            --gray-mid: #9AAAB8;
+            --text-body: #2D3E50;
+            --font-head: 'Barlow Condensed', sans-serif;
+            --font-body: 'Barlow', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--text-body);
+            background: var(--white);
+            line-height: 1.6;
+            font-size: 16px;
+        }
+
+        /* HEADER / NAV */
+        header {
+            background: var(--navy-dark);
+            padding: 0 5%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 2px solid var(--orange);
+        }
+
+        .logo {
+            font-family: var(--font-head);
+            font-weight: 800;
+            font-size: 22px;
+            color: var(--white);
+            letter-spacing: .5px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: opacity .2s ease;
+        }
+
+        .logo:hover {
+            opacity: .85;
+        }
+
+        .logo span {
+            color: var(--orange);
+        }
+
+        nav {
+            display: flex;
+            gap: 28px;
+            align-items: center;
+        }
+
+        nav a {
+            font-family: var(--font-head);
+            font-size: 15px;
+            font-weight: 600;
+            letter-spacing: .5px;
+            color: rgba(255, 255, 255, .72);
+            text-decoration: none;
+            text-transform: uppercase;
+            transition: color .25s ease;
+            position: relative;
+            padding: 6px 2px 8px;
+            white-space: nowrap;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            right: 50%;
+            bottom: 0;
+            height: 2px;
+            background: var(--orange);
+            transition: left .25s ease, right .25s ease;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: var(--orange);
+        }
+
+        nav a:hover::after,
+        nav a.active::after {
+            left: 0;
+            right: 0;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .header-cta {
+            background: var(--orange);
+            color: var(--white);
+            font-family: var(--font-head);
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: .8px;
+            text-transform: uppercase;
+            padding: 9px 20px;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .header-cta:hover {
+            background: var(--orange-dark);
+        }
+
+        section {
+            padding: 70px 5%;
+        }
+
+        .section-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-tag {
+            font-family: var(--font-head);
+            font-size: 11px;
+            letter-spacing: 3.5px;
+            text-transform: uppercase;
+            color: var(--orange);
+            font-weight: 700;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-tag::before {
+            content: '';
+            width: 20px;
+            height: 2px;
+            background: var(--orange);
+            display: block;
+        }
+
+        .section-h2 {
+            font-family: var(--font-head);
+            font-weight: 800;
+            font-size: clamp(30px, 4vw, 48px);
+            text-transform: uppercase;
+            color: var(--navy);
+            line-height: 1.0;
+            margin-bottom: 14px;
+            letter-spacing: -.3px;
+        }
+
+        .section-h2 em {
+            color: var(--orange);
+            font-style: normal;
+        }
+
+        .section-lead {
+            font-size: 16px;
+            color: #4A6070;
+            max-width: 620px;
+            line-height: 1.7;
+            margin-bottom: 0;
+        }
+
+        /* PAGE HERO — breadcrumb strip */
+        .page-hero {
+            background: var(--navy-dark);
+            padding: 48px 5% 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 38%;
+            height: 100%;
+            background-image: url('assets/pic1.jpeg');
+            background-size: cover;
+            background-position: center;
+            opacity: .14;
+            -webkit-mask-image: linear-gradient(to left, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+            mask-image: linear-gradient(to left, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+        }
+
+        .page-hero-inner {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .breadcrumb {
+            font-family: var(--font-head);
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .4);
+            margin-bottom: 18px;
+        }
+
+        .breadcrumb span {
+            color: var(--orange);
+        }
+
+        .page-hero-h1 {
+            font-family: var(--font-head);
+            font-weight: 800;
+            font-size: clamp(34px, 4.5vw, 54px);
+            color: var(--white);
+            text-transform: uppercase;
+            line-height: .98;
+            letter-spacing: -1px;
+            margin-bottom: 14px;
+        }
+
+        .page-hero-h1 em {
+            color: var(--orange);
+            font-style: normal;
+        }
+
+        .page-hero-sub {
+            font-size: 15.5px;
+            color: rgba(255, 255, 255, .55);
+            max-width: 600px;
+            margin-bottom: 26px;
+        }
+
+        .hero-stat-row {
+            display: flex;
+            gap: 32px;
+            flex-wrap: wrap;
+        }
+
+        .hero-stat {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .hero-stat-num {
+            font-family: var(--font-head);
+            font-size: 26px;
+            font-weight: 800;
+            color: var(--orange);
+            line-height: 1;
+        }
+
+        .hero-stat-lbl {
+            font-size: 11px;
+            letter-spacing: .5px;
+            color: rgba(255, 255, 255, .45);
+            text-transform: uppercase;
+            margin-top: 4px;
+        }
+
+        /* FILTER BAR */
+        .filter-bar {
+            background: var(--off-white);
+            border-bottom: 1px solid var(--gray-light);
+            padding: 18px 5%;
+            position: sticky;
+            top: 64px;
+            z-index: 90;
+        }
+
+        .filter-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .filter-label {
+            font-family: var(--font-head);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--navy);
+            margin-right: 8px;
+        }
+
+        .filter-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .filter-trigger {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 28px;
+            min-width: 224px;
+            font-family: var(--font-head);
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: .6px;
+            text-transform: uppercase;
+            background: var(--navy);
+            border: 1.5px solid var(--navy);
+            color: var(--white);
+            padding: 9px 16px;
+            cursor: pointer;
+            transition: background .2s ease, border-color .2s ease;
+        }
+
+        .filter-trigger:hover {
+            background: var(--navy-mid);
+        }
+
+        .filter-trigger .filter-arrow {
+            font-size: 10px;
+            line-height: 1;
+            color: var(--orange);
+            transition: transform .25s ease;
+        }
+
+        .filter-dropdown.open .filter-arrow {
+            transform: rotate(180deg);
+        }
+
+        .filter-menu {
+            position: absolute;
+            top: calc(100% + 6px);
+            left: 0;
+            right: 0;
+            min-width: 224px;
+            background: var(--white);
+            border: 1px solid var(--gray-light);
+            box-shadow: 0 12px 30px rgba(11, 30, 58, .14);
+            opacity: 0;
+            transform: translateY(-8px);
+            visibility: hidden;
+            transition: opacity .22s ease, transform .22s ease, visibility .22s;
+            z-index: 120;
+        }
+
+        .filter-dropdown.open .filter-menu {
+            opacity: 1;
+            transform: translateY(0);
+            visibility: visible;
+        }
+
+        .filter-option {
+            display: block;
+            width: 100%;
+            text-align: left;
+            font-family: var(--font-body);
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: .2px;
+            color: var(--text-body);
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid var(--gray-light);
+            padding: 11px 16px;
+            cursor: pointer;
+            transition: background .18s ease, color .18s ease;
+        }
+
+        .filter-option:last-child {
+            border-bottom: none;
+        }
+
+        .filter-option:hover {
+            background: var(--off-white);
+            color: var(--navy);
+        }
+
+        .filter-option.active {
+            background: var(--off-white);
+            color: var(--orange-dark);
+            font-weight: 600;
+            border-left: 3px solid var(--orange);
+        }
+
+        @media (max-width: 640px) {
+            .filter-trigger {
+                min-width: 170px;
+            }
+
+            .filter-menu {
+                min-width: 170px;
+            }
+        }
+
+        /* MAP + REGION LIST */
+        .map-bg {
+            background: var(--white);
+        }
+
+        .map-wrap {
+            display: grid;
+            grid-template-columns: 1.35fr .65fr;
+            gap: 24px;
+            align-items: stretch;
+        }
+
+        .map-panel {
+            background: var(--navy-dark);
+            position: relative;
+            min-height: 660px;
+            max-height: 700px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .map-panel-header {
+            display: flex;
+            flex: 0 0 auto;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 24px;
+            border-bottom: 1px solid rgba(255, 255, 255, .08);
+        }
+
+        .map-panel-title {
+            font-family: var(--font-head);
+            font-size: 19px;
+            font-weight: 800;
+            color: var(--white);
+            text-transform: uppercase;
+            letter-spacing: .5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .map-panel-title::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--orange);
+            border-radius: 50%;
+            display: inline-block;
+            animation: ping-solid 2s ease-in-out infinite;
+        }
+
+        @keyframes ping-solid {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: .35;
+            }
+        }
+
+        .toggle-2d3d {
+            display: flex;
+            background: rgba(255, 255, 255, .06);
+            border: 1px solid rgba(255, 255, 255, .15);
+        }
+
+        .toggle-2d3d button {
+            font-family: var(--font-head);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: rgba(255, 255, 255, .55);
+            background: transparent;
+            border: none;
+            padding: 7px 16px;
+            cursor: pointer;
+            transition: .2s;
+        }
+
+        .toggle-2d3d button.active {
+            background: var(--orange);
+            color: var(--white);
+        }
+
+        .map-canvas {
+            position: relative;
+            flex: 1 1 auto;
+            min-height: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            transition: transform .6s ease;
+        }
+
+        .map-canvas.tilt {
+            transform: perspective(950px) rotateX(22deg);
+            transform-origin: center 40%;
+        }
+
+        .map-canvas svg {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .india-outline {
+            filter: drop-shadow(0 0 6px rgba(244, 123, 32, .35));
+        }
+
+        .wave-line {
+            fill: none;
+            stroke: rgba(255, 255, 255, .38);
+            stroke-width: 1.3;
+            stroke-linecap: round;
+            transform-box: fill-box;
+            transform-origin: center;
+            animation: wave-drift-x 4.5s ease-in-out infinite;
+        }
+
+        .wave-line.wave-2 {
+            stroke: rgba(244, 123, 32, .5);
+            animation-duration: 5.6s;
+            animation-direction: reverse;
+        }
+
+        .ocean-south .wave-line {
+            animation-name: wave-drift-y;
+        }
+
+        .ocean-waves .wave-line:nth-child(1) {
+            animation-delay: 0s;
+        }
+
+        .ocean-waves .wave-line:nth-child(2) {
+            animation-delay: .6s;
+        }
+
+        .ocean-waves .wave-line:nth-child(3) {
+            animation-delay: 1.2s;
+        }
+
+        .ocean-waves .wave-line:nth-child(4) {
+            animation-delay: 1.8s;
+        }
+
+        .ocean-waves .wave-line:nth-child(5) {
+            animation-delay: 2.4s;
+        }
+
+        @keyframes wave-drift-x {
+
+            0%,
+            100% {
+                transform: translate(0, 0) scaleY(1);
+                opacity: .55;
+            }
+
+            50% {
+                transform: translate(5px, -3px) scaleY(1.15);
+                opacity: .9;
+            }
+        }
+
+        @keyframes wave-drift-y {
+
+            0%,
+            100% {
+                transform: translate(0, 0) scaleX(1);
+                opacity: .5;
+            }
+
+            50% {
+                transform: translate(6px, 1px) scaleX(1.08);
+                opacity: .85;
+            }
+        }
+
+        .map-hotspot {
+            position: absolute;
+            width: 13px;
+            height: 13px;
+            border-radius: 50%;
+            background: var(--orange);
+            cursor: pointer;
+            transform: translate(-50%, -50%);
+            z-index: 3;
+        }
+
+        .map-hotspot::before {
+            content: '';
+            position: absolute;
+            inset: -8px;
+            border: 2px solid var(--orange);
+            border-radius: 50%;
+            opacity: .5;
+            animation: ping 2s ease-out infinite;
+        }
+
+        .map-hotspot.selected {
+            background: var(--white);
+        }
+
+        .map-hotspot.selected::after {
+            content: '';
+            position: absolute;
+            inset: -3px;
+            border: 2px solid var(--white);
+            border-radius: 50%;
+        }
+
+        .map-hotspot.hover {
+            transform: translate(-50%, -50%) scale(1.35);
+        }
+
+        @keyframes ping {
+            0% {
+                transform: scale(.6);
+                opacity: .8;
+            }
+
+            100% {
+                transform: scale(2.4);
+                opacity: 0;
+            }
+        }
+
+        .map-tooltip {
+            position: absolute;
+            transform: translate(-50%, -135%);
+            background: var(--white);
+            color: var(--navy);
+            font-family: var(--font-head);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: .3px;
+            text-transform: uppercase;
+            padding: 5px 10px;
+            white-space: nowrap;
+            pointer-events: none;
+            z-index: 4;
+        }
+
+        .map-expand {
+            position: absolute;
+            bottom: 16px;
+            right: 16px;
+            width: 34px;
+            height: 34px;
+            background: var(--orange);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .map-expand svg {
+            width: 16px;
+            height: 16px;
+            fill: var(--white);
+        }
+
+        .map-legend {
+            position: absolute;
+            bottom: 16px;
+            left: 16px;
+            display: flex;
+            gap: 14px;
+            background: rgba(255, 255, 255, .06);
+            border: 1px solid rgba(255, 255, 255, .12);
+            padding: 8px 14px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 11px;
+            color: rgba(255, 255, 255, .65);
+            letter-spacing: .3px;
+            text-transform: uppercase;
+            font-family: var(--font-head);
+        }
+
+        .legend-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+
+        .cyclone-track-path {
+            fill: none;
+            stroke: rgba(255, 255, 255, .85);
+            stroke-width: 1.4;
+            stroke-dasharray: 4 4;
+            stroke-linecap: round;
+            filter: drop-shadow(0 0 4px rgba(255, 255, 255, .45));
+            animation: dash-move 18s linear infinite;
+        }
+
+        @keyframes dash-move {
+            to {
+                stroke-dashoffset: -200;
+            }
+        }
+
+        .track-waypoint {
+            fill: rgba(255, 255, 255, .92);
+            stroke: rgba(7, 15, 30, .9);
+            stroke-width: .6;
+        }
+
+        .storm-swirl {
+            transform-box: fill-box;
+            transform-origin: center;
+            animation: swirl-spin 9s linear infinite;
+        }
+
+        @keyframes swirl-spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .storm-swirl-glow {
+            animation: swirl-pulse 2.2s ease-in-out infinite;
+        }
+
+        @keyframes swirl-pulse {
+
+            0%,
+            100% {
+                opacity: .45;
+                r: 8;
+            }
+
+            50% {
+                opacity: 1;
+                r: 11;
+            }
+        }
+
+        .track-label {
+            font-family: var(--font-head);
+            font-size: 6.5px;
+            font-weight: 700;
+            letter-spacing: .3px;
+            fill: rgba(255, 255, 255, .8);
+            text-transform: uppercase;
+        }
+
+        .region-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-height: 540px;
+            overflow-y: auto;
+            padding-right: 2px;
+        }
+
+        .region-list::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        .region-list::-webkit-scrollbar-thumb {
+            background: var(--gray-light);
+        }
+
+        .region-card {
+            background: var(--off-white);
+            border-left: 3px solid var(--navy);
+            padding: 16px 18px;
+            transition: .2s;
+            cursor: pointer;
+        }
+
+        .region-card:hover {
+            border-left-color: var(--orange);
+            transform: translateX(3px);
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(11, 30, 58, .06);
+        }
+
+        .region-card.selected {
+            border-left-color: var(--orange);
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(11, 30, 58, .08);
+        }
+
+        .region-card.hover {
+            border-left-color: var(--orange);
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(11, 30, 58, .06);
+        }
+
+        .region-name {
+            font-family: var(--font-head);
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--navy);
+            text-transform: uppercase;
+            letter-spacing: .3px;
+            margin-bottom: 4px;
+        }
+
+        .region-meta {
+            font-size: 12.5px;
+            color: #6B7E8E;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .region-risk {
+            font-family: var(--font-head);
+            font-weight: 700;
+            font-size: 11px;
+            letter-spacing: .5px;
+            text-transform: uppercase;
+        }
+
+        .risk-high {
+            color: #D9660E;
+        }
+
+        .risk-mid {
+            color: #C99A1E;
+        }
+
+        .risk-low {
+            color: #3A8A5C;
+        }
+
+        /* REGION DETAIL PANEL */
+        .detail-bg {
+            background: var(--off-white);
+        }
+
+        .detail-panel {
+            background: var(--white);
+            border-top: 4px solid var(--orange);
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+        }
+
+        .detail-head {
+            grid-column: 1 / -1;
+            padding: 26px 30px 20px;
+            border-bottom: 1px solid var(--gray-light);
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .detail-region-name {
+            font-family: var(--font-head);
+            font-size: 30px;
+            font-weight: 800;
+            color: var(--navy);
+            text-transform: uppercase;
+            letter-spacing: -.3px;
+        }
+
+        .detail-region-sea {
+            font-size: 13px;
+            color: #6B7E8E;
+            margin-top: 4px;
+        }
+
+        .detail-stat {
+            padding: 22px 30px;
+            border-right: 1px solid var(--gray-light);
+            border-bottom: 1px solid var(--gray-light);
+        }
+
+        .detail-stat:nth-child(4n) {
+            border-right: none;
+        }
+
+        .detail-stat-lbl {
+            font-family: var(--font-head);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--orange);
+            margin-bottom: 6px;
+        }
+
+        .detail-stat-val {
+            font-family: var(--font-head);
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--navy);
+        }
+
+        .detail-stat-note {
+            font-size: 12px;
+            color: #6B7E8E;
+            margin-top: 3px;
+        }
+
+        /* ABOUT-STYLE STRIP for methodology */
+        .method-bg {
+            background: var(--navy);
+        }
+
+        .method-bg .section-h2 {
+            color: var(--white);
+        }
+
+        .method-bg .section-lead {
+            color: rgba(255, 255, 255, .55);
+        }
+
+        .method-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px;
+            background: rgba(255, 255, 255, .08);
+        }
+
+        .method-card {
+            background: var(--navy);
+            padding: 28px 26px;
+        }
+
+        .method-num {
+            font-family: var(--font-head);
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--orange);
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .method-title {
+            font-family: var(--font-head);
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--white);
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .method-desc {
+            font-size: 13.5px;
+            color: rgba(255, 255, 255, .55);
+            line-height: 1.6;
+        }
+
+        footer {
+            background: var(--navy-dark);
+            padding: 36px 5%;
+            border-top: 2px solid var(--orange);
+        }
+
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .footer-logo {
+            font-family: var(--font-head);
+            font-size: 19px;
+            font-weight: 800;
+            color: var(--white);
+        }
+
+        .footer-logo span {
+            color: var(--orange);
+        }
+
+        .footer-copy {
+            font-size: 12px;
+            color: rgba(255, 255, 255, .3);
+        }
+
+        @media (max-width:1024px) {
+            .map-wrap {
+                grid-template-columns: 1fr;
+            }
+
+            .map-panel {
+                min-height: 540px;
+                max-height: 600px;
+            }
+
+            .map-canvas svg {
+                max-height: none;
+            }
+
+            .detail-panel {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .detail-stat:nth-child(4n) {
+                border-right: 1px solid var(--gray-light);
+            }
+
+            .detail-stat:nth-child(2n) {
+                border-right: none;
+            }
+
+            .method-grid {
+                grid-template-columns: 1fr;
+            }
+
+            nav {
+                display: none;
+            }
+        }
+
+        @media (max-width:640px) {
+            .map-panel {
+                min-height: 460px;
+                max-height: 520px;
+            }
+
+            .ocean-label {
+                font-size: 10px;
+                letter-spacing: 2px;
+            }
+
+            .map-legend {
+                bottom: 16px;
+                left: 16px;
+                padding: 6px 10px;
+                gap: 10px;
+            }
+
+            .map-expand {
+                bottom: 16px;
+                right: 16px;
+            }
+
+            .detail-panel {
+                grid-template-columns: 1fr;
+            }
+
+            .detail-stat {
+                border-right: none !important;
+            }
+        }
+
+        .hamburger {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+            width: 32px;
+            height: 32px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: var(--white);
+            transition: .2s;
+        }
+
+        .hamburger.open span:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+        }
+
+        .hamburger.open span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.open span:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 64px;
+            left: 0;
+            right: 0;
+            background: var(--navy-dark);
+            border-bottom: 2px solid var(--orange);
+            z-index: 99;
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: max-height .32s ease, opacity .28s ease, transform .28s ease, visibility .28s;
+        }
+
+        .mobile-menu.open {
+            max-height: 440px;
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .mobile-menu a {
+            font-family: var(--font-head);
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: .5px;
+            color: rgba(255, 255, 255, .75);
+            text-decoration: none;
+            text-transform: uppercase;
+            padding: 16px 5%;
+            border-bottom: 1px solid rgba(255, 255, 255, .08);
+            opacity: 0;
+            transform: translateY(-8px);
+            transition: opacity .28s ease, transform .28s ease;
+        }
+
+        .mobile-menu.open a {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .mobile-menu.open a:nth-child(1) { transition-delay: .04s; }
+        .mobile-menu.open a:nth-child(2) { transition-delay: .09s; }
+        .mobile-menu.open a:nth-child(3) { transition-delay: .14s; }
+        .mobile-menu.open a:nth-child(4) { transition-delay: .19s; }
+
+        .mobile-menu a.active {
+            color: var(--orange);
+        }
+
+        /* Desktop: inline nav visible, hamburger hidden */
+        @media (min-width: 1025px) {
+            nav.main-nav {
+                display: flex;
+            }
+
+            .hamburger {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: none;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            nav.main-nav {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+        }
+
+        @media (min-width: 1025px) and (max-width: 1180px) {
+            nav.main-nav {
+                gap: 18px;
+            }
+
+            nav.main-nav a {
+                font-size: 14px;
+            }
+        }
+
+    
+/* EVOLUTIONARY CYCLONE PREDICTION PROTOTYPE */
+.evo-section{background:var(--off-white);border-top:1px solid var(--gray-light)}
+.evo-shell{max-width:1200px;margin:auto}
+.evo-visual-reference{margin:0 0 18px;background:#071426;border:1px solid rgba(11,30,58,.12);overflow:hidden;position:relative}.evo-visual-reference img{width:100%;height:190px;display:block;object-fit:cover;object-position:center top}.evo-visual-reference:after{content:'DESIGN REFERENCE · INTERACTIVE SECTION';position:absolute;right:12px;bottom:10px;background:rgba(7,20,38,.9);color:#fff;padding:6px 9px;font:800 9px var(--font-head);letter-spacing:1px;text-transform:uppercase}@media(max-width:640px){.evo-visual-reference img{height:125px}}
+.evo-banner{display:flex;justify-content:space-between;gap:16px;align-items:center;background:#fff;border:1px solid rgba(244,123,32,.35);border-left:4px solid var(--orange);padding:12px 16px;margin:0 0 18px}
+.evo-banner strong,.evo-card-title,.evo-stage-value,.evo-score-title{font-family:var(--font-head);font-weight:800;text-transform:uppercase}
+.evo-banner strong{color:var(--navy);letter-spacing:.7px}.evo-banner span{font-size:11px;color:#6b7e8e}
+.evo-controls{display:flex;gap:7px;flex-wrap:wrap}.evo-btn{border:1px solid var(--navy);background:#fff;color:var(--navy);padding:8px 12px;font:800 11px var(--font-head);letter-spacing:.7px;cursor:pointer;text-transform:uppercase}.evo-btn.primary{background:var(--orange);border-color:var(--orange);color:#fff}.evo-btn:hover{background:var(--navy);color:#fff}
+.evo-input-card{background:#fff;border:1px solid var(--gray-light);margin-bottom:18px}.evo-input-head{display:flex;justify-content:space-between;align-items:center;gap:15px;padding:14px 17px;border-bottom:1px solid var(--gray-light)}.evo-input-help{font-size:10px;color:#748694;max-width:610px}.evo-input-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding:14px 17px}.evo-field{display:flex;flex-direction:column;gap:4px}.evo-field label{font:800 9px var(--font-head);letter-spacing:.7px;color:#718291;text-transform:uppercase}.evo-field input,.evo-field select{width:100%;height:34px;border:1px solid #d5dee5;background:#fbfcfd;color:var(--navy);padding:6px 8px;font:600 12px var(--font-body);outline:none}.evo-field input:focus,.evo-field select:focus{border-color:var(--orange);box-shadow:0 0 0 2px rgba(244,123,32,.12)}.evo-input-actions{display:flex;gap:8px;flex-wrap:wrap;padding:0 17px 15px}.evo-input-status{font-size:10px;color:#657886;margin-left:auto;align-self:center}.evo-grid{display:grid;grid-template-columns:1.45fr .75fr;gap:18px}.evo-card{background:#fff;border:1px solid var(--gray-light);box-shadow:0 2px 10px rgba(11,30,58,.04)}
+.evo-card-head{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:15px 17px;border-bottom:1px solid var(--gray-light)}.evo-card-kicker{font:800 10px var(--font-head);color:var(--orange);letter-spacing:1px;text-transform:uppercase}.evo-card-title{font-size:16px;color:var(--navy);letter-spacing:.6px}
+.evo-map{min-height:570px;background:#071426;position:relative;overflow:hidden}.evo-map svg{width:100%;height:570px;display:block}.evo-map-note{position:absolute;top:10px;left:10px;background:rgba(7,15,30,.88);border:1px solid rgba(255,255,255,.15);padding:7px 9px;color:rgba(255,255,255,.82);font-size:9px;letter-spacing:.6px;text-transform:uppercase;z-index:3}.evo-map-legend{position:absolute;bottom:10px;left:10px;background:rgba(7,15,30,.88);border:1px solid rgba(255,255,255,.14);padding:7px 9px;color:rgba(255,255,255,.82);font-size:9px;text-transform:uppercase;z-index:3}.evo-map-legend span{margin-right:10px}.evo-map-legend i{display:inline-block;width:20px;border-top:2px solid currentColor;margin-right:4px;vertical-align:middle}.evo-map-legend .dash{border-top-style:dashed;color:var(--orange)}.evo-map-legend .actual{color:#fff}.evo-map-legend .current{width:8px;height:8px;border:0;border-radius:50%;background:var(--orange)}
+.evo-map-grid{stroke:#a8bac8;stroke-opacity:.18}.evo-map-label{font:10px var(--font-head);fill:#c7d2dc;letter-spacing:.2px}.evo-land{fill:rgba(244,123,32,.08);stroke:#F47B20;stroke-width:1.6;stroke-linejoin:round}.evo-neighbor-land{fill:rgba(255,255,255,.035);stroke:rgba(255,255,255,.38);stroke-width:1}.evo-state-line{fill:none;stroke:#fff;stroke-opacity:.18;stroke-width:.8}.evo-coast-label{font:800 10px var(--font-head);fill:rgba(255,255,255,.52);letter-spacing:.6px}.evo-point-hit{cursor:pointer}
+.evo-tooltip{position:absolute;z-index:5;display:none;background:#fff;color:var(--navy);border:1px solid var(--gray-light);box-shadow:0 5px 16px rgba(0,0,0,.15);padding:8px 10px;font-size:10px;pointer-events:none}.evo-tooltip strong{display:block;font:800 12px var(--font-head);margin-bottom:2px}
+.evo-timeline{padding:15px 17px 20px;overflow-x:auto}.evo-timeline-track{display:grid;grid-template-columns:repeat(11,minmax(65px,1fr));position:relative;margin-top:13px}.evo-timeline-track:before{content:'';position:absolute;left:0;right:0;top:7px;height:2px;background:#cdd7df}.evo-point{z-index:1;border:0;background:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:7px}.evo-dot{width:14px;height:14px;border-radius:50%;background:#9aaab8;border:3px solid #fff;box-shadow:0 0 0 1px #aab7c1}.evo-point.active .evo-dot{background:var(--orange);box-shadow:0 0 0 2px var(--orange);transform:scale(1.15)}.evo-time{font:9px/1.15 var(--font-head);color:#6b7e8e;text-align:center}.evo-point.active .evo-time{color:var(--navy);font-weight:800}.evo-neighbors{display:grid;grid-template-columns:1fr 1.25fr 1fr;gap:7px;margin-top:15px}.evo-neighbor{background:var(--off-white);border:1px solid var(--gray-light);padding:8px}.evo-neighbor span{display:block;font:9px var(--font-head);color:#82919d;text-transform:uppercase}.evo-neighbor strong{display:block;font:800 12px var(--font-head);color:var(--navy)}
+.evo-stage{padding:15px 17px}.evo-stage-label{font:800 10px var(--font-head);color:#9aaab8;letter-spacing:1px;text-transform:uppercase}.evo-stage-value{font-size:25px;color:var(--navy);margin-top:2px}.evo-stage-rail{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;margin-top:14px}.evo-stage-step{height:6px;background:#dce3e8;position:relative}.evo-stage-step.active{background:var(--orange)}.evo-stage-step:after{content:attr(data-label);position:absolute;top:9px;left:0;font:8px var(--font-head);color:#758696;white-space:nowrap;text-transform:uppercase}.evo-state{padding:0 17px 17px}.evo-metrics{display:grid;grid-template-columns:repeat(2,1fr)}.evo-metric{padding:10px 11px;border-right:1px solid var(--gray-light);border-bottom:1px solid var(--gray-light)}.evo-metric:nth-child(2n){border-right:0}.evo-metric small{display:block;font:9px var(--font-head);color:#82919d;letter-spacing:.7px;text-transform:uppercase}.evo-metric strong{display:block;font:800 16px var(--font-head);color:var(--navy)}
+.evo-factor-layout{display:grid;grid-template-columns:1.1fr .9fr;gap:18px;margin-top:18px}.evo-factor-list{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:15px 17px 17px}.evo-factor{border:1px solid var(--gray-light);padding:9px}.evo-factor-top{display:flex;justify-content:space-between;gap:6px;font:800 9px var(--font-head);color:var(--navy);text-transform:uppercase}.evo-factor-value{color:var(--orange)}.evo-bar{height:5px;background:#e7edf1;margin-top:7px}.evo-bar span{display:block;height:100%;background:var(--orange)}.evo-factor-note{font-size:10px;color:#718291;line-height:1.35;margin-top:5px}.evo-score{padding:18px;min-height:100%;display:flex;flex-direction:column;justify-content:center}.evo-score-ring{width:120px;height:120px;margin:0 auto 12px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(var(--orange) var(--score,70%),#e7edf1 0);position:relative}.evo-score-ring:before{content:'';position:absolute;inset:10px;border-radius:50%;background:#fff}.evo-score-ring strong{position:relative;font:800 28px var(--font-head);color:var(--navy)}.evo-score-title{text-align:center;font-size:13px;color:var(--navy)}.evo-score-sub{text-align:center;font-size:10px;color:#788995;margin-top:4px}
+.evo-prediction{margin-top:18px}.evo-pred-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:15px 17px}.evo-pred{background:var(--off-white);border-left:3px solid var(--orange);padding:10px}.evo-pred h4{font:800 12px var(--font-head);color:var(--navy);text-transform:uppercase;margin-bottom:6px}.evo-pred p{font-size:10px;color:#657886;margin:2px 0}.evo-pred b{color:var(--navy)}.evo-confidence{padding:0 17px 16px}.evo-confidence-row{display:flex;justify-content:space-between;font:800 10px var(--font-head);color:var(--navy);text-transform:uppercase}.evo-confidence-bar{height:6px;background:#e7edf1;margin-top:6px}.evo-confidence-bar span{display:block;height:100%;background:var(--navy)}
+.evo-explain{margin-top:18px;padding:15px 17px;border:1px solid var(--gray-light);border-left:4px solid var(--orange);background:#fff}.evo-explain h3{font:800 16px var(--font-head);color:var(--navy);text-transform:uppercase;margin-bottom:4px}.evo-explain p{font-size:13px;color:#536a79;line-height:1.55}.evo-charts{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px}.evo-chart{padding:12px 15px}.evo-chart svg{width:100%;height:210px;display:block}.evo-chart-legend{font-size:9px;color:#788995}.evo-disclaimer{margin-top:18px;padding:10px 12px;background:#fff7f0;border:1px solid rgba(244,123,32,.3);color:#79502f;font-size:10px;line-height:1.5}
+@media(max-width:1024px){.evo-grid,.evo-factor-layout,.evo-charts{grid-template-columns:1fr}.evo-input-grid{grid-template-columns:repeat(2,1fr)}.evo-pred-grid{grid-template-columns:repeat(2,1fr)}.evo-input-status{margin-left:0;width:100%}}
+@media(max-width:640px){.evo-banner{align-items:flex-start;flex-direction:column}.evo-input-grid{grid-template-columns:1fr}.evo-map,.evo-map svg{min-height:430px;height:430px}.evo-factor-list,.evo-pred-grid{grid-template-columns:1fr}.evo-neighbors{grid-template-columns:1fr}.evo-stage-value{font-size:22px}.evo-input-head{align-items:flex-start;flex-direction:column}}
+
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <a href="index.html" class="logo">Cyclo<span>Track</span> India</a>
+        <div class="header-right">
+            <nav class="main-nav" aria-label="Primary">
+                <a href="index.html">Home</a>
+                <a href="cyclone_region.html" class="active">Cyclone Region</a>
+                <a href="history.html">History</a>
+                <a href="about.html">About</a>
+            </nav>
+            <a href="#map" class="header-cta">View Live Map</a>
+            <button class="hamburger" id="hamburgerBtn" aria-label="Menu"><span></span><span></span><span></span></button>
+        </div>
+    </header>
+    <div class="mobile-menu" id="mobileMenu">
+            <a href="index.html">Home</a>
+            <a href="cyclone_region.html" class="active">Cyclone Region</a>
+            <a href="history.html">History</a>
+            <a href="about.html">About</a>
+    </div>
+
+
+    <div class="page-hero">
+        <div class="page-hero-inner">
+            <p class="breadcrumb">Home <span>/</span> Cyclone Region</p>
+            <h1 class="page-hero-h1">India's Coastline,<br><em>Region by Region</em></h1>
+            <p class="page-hero-sub">Every cyclone-prone stretch of the Indian coast, ranked by exposure and tracked
+                against 50 years of landfall history — pick a region to see its full risk profile.</p>
+            <div class="hero-stat-row">
+                <div class="hero-stat"><span class="hero-stat-num">7</span><span class="hero-stat-lbl">Coastal
+                        Regions</span></div>
+                <div class="hero-stat"><span class="hero-stat-num">2</span><span class="hero-stat-lbl">Basins
+                        Monitored</span></div>
+                <div class="hero-stat"><span class="hero-stat-num">3</span><span class="hero-stat-lbl">High-Risk
+                        Zones</span></div>
+                <div class="hero-stat"><span class="hero-stat-num">50yr</span><span class="hero-stat-lbl">Historical
+                        Window</span></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="filter-bar">
+        <div class="filter-inner">
+            <span class="filter-label">Filter</span>
+            <div class="filter-dropdown" id="filterDropdown">
+                <button class="filter-trigger" id="filterTrigger" type="button" aria-haspopup="listbox" aria-expanded="false">
+                    <span class="filter-trigger-label" id="filterTriggerLabel">All Regions</span>
+                    <span class="filter-arrow">&#9662;</span>
+                </button>
+                <div class="filter-menu" id="filterMenu">
+                    <button class="filter-option active" data-filter="all">All Regions</button>
+                    <button class="filter-option" data-filter="high">High Risk</button>
+                    <button class="filter-option" data-filter="mid">Moderate</button>
+                    <button class="filter-option" data-filter="low">Lower Risk</button>
+                    <button class="filter-option" data-filter="bob">Bay of Bengal</button>
+                    <button class="filter-option" data-filter="as">Arabian Sea</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="map-bg" id="map">
+        <div class="section-inner">
+            <span class="section-tag">Cyclone Region</span>
+            <h2 class="section-h2">Live Risk Map<br><em>Of The Indian Coast</em></h2>
+            <p class="section-lead" style="margin-bottom:44px;">Click a hotspot on the map or a region card in the list
+                — both stay in sync and drive the risk profile below.</p>
+
+            <div class="map-wrap">
+                <div class="map-panel">
+                    <div class="map-panel-header">
+                        <span class="map-panel-title">Cyclone Tracking</span>
+                        <div class="toggle-2d3d">
+                            <button class="active" id="btn2d">2D</button>
+                            <button id="btn3d">3D</button>
+                        </div>
+                    </div>
+                    <div class="map-canvas" id="mapCanvas">
+                        <svg viewBox="0 0 260 220" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Arabian Sea turbulence (west of coast) -->
+                            <g class="ocean-waves ocean-west">
+                                <path class="wave-line" d="M-20,58 q7,-8 15,0 t15,0 t15,0 t15,0" />
+                                <path class="wave-line wave-2" d="M-20,90 q7,8 15,0 t15,0 t15,0 t15,0" />
+                                <path class="wave-line" d="M-20,122 q7,-8 15,0 t15,0 t15,0 t15,0" />
+                                <path class="wave-line wave-2" d="M-20,154 q7,8 15,0 t15,0 t15,0 t15,0" />
+                                <path class="wave-line" d="M-20,186 q7,-8 15,0 t15,0 t15,0 t15,0" />
+                            </g>
+                            <!-- Bay of Bengal turbulence (east of coast) -->
+                            <g class="ocean-waves ocean-east">
+                                <path class="wave-line wave-2" d="M188,100 q7,8 15,0 t15,0 t15,0 t15,0" />
+                                <path class="wave-line" d="M188,130 q7,-8 15,0 t15,0 t15,0 t15,0" />
+                                <path class="wave-line wave-2" d="M188,160 q7,8 15,0 t15,0 t15,0 t15,0" />
+                                <path class="wave-line" d="M188,190 q7,-8 15,0 t15,0 t15,0 t15,0" />
+                                <path class="wave-line wave-2" d="M188,206 q7,8 15,0 t15,0 t15,0 t15,0" />
+                            </g>
+                            <!-- Indian Ocean turbulence (south of the peninsula tip) -->
+                            <g class="ocean-waves ocean-south">
+                                <path class="wave-line"
+                                    d="M-10,213 q10,-8 20,0 t20,0 t20,0 t20,0 t20,0 t20,0 t20,0 t20,0 t20,0 t20,0 t20,0" />
+                            </g>
+                            <!-- India landmass outline (accurate coastline, equirectangular projection) -->
+                            <path class="india-outline"
+                                d="M98.1,15.0 L105.1,23.1 L107.0,32.3 L106.8,35.8 L102.1,34.8 L103.9,42.5 L119.2,51.7 L112.6,61.2 L133.3,71.1 L163.9,77.7 L164.3,67.6 L168.2,66.1 L168.9,72.9 L174.7,75.6 L189.5,74.7 L187.3,68.3 L205.8,57.9 L215.7,56.7 L218.8,61.0 L216.6,63.9 L224.0,67.5 L222.3,73.0 L217.7,71.8 L209.3,76.6 L202.8,95.4 L197.8,93.8 L196.7,106.2 L193.6,107.9 L190.2,96.9 L187.4,101.3 L183.8,97.8 L191.7,87.6 L175.9,85.6 L175.3,80.8 L167.1,77.4 L164.9,82.1 L169.5,85.8 L164.1,90.9 L168.0,92.7 L169.2,110.3 L156.9,111.6 L153.9,120.9 L144.6,125.5 L126.2,145.7 L114.1,150.2 L111.1,188.5 L96.2,205.0 L90.1,198.6 L70.5,149.6 L64.7,112.6 L50.8,115.9 L42.4,107.5 L45.4,105.0 L43.5,102.3 L36.0,96.5 L40.3,91.9 L54.4,91.9 L44.6,74.0 L51.7,66.8 L59.2,67.3 L81.6,37.2 L76.4,33.8 L71.9,23.1 L75.0,20.1 L91.9,20.8 L98.1,15.0 Z"
+                                fill="rgba(244,123,32,0.08)" stroke="#F47B20" stroke-width="1.5" opacity="0.95" />
+
+                            <!-- Live cyclone track: forecast path recurving off the Bay of Bengal -->
+                            <g class="cyclone-track">
+                                <path class="cyclone-track-path"
+                                    d="M236,40 Q248,60 214,76 Q188,90 198,116 Q206,138 170,142 Q148,145 150,120" />
+                                <circle class="track-waypoint" cx="236" cy="40" r="2" />
+                                <circle class="track-waypoint" cx="198" cy="116" r="2" />
+                                <circle class="track-waypoint" cx="170" cy="142" r="2" />
+                                <circle class="track-waypoint" cx="150" cy="120" r="2.4" />
+                                <text class="track-label" x="152" y="130">72H</text>
+
+                                <!-- current storm position (animated swirl) -->
+                                <g class="storm-swirl" transform="translate(214,76)">
+                                    <circle r="15" fill="rgba(255,255,255,.05)" />
+                                    <circle class="storm-swirl-glow" r="9" fill="none"
+                                        stroke="rgba(255,255,255,.55)" stroke-width="1" />
+                                    <path d="M0,-8 C6,-8 9,-3 6,2 C3,7 -4,7 -7,2" fill="none" stroke="#FFFFFF"
+                                        stroke-width="1.6" stroke-linecap="round" />
+                                    <path d="M0,8 C-6,8 -9,3 -6,-2 C-3,-7 4,-7 7,-2" fill="none" stroke="#FFFFFF"
+                                        stroke-width="1.6" stroke-linecap="round" opacity=".8" />
+                                    <circle r="2" fill="#FFFFFF" />
+                                </g>
+                                <text class="track-label" x="210" y="36">NOW</text>
+                            </g>
+                        </svg>
+                        <div class="map-hotspot" data-region="odisha" style="top:55.6%;left:54.7%;"></div>
+                        <div class="map-hotspot" data-region="andhra" style="top:63.7%;left:49.2%;"></div>
+                        <div class="map-hotspot" data-region="wb" style="top:50.4%;left:58.2%;"></div>
+                        <div class="map-hotspot" data-region="tn" style="top:75%;left:46.1%;"></div>
+                        <div class="map-hotspot" data-region="kerala" style="top:84.1%;left:40%;"></div>
+                        <div class="map-hotspot" data-region="gujarat" style="top:50.3%;left:29.9%;"></div>
+                        <div class="map-hotspot" data-region="maharashtra" style="top:57.6%;left:34.8%;"></div>
+                    </div>
+                    <div class="map-legend">
+                        <div class="legend-item"><span class="legend-dot" style="background:#D9660E;"></span>High</div>
+                        <div class="legend-item"><span class="legend-dot" style="background:#C99A1E;"></span>Moderate
+                        </div>
+                        <div class="legend-item"><span class="legend-dot" style="background:#3A8A5C;"></span>Lower</div>
+                    </div>
+                    <div class="map-expand">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z" />
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="region-list" id="regionList">
+                    <!-- populated by JS -->
+                </div>
+            </div>
+
+            <div style="margin-top:40px; border-top:4px solid var(--orange); overflow:hidden;">
+                <img src="assets/pic2.jpeg"
+                    alt="Reference cyclone tracking dashboard with global wind patterns and AI prediction panels"
+                    style="width:100%; display:block;">
+            </div>
+            <p style="font-size:12px; color:#8FA1B0; margin-top:10px;">Reference UI — cyclone tracking &amp; global
+                wind dashboard.</p>
+        </div>
+    </section>
+
+
+<section class="evo-section" id="evolution">
+<div class="evo-shell">
+<span class="section-tag">Evolutionary Prototype</span>
+<h2 class="section-h2">Cyclone Evolution <em>Timeline</em></h2>
+<p class="section-lead" style="margin-bottom:18px;">Watch a sample cyclone evolve through time, inspect the drivers behind each state, and compare the selected observation with a deterministic demo projection.</p>
+<div class="evo-visual-reference" aria-label="Cyclone Evolution Timeline visual reference">
+  <img src="assets/evolution-timeline-reference.png" alt="Cyclone Evolution Timeline visual reference" loading="lazy">
+</div>
+<div class="evo-banner"><div><strong>EVOLUTIONARY PROTOTYPE — DEMO DATA &amp; HEURISTIC PREDICTION</strong><br><span>Frontend-only simulation. No live weather API, satellite feed, or backend inference is required.</span></div><div class="evo-controls"><button class="evo-btn primary" id="evoPlay">▶ Play Evolution</button><button class="evo-btn" id="evoPause">⏸ Pause</button><button class="evo-btn" id="evoReset">↺ Reset</button></div></div>
+<div class="evo-input-card">
+<div class="evo-input-head"><div><div class="evo-card-kicker">User Controlled Demo Scenario</div><div class="evo-card-title">Enter / Edit Cyclone Observation</div></div><div class="evo-input-help">Every value shown in the cyclone state, environmental factors and demo prediction can be driven by the values you type here. The sample sequence remains available as a reset.</div></div>
+<div class="evo-input-grid">
+<div class="evo-field"><label for="inStormName">Storm Name</label><input id="inStormName" type="text" value="GUSTAV"></div>
+<div class="evo-field"><label for="inStormId">Storm ID</label><input id="inStormId" type="text" value="AL072008"></div>
+<div class="evo-field"><label for="inTimestamp">Date / Time (UTC)</label><input id="inTimestamp" type="datetime-local" value="2008-08-25T00:00"></div>
+<div class="evo-field"><label for="inLat">Latitude (°N)</label><input id="inLat" type="number" step="0.1" min="-90" max="90" value="10.2"></div>
+<div class="evo-field"><label for="inLon">Longitude (°E)</label><input id="inLon" type="number" step="0.1" min="-180" max="180" value="88.5"></div>
+<div class="evo-field"><label for="inWind">Wind Speed (kt)</label><input id="inWind" type="number" step="1" min="0" value="25"></div>
+<div class="evo-field"><label for="inPressure">Central Pressure (hPa)</label><input id="inPressure" type="number" step="1" min="850" max="1100" value="1008"></div>
+<div class="evo-field"><label for="inVelocity">Movement Speed (km/h)</label><input id="inVelocity" type="number" step="0.1" min="0" value="25.9"></div>
+<div class="evo-field"><label for="inDirection">Movement Direction (°)</label><input id="inDirection" type="number" step="0.1" min="0" max="360" value="310"></div>
+<div class="evo-field"><label for="inWindChange">Wind Change / 6h (kt)</label><input id="inWindChange" type="number" step="1" value="0"></div>
+<div class="evo-field"><label for="inPressureChange">Pressure Change / 6h (hPa)</label><input id="inPressureChange" type="number" step="1" value="0"></div>
+<div class="evo-field"><label for="inSst">Sea Surface Temperature (°C)</label><input id="inSst" type="number" step="0.1" value="28.5"></div>
+<div class="evo-field"><label for="inMoisture">Atmospheric Moisture (%)</label><input id="inMoisture" type="number" step="1" min="0" max="100" value="72"></div>
+<div class="evo-field"><label for="inShear">Vertical Wind Shear (kt)</label><input id="inShear" type="number" step="1" min="0" value="13"></div>
+<div class="evo-field"><label for="inOutflow">Upper-Level Outflow</label><select id="inOutflow"><option>Strong</option><option selected>Moderate</option><option>Weak</option></select></div>
+<div class="evo-field"><label for="inOhc">Ocean Heat Content</label><select id="inOhc"><option>High</option><option selected>Medium</option><option>Low</option></select></div>
+</div>
+<div class="evo-input-actions"><button class="evo-btn primary" id="evoApplyInput">Apply To Current</button><button class="evo-btn" id="evoAddInput">Add As New Observation</button><button class="evo-btn" id="evoSampleInput">Restore Sample Values</button><span class="evo-input-status" id="evoInputStatus">Editing the selected observation.</span></div>
+</div>
+<div class="evo-grid">
+<div class="evo-card">
+<div class="evo-card-head"><div><div class="evo-card-kicker">India / Northern Indian Ocean View</div><div class="evo-card-title">Evolutionary Track</div></div><div class="evo-card-kicker">Demo Prediction</div></div>
+<div class="evo-map" id="evoMap"><div class="evo-map-note">60°E–100°E · 0°N–35°N · regional demonstration view</div>
+<svg id="evoMapSvg" viewBox="0 0 760 520" preserveAspectRatio="xMidYMid meet" role="img" aria-label="India and northern Indian Ocean cyclone evolution map">
+<rect width="760" height="520" fill="#09162B"/>
+<g class="evo-map-grid"><path d="M20 40H740M20 120H740M20 200H740M20 280H740M20 360H740M20 440H740"/><path d="M60 20V500M180 20V500M300 20V500M420 20V500M540 20V500M660 20V500"/></g>
+<g class="evo-map-label"><text x="51" y="510">60°E</text><text x="171" y="510">70°E</text><text x="291" y="510">80°E</text><text x="411" y="510">90°E</text><text x="531" y="510">100°E</text><text x="5" y="444">0°N</text><text x="5" y="364">7°N</text><text x="5" y="284">14°N</text><text x="5" y="204">21°N</text><text x="5" y="124">28°N</text><text x="5" y="44">35°N</text></g>
+<!-- Detailed India coastline reused from the site's existing regional map and enlarged for this view. -->
+<path class="evo-land" transform="translate(100 10) scale(2.1 2.1)" d="M98.1,15.0 L105.1,23.1 L107.0,32.3 L106.8,35.8 L102.1,34.8 L103.9,42.5 L119.2,51.7 L112.6,61.2 L133.3,71.1 L163.9,77.7 L164.3,67.6 L168.2,66.1 L168.9,72.9 L174.7,75.6 L189.5,74.7 L187.3,68.3 L205.8,57.9 L215.7,56.7 L218.8,61.0 L216.6,63.9 L224.0,67.5 L222.3,73.0 L217.7,71.8 L209.3,76.6 L202.8,95.4 L197.8,93.8 L196.7,106.2 L193.6,107.9 L190.2,96.9 L187.4,101.3 L183.8,97.8 L191.7,87.6 L175.9,85.6 L175.3,80.8 L167.1,77.4 L164.9,82.1 L169.5,85.8 L164.1,90.9 L168.0,92.7 L169.2,110.3 L156.9,111.6 L153.9,120.9 L144.6,125.5 L126.2,145.7 L114.1,150.2 L111.1,188.5 L96.2,205.0 L90.1,198.6 L70.5,149.6 L64.7,112.6 L50.8,115.9 L42.4,107.5 L45.4,105.0 L43.5,102.3 L36.0,96.5 L40.3,91.9 L54.4,91.9 L44.6,74.0 L51.7,66.8 L59.2,67.3 L81.6,37.2 L76.4,33.8 L71.9,23.1 L75.0,20.1 L91.9,20.8 L98.1,15.0 Z"/>
+<!-- Neighbouring landmasses for geographic context. -->
+<path class="evo-neighbor-land" d="M30 156 L18 138 L22 115 L43 105 L65 112 L82 130 L75 151 L57 165 Z"/>
+<path class="evo-neighbor-land" d="M449 93 L468 79 L495 82 L518 94 L530 110 L514 124 L489 119 L471 109 Z"/>
+<path class="evo-neighbor-land" d="M593 150 L622 137 L654 145 L682 165 L698 191 L681 216 L650 224 L621 211 L603 190 Z"/>
+<path class="evo-neighbor-land" d="M300 462 L323 474 L347 487 L339 510 L314 501 L295 483 Z"/>
+<path class="evo-state-line" transform="translate(100 10) scale(2.1 2.1)" d="M98 45 L125 60 L150 73 M78 90 L110 105 L140 122 M82 130 L112 145 L145 160 M105 165 L128 145 L150 125 M150 125 L170 105 L190 90 M164 78 L188 88 L202 105"/>
+<g class="evo-map-label"><text x="235" y="235" font-size="16" fill="#fff" font-weight="800">INDIA</text><text x="72" y="310">ARABIAN SEA</text><text x="520" y="300">BAY OF BENGAL</text><text x="306" y="500">SRI LANKA</text><text x="470" y="72">BANGLADESH</text><text x="28" y="105">PAKISTAN</text><text x="646" y="138">MYANMAR</text><text x="220" y="28">HIMALAYAN REGION</text></g>
+<g id="evoActualPath" aria-label="Historical cyclone track"></g><g id="evoForecastPath" aria-label="Demo predicted track"></g><g id="evoHistoricalPoints"></g><g id="evoCurrentMarker"></g><g id="evoForecastPoints"></g>
+</svg><div class="evo-map-legend"><span><i class="actual"></i>Actual Track</span><span><i class="dash"></i>Demo Prediction</span><span><i class="current"></i>Current</span></div><div class="evo-tooltip" id="evoTooltip"></div></div>
+<div class="evo-timeline"><div class="evo-card-head" style="padding:0 0 8px;border:0"><div class="evo-card-title">Select Observation</div><div class="evo-card-kicker" id="evoSelectedTime"></div></div><div class="evo-timeline-track" id="evoTimeline"></div><div class="evo-neighbors"><div class="evo-neighbor"><span>Previous Observation</span><strong id="evoPrev">—</strong></div><div class="evo-neighbor"><span>Current Observation</span><strong id="evoCurrent">—</strong></div><div class="evo-neighbor"><span>Next Observation</span><strong id="evoNext">—</strong></div></div></div>
+</div>
+<div class="evo-card"><div class="evo-card-head"><div><div class="evo-card-kicker">Selected Observation</div><div class="evo-card-title">Current Cyclone State</div></div></div><div class="evo-stage"><div class="evo-stage-label">Evolution Stage</div><div class="evo-stage-value" id="evoStage"></div><div class="evo-stage-rail"><div class="evo-stage-step" data-label="Formation"></div><div class="evo-stage-step" data-label="Intensification"></div><div class="evo-stage-step" data-label="Peak"></div><div class="evo-stage-step" data-label="Weakening"></div></div></div><div class="evo-state"><div class="evo-metrics" id="evoMetrics"></div></div></div>
+</div>
+<div class="evo-factor-layout"><div class="evo-card"><div class="evo-card-head"><div><div class="evo-card-kicker">Demo Environmental Conditions</div><div class="evo-card-title">Why Is The Cyclone Intensifying?</div></div></div><div class="evo-factor-list" id="evoFactors"></div></div><div class="evo-card"><div class="evo-card-head"><div><div class="evo-card-kicker">Prototype Heuristic</div><div class="evo-card-title">Factor Score</div></div></div><div class="evo-score"><div class="evo-score-ring" id="evoScoreRing"><strong id="evoScore">70</strong></div><div class="evo-score-title" id="evoScoreLabel"></div><div class="evo-score-sub">Cyclone Development Favorability Score / 100</div></div></div></div>
+<div class="evo-card evo-prediction"><div class="evo-card-head"><div><div class="evo-card-kicker">Deterministic Frontend Projection</div><div class="evo-card-title">Next 24–48 Hours — Demo Prediction</div></div><div class="evo-card-kicker">Not An Operational Forecast</div></div><div class="evo-pred-grid" id="evoPredictions"></div><div class="evo-confidence"><div class="evo-confidence-row"><span>Demo Confidence</span><span id="evoConfidence">70%</span></div><div class="evo-confidence-bar"><span id="evoConfidenceBar"></span></div></div></div>
+<div class="evo-explain"><h3>Why This Prediction?</h3><p id="evoExplanation"></p></div>
+<div class="evo-charts"><div class="evo-card evo-chart"><div class="evo-card-head" style="padding:2px 0 8px;border:0"><div class="evo-card-title">Wind Speed Evolution</div><div class="evo-chart-legend">kt · selected point highlighted</div></div><svg id="evoWindChart" viewBox="0 0 600 210" preserveAspectRatio="none"></svg></div><div class="evo-card evo-chart"><div class="evo-card-head" style="padding:2px 0 8px;border:0"><div class="evo-card-title">Central Pressure Evolution</div><div class="evo-chart-legend">hPa · selected point highlighted</div></div><svg id="evoPressureChart" viewBox="0 0 600 210" preserveAspectRatio="none"></svg></div></div>
+<div class="evo-disclaimer"><strong>EVOLUTIONARY PROTOTYPE — DEMO DATA &amp; HEURISTIC PREDICTION.</strong> This prototype demonstrates the intended prediction workflow using sample cyclone data and deterministic frontend calculations. It is not an operational weather forecast, and the heuristic score/confidence are not scientifically validated ML outputs.</div>
+</div></section>
+
+    <section class="detail-bg">
+        <div class="section-inner">
+            <span class="section-tag">Risk Profile</span>
+            <h2 class="section-h2" id="detailHeading">Odisha <em>Coast</em></h2>
+            <p class="section-lead" style="margin-bottom:32px;">Pulled from the region selected on the map above.</p>
+            <div class="detail-panel" id="detailPanel">
+                <!-- populated by JS -->
+            </div>
+        </div>
+    </section>
+
+    <section class="method-bg">
+        <div class="section-inner">
+            <span class="section-tag" style="color:var(--orange);">How Risk Is Scored</span>
+            <h2 class="section-h2">Reading The<br><em>Risk Levels</em></h2>
+            <p class="section-lead">Each region's rating combines three signals from the archive above it.</p>
+            <div class="method-grid">
+                <div class="method-card">
+                    <div class="method-num">01</div>
+                    <div class="method-title">Landfall Frequency</div>
+                    <p class="method-desc">How often a cyclonic or severe cyclonic storm has crossed this stretch of
+                        coast over the historical window.</p>
+                </div>
+                <div class="method-card">
+                    <div class="method-num">02</div>
+                    <div class="method-title">Peak Intensity</div>
+                    <p class="method-desc">The highest category reached by storms making landfall here, weighted toward
+                        severe and super cyclones.</p>
+                </div>
+                <div class="method-card">
+                    <div class="method-num">03</div>
+                    <div class="method-title">Coastal Exposure</div>
+                    <p class="method-desc">Population density, elevation, and low-lying delta terrain that shape how
+                        much damage a landfall causes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="about">
+        <div class="footer-inner">
+            <div class="footer-logo">Cyclo<span>Track</span> India</div>
+            <p class="footer-copy">&copy; 2026 Team Nexus — Smart India Hackathon. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const REGIONS = [
+            {
+                id: 'odisha', name: 'Odisha Coast', sea: 'Bay of Bengal', basin: 'bob', risk: 'high',
+                season: 'Oct – Dec', frequency: '1 landfall / 2.1 yrs', peak: 'Category 5 (Super Cyclone, 1999)', notable: 3
+            },
+            {
+                id: 'andhra', name: 'Andhra Pradesh Coast', sea: 'Bay of Bengal', basin: 'bob', risk: 'high',
+                season: 'Oct – Nov', frequency: '1 landfall / 3 yrs', peak: 'Category 4 (Hudhud, 2014)', notable: 2
+            },
+            {
+                id: 'wb', name: 'West Bengal Coast', sea: 'Bay of Bengal', basin: 'bob', risk: 'high',
+                season: 'Apr – May, Oct', frequency: '1 landfall / 3.5 yrs', peak: 'Category 4 (Amphan, 2020)', notable: 2
+            },
+            {
+                id: 'tn', name: 'Tamil Nadu Coast', sea: 'Bay of Bengal', basin: 'bob', risk: 'mid',
+                season: 'Nov – Dec', frequency: '1 landfall / 5 yrs', peak: 'Category 2 (Nivar, 2020)', notable: 1
+            },
+            {
+                id: 'kerala', name: 'Kerala Coast', sea: 'Arabian Sea', basin: 'as', risk: 'low',
+                season: 'May – Jun', frequency: '1 landfall / 12 yrs', peak: 'Category 1 (Ockhi, 2017)', notable: 1
+            },
+            {
+                id: 'gujarat', name: 'Gujarat Coast', sea: 'Arabian Sea', basin: 'as', risk: 'low',
+                season: 'Jun, Oct – Nov', frequency: '1 landfall / 8 yrs', peak: 'Category 4 (Kandla, 1998)', notable: 1
+            },
+            {
+                id: 'maharashtra', name: 'Maharashtra Coast', sea: 'Arabian Sea', basin: 'as', risk: 'mid',
+                season: 'Jun, Oct – Nov', frequency: '1 landfall / 9 yrs', peak: 'Category 2 (Nisarga, 2020)', notable: 1
+            },
+        ];
+
+        const riskLabel = { high: 'High Risk', mid: 'Moderate', low: 'Lower Risk' };
+        const riskClass = { high: 'risk-high', mid: 'risk-mid', low: 'risk-low' };
+        const riskColor = { high: '#D9660E', mid: '#C99A1E', low: '#3A8A5C' };
+
+        function setHover(rid, on) {
+            const dot = document.querySelector('.map-hotspot[data-region="' + rid + '"]');
+            if (dot) dot.classList.toggle('hover', on);
+            const card = document.querySelector('.region-card[data-region="' + rid + '"]');
+            if (card) card.classList.toggle('hover', on);
+        }
+
+        let selectedId = 'odisha';
+        let currentFilter = 'all';
+
+        function passesFilter(r) {
+            if (currentFilter === 'all') return true;
+            if (currentFilter === 'high' || currentFilter === 'mid' || currentFilter === 'low') return r.risk === currentFilter;
+            if (currentFilter === 'bob' || currentFilter === 'as') return r.basin === currentFilter;
+            return true;
+        }
+
+        function renderList() {
+            const list = document.getElementById('regionList');
+            list.innerHTML = '';
+            REGIONS.filter(passesFilter).forEach(r => {
+                const card = document.createElement('div');
+                card.className = 'region-card' + (r.id === selectedId ? ' selected' : '');
+                card.dataset.region = r.id;
+                card.innerHTML = `
+      <div class="region-name">${r.name}</div>
+      <div class="region-meta"><span>${r.sea}</span><span class="region-risk ${riskClass[r.risk]}">${riskLabel[r.risk]}</span></div>
+    `;
+                card.addEventListener('click', () => selectRegion(r.id));
+                card.addEventListener('mouseenter', () => setHover(r.id, true));
+                card.addEventListener('mouseleave', () => setHover(r.id, false));
+                list.appendChild(card);
+            });
+        }
+
+        function renderHotspots() {
+            document.querySelectorAll('.map-hotspot').forEach(dot => {
+                const r = REGIONS.find(x => x.id === dot.dataset.region);
+                dot.style.background = dot.dataset.region === selectedId ? '#FFFFFF' : riskColor[r.risk];
+                dot.classList.toggle('selected', dot.dataset.region === selectedId);
+                dot.style.opacity = passesFilter(r) ? '1' : '.25';
+            });
+        }
+
+        function renderDetail() {
+            const r = REGIONS.find(x => x.id === selectedId);
+            document.getElementById('detailHeading').innerHTML = r.name.replace(' Coast', '') + ' <em>Coast</em>';
+            document.getElementById('detailPanel').innerHTML = `
+    <div class="detail-head">
+      <div>
+        <div class="detail-region-name">${r.name}</div>
+        <div class="detail-region-sea">${r.sea} &nbsp;·&nbsp; <span class="region-risk ${riskClass[r.risk]}">${riskLabel[r.risk]}</span></div>
+      </div>
+    </div>
+    <div class="detail-stat">
+      <div class="detail-stat-lbl">Cyclone Season</div>
+      <div class="detail-stat-val">${r.season}</div>
+      <div class="detail-stat-note">Peak months for landfall</div>
+    </div>
+    <div class="detail-stat">
+      <div class="detail-stat-lbl">Landfall Frequency</div>
+      <div class="detail-stat-val">${r.frequency}</div>
+      <div class="detail-stat-note">Based on the historical archive</div>
+    </div>
+    <div class="detail-stat">
+      <div class="detail-stat-lbl">Peak Intensity Recorded</div>
+      <div class="detail-stat-val">${r.peak}</div>
+      <div class="detail-stat-note">Strongest system on record</div>
+    </div>
+    <div class="detail-stat">
+      <div class="detail-stat-lbl">Archived Cyclones</div>
+      <div class="detail-stat-val">${r.notable}</div>
+      <div class="detail-stat-note">Logged in the major-cyclones table</div>
+    </div>
+  `;
+        }
+
+        function selectRegion(id) {
+            selectedId = id;
+            renderList();
+            renderHotspots();
+            renderDetail();
+        }
+
+        document.querySelectorAll('.map-hotspot').forEach(dot => {
+            dot.addEventListener('click', () => selectRegion(dot.dataset.region));
+            dot.addEventListener('mouseenter', () => setHover(dot.dataset.region, true));
+            dot.addEventListener('mouseleave', () => setHover(dot.dataset.region, false));
+        });
+
+        document.querySelectorAll('.filter-option').forEach(opt => {
+            opt.addEventListener('click', function () {
+                currentFilter = this.dataset.filter;
+                if (!passesFilter(REGIONS.find(x => x.id === selectedId))) {
+                    const firstMatch = REGIONS.find(passesFilter);
+                    if (firstMatch) selectedId = firstMatch.id;
+                }
+                renderList();
+                renderHotspots();
+                renderDetail();
+            });
+        });
+
+        document.getElementById('btn2d').addEventListener('click', function () {
+            this.classList.add('active');
+            document.getElementById('btn3d').classList.remove('active');
+            document.getElementById('mapCanvas').classList.remove('tilt');
+        });
+        document.getElementById('btn3d').addEventListener('click', function () {
+            this.classList.add('active');
+            document.getElementById('btn2d').classList.remove('active');
+            document.getElementById('mapCanvas').classList.add('tilt');
+        });
+
+        renderList();
+        renderHotspots();
+        renderDetail();
+    </script>
+
+
+
+<script>
+(function(){
+const SAMPLE_D=[
+{t:'2008-08-25 00:00',lat:10.2,lon:88.5,status:'TD',wind:25,pressure:1008,category:'Tropical Depression',windChange:0,pressureChange:0,direction:310,velocity:25.88,distance:0,stormName:'GUSTAV',stormId:'AL072008'},
+{t:'2008-08-25 06:00',lat:10.6,lon:88.0,status:'TD',wind:30,pressure:1005,category:'Tropical Depression',windChange:5,pressureChange:-3,direction:309.29,velocity:25.88,distance:155.26,stormName:'GUSTAV',stormId:'AL072008'},
+{t:'2008-08-25 12:00',lat:11.0,lon:87.4,status:'TS',wind:35,pressure:1002,category:'Tropical Storm',windChange:5,pressureChange:-3,direction:302.47,velocity:23.60,distance:141.60,stormName:'GUSTAV',stormId:'AL072008'},
+{t:'2008-08-25 18:00',lat:11.5,lon:86.8,status:'TS',wind:50,pressure:996,category:'Tropical Storm',windChange:15,pressureChange:-6,direction:307.87,velocity:20.66,distance:123.95,stormName:'GUSTAV',stormId:'AL072008'},
+{t:'2008-08-26 00:00',lat:12.1,lon:86.1,status:'TS',wind:60,pressure:991,category:'Tropical Storm',windChange:10,pressureChange:-5,direction:310.60,velocity:16.70,distance:100.22,stormName:'GUSTAV',stormId:'AL072008'},
+{t:'2008-08-26 06:00',lat:12.8,lon:85.5,status:'HU',wind:75,pressure:986,category:'Category 1',windChange:15,pressureChange:-5,direction:315,velocity:12.83,distance:77,stormName:'GUSTAV',stormId:'AL072008'},
+{t:'2008-08-26 12:00',lat:13.6,lon:84.9,status:'HU',wind:80,pressure:981,category:'Category 1',windChange:5,pressureChange:-5,direction:326.31,velocity:13.18,distance:79.10,stormName:'GUSTAV',stormId:'AL072008'},
+{t:'2008-08-26 18:00',lat:14.5,lon:84.3,status:'HU',wind:70,pressure:992,category:'Category 1',windChange:-10,pressureChange:11,direction:310.60,velocity:16.62,distance:99.72,stormName:'GUSTAV',stormId:'AL072008'},
+{t:'2008-08-27 00:00',lat:15.5,lon:83.7,status:'TS',wind:50,pressure:995,category:'Tropical Storm',windChange:-20,pressureChange:3,direction:315,velocity:7.67,distance:46,stormName:'GUSTAV',stormId:'AL072008'},
+{t:'2008-08-27 06:00',lat:16.4,lon:83.0,status:'TS',wind:45,pressure:999,category:'Tropical Storm',windChange:-5,pressureChange:4,direction:303.69,velocity:6.44,distance:38.67,stormName:'GUSTAV',stormId:'AL072008'},
+{t:'2008-08-27 12:00',lat:17.2,lon:82.4,status:'TS',wind:45,pressure:998,category:'Tropical Storm',windChange:0,pressureChange:-1,direction:288.43,velocity:5.58,distance:33.51,stormName:'GUSTAV',stormId:'AL072008'}
+];
+const SAMPLE_E=[
+{sst:28.5,moisture:72,shear:13,outflow:'Moderate',ohc:'Medium',coriolis:'Favorable'},
+{sst:28.7,moisture:74,shear:11,outflow:'Moderate',ohc:'Medium',coriolis:'Favorable'},
+{sst:29.0,moisture:76,shear:9,outflow:'Strong',ohc:'High',coriolis:'Favorable'},
+{sst:29.1,moisture:78,shear:8,outflow:'Strong',ohc:'High',coriolis:'Favorable'},
+{sst:29.2,moisture:80,shear:7,outflow:'Strong',ohc:'High',coriolis:'Favorable'},
+{sst:29.3,moisture:82,shear:6,outflow:'Strong',ohc:'High',coriolis:'Favorable'},
+{sst:29.2,moisture:81,shear:7,outflow:'Strong',ohc:'High',coriolis:'Favorable'},
+{sst:28.9,moisture:77,shear:14,outflow:'Moderate',ohc:'Medium',coriolis:'Favorable'},
+{sst:28.7,moisture:72,shear:18,outflow:'Moderate',ohc:'Medium',coriolis:'Favorable'},
+{sst:28.5,moisture:69,shear:21,outflow:'Weak',ohc:'Medium',coriolis:'Favorable'},
+{sst:28.4,moisture:68,shear:20,outflow:'Weak',ohc:'Medium',coriolis:'Favorable'}];
+let D=structuredClone(SAMPLE_D),E=structuredClone(SAMPLE_E),idx=0,timer=null;
+const $=id=>document.getElementById(id),cl=(v,a,b)=>Math.max(a,Math.min(b,v));
+function p(lat,lon){return{x:60+(lon-60)/40*600,y:500-lat/35*460}}
+function ft(t){return t+' UTC'}
+function stage(i){let d=D[i];if(i===0)return'Tropical Disturbance';if(d.windChange>=10&&d.pressureChange<=-4)return'Rapid Intensification';if(i>=5&&i<=6&&d.wind>=64)return'Peak Intensity';if(d.windChange<0&&d.pressureChange>0)return'Weakening';if(d.wind>=64)return'Severe Cyclone / Hurricane';if(d.wind>=34)return'Tropical Storm';return'Tropical Depression'}
+function score(i){let d=D[i],e=E[i],s=45+cl((e.sst-27)*12,0,24)+cl((e.moisture-60)*.35,0,9)+cl((18-e.shear)*1.4,-8,12)+(d.pressureChange<=-4?10:d.pressureChange<0?5:d.pressureChange>5?-8:0)+(d.windChange>=10?10:d.windChange>0?5:d.windChange<0?-10:0)+(e.outflow==='Strong'?7:e.outflow==='Moderate'?3:-4)+(e.ohc==='High'?5:e.ohc==='Medium'?2:0);return Math.round(cl(s,0,100))}
+function pred(i){let d=D[i],e=E[i],sp=Math.max(3,d.velocity),a=d.direction*Math.PI/180,f=e.shear<=10?1.03:e.shear>=18?.95:1;return[6,12,24,48].map(h=>{let dist=sp*h,lat=d.lat+dist*Math.cos(a)/111,lon=d.lon+dist*Math.sin(a)/(111*Math.max(.35,Math.cos(d.lat*Math.PI/180))),wind=cl(d.wind+d.windChange*(h/6)*.55*f,15,140),pressure=cl(d.pressure-d.pressureChange*(h/6)*.55*f,930,1015);let c=wind>=137?'Category 5':wind>=113?'Category 4':wind>=96?'Category 3':wind>=83?'Category 2':wind>=64?'Category 1':wind>=34?'Tropical Storm':'Tropical Depression';return{h,lat,lon,wind,pressure,category:c}})}
+function sortData(){let pairs=D.map((d,i)=>({d,e:E[i]})).sort((a,b)=>a.d.t.localeCompare(b.d.t));D.length=0;E.length=0;pairs.forEach(x=>{D.push(x.d);E.push(x.e)});idx=cl(idx,0,D.length-1)}
+function timeline(){$('evoTimeline').innerHTML=D.map((d,i)=>`<button class="evo-point ${i===idx?'active':''}" data-i="${i}" title="${d.stormName||'Cyclone'} · ${d.t} UTC"><span class="evo-dot"></span><span class="evo-time">${d.t.slice(5,10)}<br>${d.t.slice(11,16)}</span></button>`).join('');$('evoTimeline').querySelectorAll('.evo-point').forEach(b=>b.onclick=()=>{idx=+b.dataset.i;loadForm();all()})}
+function map(){let cur=p(D[idx].lat,D[idx].lon),act=D.slice(0,idx+1).map(d=>p(d.lat,d.lon));$('evoActualPath').setAttribute('d',act.map((q,i)=>(i?'L':'M')+q.x+','+q.y).join(' '));$('evoHistoricalPoints').innerHTML=D.slice(0,idx).map((d,i)=>{let q=p(d.lat,d.lon);return`<circle class="evo-point-hit" cx="${q.x}" cy="${q.y}" r="${i===idx-1?5:3.3}" fill="#fff" opacity=".78" data-evo="${i}"/>`}).join('');let r=8+(D[idx].wind>=64?8:D[idx].wind>=34?5:3);let name=(D[idx].stormName||'CYCLONE').toUpperCase();$('evoCurrentMarker').innerHTML=`<g transform="translate(${cur.x},${cur.y})"><circle r="${r}" fill="rgba(244,123,32,.12)" stroke="#F47B20" stroke-width="1.5"><animate attributeName="r" values="${r};${r+4};${r}" dur="2.6s" repeatCount="indefinite"/></circle><circle r="4.5" fill="#F47B20" stroke="#fff" stroke-width="2"/><text x="10" y="-10" fill="#fff" font-family="Barlow Condensed" font-size="12" font-weight="700">${name}</text></g>`;let ps=pred(idx);$('evoForecastPath').setAttribute('d',[cur,...ps.map(x=>p(x.lat,x.lon))].map((q,i)=>(i?'L':'M')+q.x+','+q.y).join(''));$('evoForecastPoints').innerHTML=ps.map(x=>{let q=p(x.lat,x.lon);return`<circle cx="${q.x}" cy="${q.y}" r="3.5" fill="#F47B20"/><text x="${q.x+6}" y="${q.y-5}" fill="#F47B20" font-family="Barlow Condensed" font-size="9">+${x.h}H</text>`}).join('');$('evoMap').querySelectorAll('[data-evo]').forEach(el=>el.onmouseenter=ev=>{let d=D[+el.dataset.evo],tt=$('evoTooltip');tt.innerHTML=`<strong>${d.stormName||'CYCLONE'} · ${d.t}</strong>${d.lat.toFixed(1)}°N, ${d.lon.toFixed(1)}°E<br>${d.wind} kt · ${d.pressure} hPa<br>${d.category} · ${d.velocity.toFixed(1)} km/h`;tt.style.display='block';let rct=$('evoMap').getBoundingClientRect();tt.style.left=(ev.clientX-rct.left+12)+'px';tt.style.top=(ev.clientY-rct.top-20)+'px'})}
+function state(){let d=D[idx],s=stage(idx);$('evoSelectedTime').textContent=ft(d.t);$('evoStage').textContent=s;$('evoPrev').textContent=idx?ft(D[idx-1].t):'Formation point';$('evoCurrent').textContent=ft(d.t);$('evoNext').textContent=idx<D.length-1?ft(D[idx+1].t):'End of sample';let m=[['Storm Name',d.stormName||'CYCLONE'],['Storm ID',d.stormId||'USER-OBS'],['Date / Time',ft(d.t)],['Latitude',d.lat.toFixed(1)+'°N'],['Longitude',d.lon.toFixed(1)+'°E'],['Classification',d.category],['Maximum Wind',d.wind+' kt'],['Central Pressure',d.pressure+' hPa'],['Movement Speed',d.velocity.toFixed(1)+' km/h'],['Movement Direction',d.direction.toFixed(0)+'°'],['Distance Travelled',d.distance.toFixed(1)+' km'],['Wind Change',(d.windChange>=0?'+':'')+d.windChange+' kt / 6h'],['Pressure Change',(d.pressureChange>=0?'+':'')+d.pressureChange+' hPa / 6h']];$('evoMetrics').innerHTML=m.map(x=>`<div class="evo-metric"><small>${x[0]}</small><strong>${x[1]}</strong></div>`).join('');let r=stage(idx);let rank=r==='Weakening'?3:r==='Peak Intensity'||r==='Severe Cyclone / Hurricane'?2:r==='Tropical Storm'||r==='Rapid Intensification'?1:0;document.querySelectorAll('.evo-stage-step').forEach((e,i)=>e.classList.toggle('active',i===rank))}
+function factors(){let d=D[idx],e=E[idx],s=score(idx),f=[['Sea Surface Temperature',e.sst.toFixed(1)+'°C',cl((e.sst-26)*33,0,100),e.sst>=28?'Favorable':'Less favorable','Warm ocean water supplies evaporation and latent heat.'],['Atmospheric Moisture',e.moisture+'%',e.moisture,e.moisture>=70?'Favorable':'Less favorable','Moist air supports deep convection.'],['Vertical Wind Shear',e.shear+' kt',cl(100-e.shear*3.2,0,100),e.shear<=10?'Low / Favorable':'Unfavorable','Low shear helps keep the circulation vertically aligned.'],['Pressure Change',(d.pressureChange>=0?'+':'')+d.pressureChange+' hPa / 6h',cl(50-d.pressureChange*8,0,100),d.pressureChange<=-4?'Strong intensification signal':d.pressureChange>3?'Weakening signal':'Neutral','Falling pressure supports strengthening; rising pressure supports weakening.'],['Wind Change',(d.windChange>=0?'+':'')+d.windChange+' kt / 6h',cl(50+d.windChange*3.3,0,100),d.windChange>=10?'Rapid intensification':d.windChange<0?'Weakening':'Stable','Increasing winds indicate strengthening.'],['Upper-Level Outflow',e.outflow,e.outflow==='Strong'?92:e.outflow==='Moderate'?65:35,e.outflow==='Strong'?'Favorable':'Less favorable','Good outflow helps remove air from the upper circulation.'],['Ocean Heat Content',e.ohc,e.ohc==='High'?90:e.ohc==='Medium'?65:35,e.ohc==='High'?'Favorable':e.ohc==='Medium'?'Moderate':'Less favorable','Deeper warm water can keep supplying energy after mixing.'],['Coriolis Effect',d.lat.toFixed(1)+'°N · '+e.coriolis,cl(d.lat*3.5,0,100),e.coriolis,'Distance from the equator supports organized rotation.']];$('evoFactors').innerHTML=f.map(x=>`<div class="evo-factor"><div class="evo-factor-top"><span>${x[0]}</span><span class="evo-factor-value">${x[1]}</span></div><div class="evo-bar"><span style="width:${x[2]}%"></span></div><div class="evo-factor-note"><b>${x[3]}.</b> ${x[4]}</div></div>`).join('');$('evoScore').textContent=s;$('evoScoreRing').style.setProperty('--score',s+'%');$('evoScoreLabel').textContent=s>=75?'Favorable For Intensification':s>=55?'Moderately Favorable':'Less Favorable'}
+function prediction(){let d=D[idx],ps=pred(idx);$('evoPredictions').innerHTML=ps.map(x=>`<div class="evo-pred"><h4>+${x.h} Hours</h4><p>Position <b>${x.lat.toFixed(1)}°N, ${x.lon.toFixed(1)}°E</b></p><p>Wind <b>${x.wind.toFixed(0)} kt</b></p><p>Pressure <b>${x.pressure.toFixed(0)} hPa</b></p><p>Category <b>${x.category}</b></p></div>`).join('');let c=58+(idx>0?10:0)+(idx>1?6:0)+(Math.abs(d.windChange)<=10?5:0)+(Math.abs(d.pressureChange)<=8?5:0);c=Math.round(cl(c,45,88));$('evoConfidence').textContent=c+'%';$('evoConfidenceBar').style.width=c+'%';let reason=d.windChange>0?`Wind speed increased by ${d.windChange} kt during the previous 6 hours while central pressure changed by ${d.pressureChange} hPa. `:d.windChange<0?'Recent wind weakening and rising central pressure indicate that the system is losing intensity. ':'Wind speed is stable in the selected observation. ';reason+=score(idx)>=70?'The demo environmental conditions are broadly favorable for continued organization, so the prototype projects maintained or increased intensity over the next 12–24 hours.':'Environmental demo conditions are mixed, so the prototype applies a conservative intensity trend.';$('evoExplanation').textContent=reason}
+function chart(id,key,unit){let svg=$(id),W=600,H=210,L=42,R=15,T=18,B=34,v=D.map(d=>d[key]),mi=Math.min(...v),ma=Math.max(...v),ra=Math.max(1,ma-mi),x=i=>L+(D.length===1?0:i/(v.length-1))*(W-L-R),y=z=>T+(ma-z)/ra*(H-T-B);svg.innerHTML=[0,.5,1].map(q=>`<line x1="${L}" x2="${W-R}" y1="${T+q*(H-T-B)}" y2="${T+q*(H-T-B)}" stroke="#E8ECF0"/><text x="4" y="${T+q*(H-T-B)+4}" font-family="Barlow Condensed" font-size="10" fill="#81919D">${(ma-q*ra).toFixed(0)} ${unit}</text>`).join('')+`<polyline points="${v.map((z,i)=>x(i)+','+y(z)).join(' ')}" fill="none" stroke="#0B1E3A" stroke-width="2.5"/>`+v.map((z,i)=>`<circle cx="${x(i)}" cy="${y(z)}" r="${i===idx?5:2.7}" fill="${i===idx?'#F47B20':'#0B1E3A'}"/><text x="${x(i)}" y="${H-10}" text-anchor="middle" font-family="Barlow Condensed" font-size="9" fill="#81919D">${D[i].t.slice(8,10)} ${D[i].t.slice(11,13)}h</text>`).join('')}
+function setInput(id,v){$(id).value=v}
+function loadForm(){let d=D[idx],e=E[idx];setInput('inStormName',d.stormName||'CYCLONE');setInput('inStormId',d.stormId||'USER-OBS');setInput('inTimestamp',d.t.replace(' ','T'));setInput('inLat',d.lat);setInput('inLon',d.lon);setInput('inWind',d.wind);setInput('inPressure',d.pressure);setInput('inVelocity',d.velocity.toFixed(1));setInput('inDirection',d.direction);setInput('inWindChange',d.windChange);setInput('inPressureChange',d.pressureChange);setInput('inSst',e.sst);setInput('inMoisture',e.moisture);setInput('inShear',e.shear);setInput('inOutflow',e.outflow);setInput('inOhc',e.ohc)}
+function readInput(){let timestamp=$('inTimestamp').value.trim().replace('T',' ');let lat=Number($('inLat').value),lon=Number($('inLon').value),wind=Number($('inWind').value),pressure=Number($('inPressure').value);if(!timestamp||[lat,lon,wind,pressure].some(Number.isNaN))throw new Error('Enter a valid timestamp, latitude, longitude, wind and pressure.');let d={t:timestamp,lat,lon,wind,pressure,windChange:Number($('inWindChange').value)||0,pressureChange:Number($('inPressureChange').value)||0,direction:Number($('inDirection').value)||0,velocity:Math.max(0,Number($('inVelocity').value)||0),distance:0,stormName:$('inStormName').value.trim()||'CYCLONE',stormId:$('inStormId').value.trim()||'USER-OBS'};d.status=wind>=64?'HU':wind>=34?'TS':'TD';d.category=wind>=137?'Category 5':wind>=113?'Category 4':wind>=96?'Category 3':wind>=83?'Category 2':wind>=64?'Category 1':wind>=34?'Tropical Storm':'Tropical Depression';let e={sst:Number($('inSst').value)||27,moisture:cl(Number($('inMoisture').value)||0,0,100),shear:Math.max(0,Number($('inShear').value)||0),outflow:$('inOutflow').value,ohc:$('inOhc').value,coriolis:lat>=5?'Favorable':'Limited'};return{d,e}}
+function applyInput(add){try{let x=readInput();if(add){D.push(x.d);E.push(x.e);sortData();idx=D.findIndex(d=>d.t===x.d.t&&d.stormId===x.d.stormId)}else{D[idx]=x.d;E[idx]=x.e}$('evoInputStatus').textContent=add?'New observation added and timeline reordered.':'Current observation updated from your inputs.';all()}catch(err){$('evoInputStatus').textContent=err.message}}
+function restore(){D=structuredClone(SAMPLE_D);E=structuredClone(SAMPLE_E);idx=0;loadForm();$('evoInputStatus').textContent='Original demo sequence restored.';all()}
+function all(){timeline();map();state();factors();prediction();chart('evoWindChart','wind','kt');chart('evoPressureChart','pressure','hPa')}
+$('evoPlay').onclick=()=>{if(timer)return;timer=setInterval(()=>{if(idx>=D.length-1){clearInterval(timer);timer=null;return}idx++;loadForm();all()},1200)};$('evoPause').onclick=()=>{clearInterval(timer);timer=null};$('evoReset').onclick=()=>{clearInterval(timer);timer=null;idx=0;loadForm();all()};$('evoApplyInput').onclick=()=>applyInput(false);$('evoAddInput').onclick=()=>applyInput(true);$('evoSampleInput').onclick=restore;$('evoMap').onmouseleave=()=>$('evoTooltip').style.display='none';loadForm();all();
+})();
+</script>
+
+    <script>
+        (function () {
+            var btn = document.getElementById('hamburgerBtn');
+            var menu = document.getElementById('mobileMenu');
+            if (!btn || !menu) return;
+            btn.addEventListener('click', function () {
+                btn.classList.toggle('open');
+                menu.classList.toggle('open');
+            });
+            menu.querySelectorAll('a').forEach(function (a) {
+                a.addEventListener('click', function () {
+                    btn.classList.remove('open');
+                    menu.classList.remove('open');
+                });
+            });
+        })();
+    </script>
+
+    <script>
+        (function () {
+            var dd = document.getElementById('filterDropdown');
+            var trigger = document.getElementById('filterTrigger');
+            var menu = document.getElementById('filterMenu');
+            var label = document.getElementById('filterTriggerLabel');
+            if (!dd || !trigger || !menu || !label) return;
+
+            function setExpanded(open) {
+                dd.classList.toggle('open', open);
+                trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+
+            function closeMenu() {
+                setExpanded(false);
+            }
+
+            trigger.addEventListener('click', function (e) {
+                e.stopPropagation();
+                setExpanded(!dd.classList.contains('open'));
+            });
+
+            menu.querySelectorAll('.filter-option').forEach(function (opt) {
+                opt.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    menu.querySelectorAll('.filter-option').forEach(function (o) { o.classList.remove('active'); });
+                    opt.classList.add('active');
+                    label.textContent = opt.textContent.trim();
+                    closeMenu();
+                });
+            });
+
+            document.addEventListener('click', function (e) {
+                if (!dd.contains(e.target)) closeMenu();
+            });
+
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape') closeMenu();
+            });
+        })();
+    </script>
+    <script src="assets/chatbot.js" defer></script>
+</body>
+
+</html>

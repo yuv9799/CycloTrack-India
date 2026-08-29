@@ -1,0 +1,114 @@
+# ============================================================
+# CycloneAI — Main Configuration
+# ============================================================
+# This file centralizes every tunable parameter for the ML module.
+# Nothing in the module folders below should hardcode values that appear here.
+
+project:
+  name: CycloneAI
+  problem_code: SIH26070
+  organization: "Ministry of Earth Sciences (MoES)"
+  version: "0.1.0"
+
+paths:
+  data_raw: "sample_data/raw"
+  data_processed: "sample_data/processed"
+  data_external: "sample_data/external"
+  data_sample: "sample_data/sample"
+  models_dir: "models"
+  reports_dir: "reports"
+  figures_dir: "reports/figures"
+  logs_dir: "reports/logs"
+
+# Default track datasets currently available (NOAA HURDAT2-style,
+# Atlantic + Pacific basins). Used by training scripts / notebooks so
+# nobody has to remember exact filenames. Update these once real
+# multi-source satellite imagery or IMD North Indian Ocean data is
+# added under data_raw / data_external.
+datasets:
+  # Full historical record, 1851-2015, 2,843 storms. Sparse pressure
+  # data before ~1950s (satellite-era records are more complete).
+  track_full: "sample_data/raw/cyclone_tracks_full_1851_2015.csv"
+  # Modern subset, 2000-2015, 568 storms — better data completeness,
+  # recommended default for training intensity/trajectory models.
+  track_modern: "sample_data/raw/cyclone_tracks_2000_2015.csv"
+  # Pre-engineered version of track_modern (movement/kinematic features
+  # already computed) — matches preprocessing.trajectory_preprocessing
+  # output exactly; useful as a golden-file reference in tests.
+  track_modern_features: "sample_data/processed/cyclone_tracks_features_2000_2015.csv"
+  # Small, 5-storm demo set for DEMO_MODE and quick notebook iteration.
+  demo_tracks: "sample_data/sample/tracks/cyclone_demo_sample.csv"
+
+demo_mode:
+  enabled: true               # overridden by env var DEMO_MODE=true/false
+  seed: 42                    # ensures deterministic demo outputs
+  n_scenarios: 5
+
+data:
+  image_size: 224
+  image_channels: 3
+  supported_image_formats: [".png", ".jpg", ".jpeg", ".tif", ".tiff"]
+  supported_tabular_formats: [".csv", ".json"]
+  supported_gridded_formats: [".nc", ".nc4"]
+
+  # Configurable column-name mapping so the loader is dataset-agnostic.
+  # (Canonical name -> list of accepted aliases, case-insensitive)
+  column_aliases:
+    storm_id: ["storm_id", "stormid", "id", "cyclone_id", "sid"]
+    storm_name: ["storm_name", "name", "cyclone_name"]
+    timestamp: ["timestamp", "time", "date", "datetime", "iso_time", "isotime"]
+    latitude: ["latitude", "lat", "Latitude", "LAT"]
+    longitude: ["longitude", "lon", "Longitude", "LON", "long"]
+    wind_speed: ["wind_speed", "wind", "windspeed", "max_wind", "vmax", "wind_kt"]
+    pressure: ["pressure", "central_pressure", "pres", "mslp", "min_pressure"]
+    sea_surface_temperature: ["sea_surface_temperature", "sst", "sea_surface_temp"]
+    humidity: ["humidity", "rh", "relative_humidity"]
+    wind_direction: ["wind_direction", "wind_dir", "direction"]
+    wind_speed_environment: ["wind_speed_environment", "env_wind_speed", "environmental_wind"]
+
+  required_columns_track: ["timestamp", "latitude", "longitude"]
+
+training:
+  batch_size: 32
+  epochs: 30
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  random_seed: 42
+  early_stopping_patience: 5
+  lr_scheduler_patience: 3
+  train_split: 0.70
+  val_split: 0.15
+  test_split: 0.15
+
+models:
+  detection:
+    architecture: efficientnet_b0
+    num_classes: 2
+    pretrained: true
+    checkpoint: "models/detection/best_model.pt"
+
+  classification:
+    architecture: efficientnet_b0
+    classes_file: "config/classes.yaml"
+    pretrained: true
+    checkpoint: "models/classification/best_model.pt"
+
+  intensity:
+    baseline_architecture: random_forest   # random_forest | xgboost
+    deep_architecture: lstm                # lstm | gru
+    sequence_length: 5
+    checkpoint_baseline: "models/intensity/baseline.joblib"
+    checkpoint_deep: "models/intensity/lstm_best.pt"
+
+  trajectory:
+    baseline_architecture: random_forest   # random_forest | xgboost
+    deep_architecture: lstm                # lstm | gru
+    sequence_length: 5
+    forecast_hours: [6, 12, 24, 48]
+    checkpoint_baseline: "models/trajectory/baseline.joblib"
+    checkpoint_deep: "models/trajectory/lstm_best.pt"
+
+logging:
+  level: "INFO"
+  log_to_file: true
+  log_file: "reports/logs/cyclone_ai.log"

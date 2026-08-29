@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>History — CycloTrack India</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Barlow:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="assets/chatbot.css">
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --navy: #0B1E3A;
+            --navy-mid: #112444;
+            --navy-dark: #070F1E;
+            --charcoal: #1C2A3A;
+            --orange: #F47B20;
+            --orange-dark: #D9660E;
+            --white: #FFFFFF;
+            --off-white: #F4F6F8;
+            --gray-light: #E8ECF0;
+            --gray-mid: #9AAAB8;
+            --text-body: #2D3E50;
+            --font-head: 'Barlow Condensed', sans-serif;
+            --font-body: 'Barlow', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--text-body);
+            background: var(--white);
+            line-height: 1.6;
+            font-size: 16px;
+        }
+
+        /* HEADER / NAV */
+        header {
+            background: var(--navy-dark);
+            padding: 0 5%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 2px solid var(--orange);
+        }
+
+        .logo {
+            font-family: var(--font-head);
+            font-weight: 800;
+            font-size: 22px;
+            color: var(--white);
+            letter-spacing: .5px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: opacity .2s ease;
+        }
+
+        .logo:hover {
+            opacity: .85;
+        }
+
+        .logo span {
+            color: var(--orange);
+        }
+
+        nav {
+            display: flex;
+            gap: 28px;
+            align-items: center;
+        }
+
+        nav a {
+            font-family: var(--font-head);
+            font-size: 15px;
+            font-weight: 600;
+            letter-spacing: .5px;
+            color: rgba(255, 255, 255, .72);
+            text-decoration: none;
+            text-transform: uppercase;
+            transition: color .25s ease;
+            position: relative;
+            padding: 6px 2px 8px;
+            white-space: nowrap;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            right: 50%;
+            bottom: 0;
+            height: 2px;
+            background: var(--orange);
+            transition: left .25s ease, right .25s ease;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: var(--orange);
+        }
+
+        nav a:hover::after,
+        nav a.active::after {
+            left: 0;
+            right: 0;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .header-cta {
+            background: var(--orange);
+            color: var(--white);
+            font-family: var(--font-head);
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: .8px;
+            text-transform: uppercase;
+            padding: 9px 20px;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .header-cta:hover {
+            background: var(--orange-dark);
+        }
+
+        section {
+            padding: 70px 5%;
+        }
+
+        .section-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-tag {
+            font-family: var(--font-head);
+            font-size: 11px;
+            letter-spacing: 3.5px;
+            text-transform: uppercase;
+            color: var(--orange);
+            font-weight: 700;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-tag::before {
+            content: '';
+            width: 20px;
+            height: 2px;
+            background: var(--orange);
+            display: block;
+        }
+
+        .section-h2 {
+            font-family: var(--font-head);
+            font-weight: 800;
+            font-size: clamp(30px, 4vw, 48px);
+            text-transform: uppercase;
+            color: var(--navy);
+            line-height: 1.0;
+            margin-bottom: 14px;
+            letter-spacing: -.3px;
+        }
+
+        .section-h2 em {
+            color: var(--orange);
+            font-style: normal;
+        }
+
+        .section-lead {
+            font-size: 16px;
+            color: #4A6070;
+            max-width: 620px;
+            line-height: 1.7;
+        }
+
+        /* PAGE HERO */
+        .page-hero {
+            background: var(--navy-dark);
+            padding: 48px 5% 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 38%;
+            height: 100%;
+            background-image: url('assets/pic4.jpeg');
+            background-size: cover;
+            background-position: center;
+            opacity: .14;
+            -webkit-mask-image: linear-gradient(to left, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+            mask-image: linear-gradient(to left, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+        }
+
+        .page-hero-inner {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .breadcrumb {
+            font-family: var(--font-head);
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .4);
+            margin-bottom: 18px;
+        }
+
+        .breadcrumb span {
+            color: var(--orange);
+        }
+
+        .page-hero-h1 {
+            font-family: var(--font-head);
+            font-weight: 800;
+            font-size: clamp(34px, 4.5vw, 54px);
+            color: var(--white);
+            text-transform: uppercase;
+            line-height: .98;
+            letter-spacing: -1px;
+            margin-bottom: 14px;
+        }
+
+        .page-hero-h1 em {
+            color: var(--orange);
+            font-style: normal;
+        }
+
+        .page-hero-sub {
+            font-size: 15.5px;
+            color: rgba(255, 255, 255, .55);
+            max-width: 600px;
+            margin-bottom: 26px;
+        }
+
+        .hero-stat-row {
+            display: flex;
+            gap: 32px;
+            flex-wrap: wrap;
+        }
+
+        .hero-stat {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .hero-stat-num {
+            font-family: var(--font-head);
+            font-size: 26px;
+            font-weight: 800;
+            color: var(--orange);
+            line-height: 1;
+        }
+
+        .hero-stat-lbl {
+            font-size: 11px;
+            letter-spacing: .5px;
+            color: rgba(255, 255, 255, .45);
+            text-transform: uppercase;
+            margin-top: 4px;
+        }
+
+        /* FILTER BAR */
+        .filter-bar {
+            background: var(--off-white);
+            border-bottom: 1px solid var(--gray-light);
+            padding: 18px 5%;
+            position: sticky;
+            top: 64px;
+            z-index: 90;
+        }
+
+        .filter-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .filter-label {
+            font-family: var(--font-head);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--navy);
+            margin-right: 8px;
+        }
+
+        .filter-chip {
+            font-family: var(--font-head);
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: .3px;
+            text-transform: uppercase;
+            background: var(--white);
+            border: 1.5px solid var(--gray-light);
+            color: #5A6E7E;
+            padding: 8px 16px;
+            cursor: pointer;
+            transition: .2s;
+        }
+
+        .filter-chip:hover {
+            border-color: var(--orange);
+            color: var(--navy);
+        }
+
+        .filter-chip.active {
+            background: var(--navy);
+            border-color: var(--navy);
+            color: var(--white);
+        }
+
+        /* TIMELINE */
+        .timeline-bg {
+            background: var(--white);
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 0;
+            margin-top: 40px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 130px;
+            top: 6px;
+            bottom: 6px;
+            width: 2px;
+            background: var(--gray-light);
+        }
+
+        .tl-row {
+            position: relative;
+            display: grid;
+            grid-template-columns: 110px 1fr;
+            gap: 24px;
+            padding: 0 0 40px 0;
+        }
+
+        .tl-row:last-child {
+            padding-bottom: 0;
+        }
+
+        .tl-year-col {
+            font-family: var(--font-head);
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--navy);
+            text-align: right;
+            padding-top: 2px;
+        }
+
+        .tl-dot {
+            position: absolute;
+            left: 130px;
+            top: 10px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--orange);
+            border: 3px solid var(--white);
+            box-shadow: 0 0 0 1px var(--orange);
+            transform: translateX(-50%);
+            z-index: 2;
+        }
+
+        .tl-card {
+            background: var(--off-white);
+            border-left: 3px solid var(--navy);
+            margin-left: 38px;
+            padding: 22px 26px;
+            transition: .2s;
+        }
+
+        .tl-card:hover {
+            border-left-color: var(--orange);
+            background: var(--white);
+            box-shadow: 0 2px 14px rgba(11, 30, 58, .07);
+        }
+
+        .tl-card-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 8px;
+        }
+
+        .tl-title {
+            font-family: var(--font-head);
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--navy);
+            text-transform: uppercase;
+            letter-spacing: .2px;
+        }
+
+        .tl-cat {
+            font-family: var(--font-head);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: .8px;
+            text-transform: uppercase;
+            padding: 4px 10px;
+            white-space: nowrap;
+        }
+
+        .cat-5 {
+            background: #D9660E;
+            color: var(--white);
+        }
+
+        .cat-4 {
+            background: #F47B20;
+            color: var(--white);
+        }
+
+        .cat-3 {
+            background: #C99A1E;
+            color: var(--white);
+        }
+
+        .cat-2 {
+            background: #3A8A5C;
+            color: var(--white);
+        }
+
+        .tl-region {
+            font-size: 12.5px;
+            color: var(--orange);
+            font-family: var(--font-head);
+            font-weight: 700;
+            letter-spacing: .5px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .tl-desc {
+            font-size: 14.5px;
+            color: #4A6070;
+            max-width: 640px;
+            margin-bottom: 14px;
+        }
+
+        .tl-meta-row {
+            display: flex;
+            gap: 28px;
+            flex-wrap: wrap;
+            padding-top: 12px;
+            border-top: 1px solid var(--gray-light);
+        }
+
+        .tl-meta {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .tl-meta-lbl {
+            font-size: 10.5px;
+            letter-spacing: .8px;
+            text-transform: uppercase;
+            color: #8FA1B0;
+            margin-bottom: 2px;
+        }
+
+        .tl-meta-val {
+            font-family: var(--font-head);
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--navy);
+        }
+
+        .tl-meta-val.damage {
+            color: var(--orange-dark);
+        }
+
+        /* DECADE STRIP nav */
+        .decade-nav {
+            display: flex;
+            justify-content: space-between;
+            max-width: 900px;
+            margin: 0 auto 10px;
+            padding: 0 5%;
+            position: relative;
+        }
+
+        .decade-nav::before {
+            content: '';
+            position: absolute;
+            left: 5%;
+            right: 5%;
+            top: 9px;
+            height: 1px;
+            background: var(--gray-light);
+            z-index: 0;
+        }
+
+        .decade-pt {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .decade-dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: var(--gray-mid);
+        }
+
+        .decade-lbl {
+            font-family: var(--font-head);
+            font-size: 11px;
+            font-weight: 700;
+            color: #8FA1B0;
+            letter-spacing: .5px;
+        }
+
+        /* STATS strip */
+        .stats-bg {
+            background: var(--navy);
+        }
+
+        .stats-bg .section-h2 {
+            color: var(--white);
+        }
+
+        .stats-bg .section-lead {
+            color: rgba(255, 255, 255, .55);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1px;
+            background: rgba(255, 255, 255, .08);
+            margin-top: 40px;
+        }
+
+        .stat-card {
+            background: var(--navy);
+            padding: 28px 26px;
+        }
+
+        .stat-num {
+            font-family: var(--font-head);
+            font-size: 34px;
+            font-weight: 800;
+            color: var(--orange);
+            display: block;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .stat-title {
+            font-family: var(--font-head);
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--white);
+            text-transform: uppercase;
+            letter-spacing: .3px;
+            margin-bottom: 6px;
+        }
+
+        .stat-desc {
+            font-size: 12.5px;
+            color: rgba(255, 255, 255, .5);
+            line-height: 1.6;
+        }
+
+        footer {
+            background: var(--navy-dark);
+            padding: 36px 5%;
+            border-top: 2px solid var(--orange);
+        }
+
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .footer-logo {
+            font-family: var(--font-head);
+            font-size: 19px;
+            font-weight: 800;
+            color: var(--white);
+        }
+
+        .footer-logo span {
+            color: var(--orange);
+        }
+
+        .footer-copy {
+            font-size: 12px;
+            color: rgba(255, 255, 255, .3);
+        }
+
+        .tl-row.hidden {
+            display: none;
+        }
+
+        @media (max-width:768px) {
+            .timeline::before {
+                left: 14px;
+            }
+
+            .tl-row {
+                grid-template-columns: 1fr;
+            }
+
+            .tl-year-col {
+                text-align: left;
+                padding-left: 34px;
+            }
+
+            .tl-dot {
+                left: 14px;
+                top: 2px;
+            }
+
+            .tl-card {
+                margin-left: 0;
+            }
+
+            .decade-nav {
+                display: none;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            nav {
+                display: none;
+            }
+        }
+
+        .hamburger {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+            width: 32px;
+            height: 32px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: var(--white);
+            transition: .2s;
+        }
+
+        .hamburger.open span:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+        }
+
+        .hamburger.open span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.open span:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 64px;
+            left: 0;
+            right: 0;
+            background: var(--navy-dark);
+            border-bottom: 2px solid var(--orange);
+            z-index: 99;
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: max-height .32s ease, opacity .28s ease, transform .28s ease, visibility .28s;
+        }
+
+        .mobile-menu.open {
+            max-height: 440px;
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .mobile-menu a {
+            font-family: var(--font-head);
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: .5px;
+            color: rgba(255, 255, 255, .75);
+            text-decoration: none;
+            text-transform: uppercase;
+            padding: 16px 5%;
+            border-bottom: 1px solid rgba(255, 255, 255, .08);
+            opacity: 0;
+            transform: translateY(-8px);
+            transition: opacity .28s ease, transform .28s ease;
+        }
+
+        .mobile-menu.open a {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .mobile-menu.open a:nth-child(1) { transition-delay: .04s; }
+        .mobile-menu.open a:nth-child(2) { transition-delay: .09s; }
+        .mobile-menu.open a:nth-child(3) { transition-delay: .14s; }
+        .mobile-menu.open a:nth-child(4) { transition-delay: .19s; }
+
+        .mobile-menu a.active {
+            color: var(--orange);
+        }
+
+        /* Desktop: inline nav visible, hamburger hidden */
+        @media (min-width: 1025px) {
+            nav.main-nav {
+                display: flex;
+            }
+
+            .hamburger {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: none;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            nav.main-nav {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+        }
+
+        @media (min-width: 1025px) and (max-width: 1180px) {
+            nav.main-nav {
+                gap: 18px;
+            }
+
+            nav.main-nav a {
+                font-size: 14px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <a href="index.html" class="logo">Cyclo<span>Track</span> India</a>
+        <div class="header-right">
+            <nav class="main-nav" aria-label="Primary">
+                <a href="index.html">Home</a>
+                <a href="cyclone_region.html">Cyclone Region</a>
+                <a href="history.html" class="active">History</a>
+                <a href="about.html">About</a>
+            </nav>
+            <a href="#timeline" class="header-cta">View Timeline</a>
+            <button class="hamburger" id="hamburgerBtn" aria-label="Menu"><span></span><span></span><span></span></button>
+        </div>
+    </header>
+    <div class="mobile-menu" id="mobileMenu">
+            <a href="index.html">Home</a>
+            <a href="cyclone_region.html">Cyclone Region</a>
+            <a href="history.html" class="active">History</a>
+            <a href="about.html">About</a>
+    </div>
+
+
+    <div class="page-hero">
+        <div class="page-hero-inner">
+            <p class="breadcrumb">Home <span>/</span> History</p>
+            <h1 class="page-hero-h1">Five Decades Of<br><em>Landfall History</em></h1>
+            <p class="page-hero-sub">Every major cyclone to strike the Indian coastline since the 1970s — reason,
+                region, and the damage it left behind, laid out in order.</p>
+            <div class="hero-stat-row">
+                <div class="hero-stat"><span class="hero-stat-num">10</span><span class="hero-stat-lbl">Logged
+                        Events</span></div>
+                <div class="hero-stat"><span class="hero-stat-num">1971</span><span class="hero-stat-lbl">Earliest On
+                        Record</span></div>
+                <div class="hero-stat"><span class="hero-stat-num">2020</span><span class="hero-stat-lbl">Most
+                        Recent</span></div>
+                <div class="hero-stat"><span class="hero-stat-num">₹1.9L Cr+</span><span class="hero-stat-lbl">Total
+                        Damage Logged</span></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="filter-bar">
+        <div class="filter-inner">
+            <span class="filter-label">Filter</span>
+            <button class="filter-chip active" data-filter="all">All Years</button>
+            <button class="filter-chip" data-filter="1970s">1970s</button>
+            <button class="filter-chip" data-filter="1990s">1990s</button>
+            <button class="filter-chip" data-filter="1999-2010">1999–2010</button>
+            <button class="filter-chip" data-filter="2010s">2010s</button>
+            <button class="filter-chip" data-filter="2020s">2020s</button>
+        </div>
+    </div>
+
+    <section class="timeline-bg" id="timeline">
+        <div class="section-inner">
+            <span class="section-tag">History</span>
+            <h2 class="section-h2">Decades Of<br><em>Coastal Impact</em></h2>
+            <p class="section-lead">A full running record, drawn from the major-cyclones archive — most recent first.
+            </p>
+
+            <div class="timeline" id="timelineList">
+                <!-- populated by JS -->
+            </div>
+        </div>
+    </section>
+
+    <section class="stats-bg">
+        <div class="section-inner">
+            <span class="section-tag" style="color:var(--orange);">By The Numbers</span>
+            <h2 class="section-h2">What The Record<br><em>Tells Us</em></h2>
+            <p class="section-lead">A few patterns that emerge once five decades of landfalls sit side by side.</p>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-num">7/10</span>
+                    <div class="stat-title">Bay Of Bengal</div>
+                    <p class="stat-desc">Of the ten logged cyclones, seven formed in and crossed from the Bay of Bengal.
+                    </p>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-num">Odisha</span>
+                    <div class="stat-title">Most-Hit Region</div>
+                    <p class="stat-desc">Odisha appears in the archive more than any other state, including the 1999
+                        Super Cyclone.</p>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-num">Oct–Dec</span>
+                    <div class="stat-title">Peak Season</div>
+                    <p class="stat-desc">The majority of severe landfalls in the archive occurred in the post-monsoon
+                        window.</p>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-num">1999</span>
+                    <div class="stat-title">Turning Point</div>
+                    <p class="stat-desc">The Odisha Super Cyclone directly led to India's current early-warning and
+                        evacuation systems.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="about">
+        <div class="footer-inner">
+            <div class="footer-logo">Cyclo<span>Track</span> India</div>
+            <p class="footer-copy">&copy; 2026 Team Nexus — Smart India Hackathon. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const EVENTS = [
+            {
+                year: 2020, title: 'Cyclone Amphan', region: 'West Bengal, Odisha', cat: 5,
+                desc: 'The strongest storm recorded in the Bay of Bengal since 1999, striking West Bengal and Bangladesh as a rapidly intensifying super cyclonic storm.',
+                damage: '₹1.02 Lakh Cr', reason: 'Rapid intensification over a Bay of Bengal warm core', decade: '2020s'
+            },
+            {
+                year: 2019, title: 'Cyclone Fani', region: 'Odisha', cat: 4,
+                desc: 'One of the strongest cyclones to hit Odisha in over two decades, prompting a record evacuation of over a million people ahead of landfall.',
+                damage: '₹24,176 Cr', reason: 'Extremely severe cyclonic storm under low wind shear', decade: '2010s'
+            },
+            {
+                year: 2014, title: 'Cyclone Hudhud', region: 'Andhra Pradesh', cat: 4,
+                desc: 'Made landfall near Visakhapatnam, causing widespread infrastructure and crop damage along the Andhra coast.',
+                damage: '₹21,908 Cr', reason: 'High sea surface temperature anomaly', decade: '2010s'
+            },
+            {
+                year: 2020, title: 'Cyclone Nisarga', region: 'Maharashtra', cat: 2,
+                desc: 'A rare Arabian Sea system that made landfall near Alibaug, one of the few cyclones on record to strike the Maharashtra coast directly.',
+                damage: '₹8,700 Cr', reason: 'Rare Arabian Sea landfalling system', decade: '2020s'
+            },
+            {
+                year: 1999, title: 'Odisha Super Cyclone', region: 'Odisha', cat: 5,
+                desc: 'The deadliest cyclone in India\'s modern history. Its scale of destruction directly led to the creation of today\'s early-warning and evacuation systems.',
+                damage: '₹9,900 Cr', reason: 'Category 5 equivalent intensity, prolonged landfall', decade: '1999-2010'
+            },
+            {
+                year: 2013, title: 'Cyclone Phailin', region: 'Odisha, Andhra Pradesh', cat: 4,
+                desc: 'One of the strongest storms to hit India since 1999, met with a large-scale evacuation that kept the death toll far below the 1999 event.',
+                damage: '₹8,500 Cr', reason: 'Very severe cyclonic storm, favorable ocean heat content', decade: '2010s'
+            },
+            {
+                year: 1996, title: 'Andhra Cyclone', region: 'Andhra Pradesh', cat: 3,
+                desc: 'A severe cyclonic storm that struck the East Godavari coast, causing extensive flooding across low-lying delta districts.',
+                damage: '₹2,000 Cr', reason: 'Delta flooding from a slow-moving landfall', decade: '1990s'
+            },
+            {
+                year: 1990, title: 'Andhra Pradesh Cyclone', region: 'Andhra Pradesh', cat: 3,
+                desc: 'One of the strongest storms of the decade, making landfall near Machilipatnam with widespread agricultural losses.',
+                damage: '₹1,200 Cr', reason: 'Severe cyclonic storm with a storm surge above 3m', decade: '1990s'
+            },
+            {
+                year: 1977, title: 'Andhra Pradesh Cyclone', region: 'Andhra Pradesh', cat: 5,
+                desc: 'A catastrophic storm that struck the Krishna district, among the deadliest cyclones recorded on the Indian coast before 1999.',
+                damage: 'Unrecorded (pre-GDP era)', reason: 'Category 5 equivalent, direct hit on a low-lying delta', decade: '1970s'
+            },
+            {
+                year: 1971, title: 'Odisha Cyclone', region: 'Odisha', cat: 4,
+                desc: 'A powerful storm that struck the Paradip coast, an early case study behind India\'s push for coastal disaster preparedness.',
+                damage: 'Unrecorded (pre-GDP era)', reason: 'Very severe cyclonic storm, limited early warning', decade: '1970s'
+            },
+        ];
+
+        let currentFilter = 'all';
+
+        function passesFilter(e) {
+            if (currentFilter === 'all') return true;
+            return e.decade === currentFilter;
+        }
+
+        function renderTimeline() {
+            const list = document.getElementById('timelineList');
+            list.innerHTML = '';
+            EVENTS.slice().sort((a, b) => b.year - a.year).forEach(e => {
+                const row = document.createElement('div');
+                row.className = 'tl-row' + (passesFilter(e) ? '' : ' hidden');
+                row.innerHTML = `
+      <div class="tl-year-col">${e.year}</div>
+      <div>
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-card-top">
+            <div class="tl-title">${e.title}</div>
+            <span class="tl-cat cat-${e.cat}">Category ${e.cat}</span>
+          </div>
+          <div class="tl-region">${e.region}</div>
+          <p class="tl-desc">${e.desc}</p>
+          <div class="tl-meta-row">
+            <div class="tl-meta">
+              <span class="tl-meta-lbl">Damage</span>
+              <span class="tl-meta-val damage">${e.damage}</span>
+            </div>
+            <div class="tl-meta">
+              <span class="tl-meta-lbl">Reason</span>
+              <span class="tl-meta-val">${e.reason}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+                list.appendChild(row);
+            });
+        }
+
+        document.querySelectorAll('.filter-chip').forEach(chip => {
+            chip.addEventListener('click', function () {
+                document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+                this.classList.add('active');
+                currentFilter = this.dataset.filter;
+                renderTimeline();
+            });
+        });
+
+        renderTimeline();
+    </script>
+
+
+    <script>
+        (function () {
+            var btn = document.getElementById('hamburgerBtn');
+            var menu = document.getElementById('mobileMenu');
+            if (!btn || !menu) return;
+            btn.addEventListener('click', function () {
+                btn.classList.toggle('open');
+                menu.classList.toggle('open');
+            });
+            menu.querySelectorAll('a').forEach(function (a) {
+                a.addEventListener('click', function () {
+                    btn.classList.remove('open');
+                    menu.classList.remove('open');
+                });
+            });
+        })();
+    </script>
+    <script src="assets/chatbot.js" defer></script>
+</body>
+
+</html>

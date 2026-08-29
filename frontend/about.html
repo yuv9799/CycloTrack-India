@@ -1,0 +1,1491 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About — CycloTrack India</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Barlow:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="assets/chatbot.css">
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --navy: #0B1E3A;
+            --navy-mid: #112444;
+            --navy-dark: #070F1E;
+            --charcoal: #1C2A3A;
+            --orange: #F47B20;
+            --orange-dark: #D9660E;
+            --white: #FFFFFF;
+            --off-white: #F4F6F8;
+            --gray-light: #E8ECF0;
+            --gray-mid: #9AAAB8;
+            --text-body: #2D3E50;
+            --font-head: 'Barlow Condensed', sans-serif;
+            --font-body: 'Barlow', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--text-body);
+            background: var(--white);
+            line-height: 1.6;
+            font-size: 16px;
+        }
+
+        /* HEADER / NAV */
+        header {
+            background: var(--navy-dark);
+            padding: 0 5%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 2px solid var(--orange);
+        }
+
+        .logo {
+            font-family: var(--font-head);
+            font-weight: 800;
+            font-size: 22px;
+            color: var(--white);
+            letter-spacing: .5px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: opacity .2s ease;
+        }
+
+        .logo:hover {
+            opacity: .85;
+        }
+
+        .logo span {
+            color: var(--orange);
+        }
+
+        nav {
+            display: flex;
+            gap: 26px;
+            align-items: center;
+        }
+
+        nav a {
+            font-family: var(--font-head);
+            font-size: 15px;
+            font-weight: 600;
+            letter-spacing: .5px;
+            color: rgba(255, 255, 255, .72);
+            text-decoration: none;
+            text-transform: uppercase;
+            transition: color .25s ease;
+            position: relative;
+            padding: 6px 2px 8px;
+            white-space: nowrap;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            right: 50%;
+            bottom: 0;
+            height: 2px;
+            background: var(--orange);
+            transition: left .25s ease, right .25s ease;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: var(--orange);
+        }
+
+        nav a:hover::after,
+        nav a.active::after {
+            left: 0;
+            right: 0;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .header-cta {
+            background: var(--orange);
+            color: var(--white);
+            font-family: var(--font-head);
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: .8px;
+            text-transform: uppercase;
+            padding: 9px 20px;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .header-cta:hover {
+            background: var(--orange-dark);
+        }
+
+        section {
+            padding: 70px 5%;
+        }
+
+        .section-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-tag {
+            font-family: var(--font-head);
+            font-size: 11px;
+            letter-spacing: 3.5px;
+            text-transform: uppercase;
+            color: var(--orange);
+            font-weight: 700;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-tag::before {
+            content: '';
+            width: 20px;
+            height: 2px;
+            background: var(--orange);
+            display: block;
+        }
+
+        .section-h2 {
+            font-family: var(--font-head);
+            font-weight: 800;
+            font-size: clamp(30px, 4vw, 48px);
+            text-transform: uppercase;
+            color: var(--navy);
+            line-height: 1.0;
+            margin-bottom: 14px;
+            letter-spacing: -.3px;
+        }
+
+        .section-h2 em {
+            color: var(--orange);
+            font-style: normal;
+        }
+
+        .section-lead {
+            font-size: 16px;
+            color: #4A6070;
+            max-width: 620px;
+            line-height: 1.7;
+        }
+
+        /* PAGE HERO */
+        .page-hero {
+            background: var(--navy-dark);
+            padding: 48px 5% 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 38%;
+            height: 100%;
+            background-image: url('assets/pic3.jpeg');
+            background-size: cover;
+            background-position: center;
+            opacity: .12;
+            -webkit-mask-image: linear-gradient(to left, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+            mask-image: linear-gradient(to left, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+        }
+
+        .page-hero-inner {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .breadcrumb {
+            font-family: var(--font-head);
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .4);
+            margin-bottom: 18px;
+        }
+
+        .breadcrumb span {
+            color: var(--orange);
+        }
+
+        .page-hero-h1 {
+            font-family: var(--font-head);
+            font-weight: 800;
+            font-size: clamp(32px, 4.2vw, 50px);
+            color: var(--white);
+            text-transform: uppercase;
+            line-height: .98;
+            letter-spacing: -1px;
+            margin-bottom: 14px;
+        }
+
+        .page-hero-h1 em {
+            color: var(--orange);
+            font-style: normal;
+        }
+
+        .page-hero-sub {
+            font-size: 15.5px;
+            color: rgba(255, 255, 255, .55);
+            max-width: 620px;
+            margin-bottom: 26px;
+        }
+
+        .hero-badge-row {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .hero-badge {
+            font-family: var(--font-head);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border: 1px solid rgba(255, 255, 255, .18);
+            color: rgba(255, 255, 255, .7);
+            padding: 8px 16px;
+        }
+
+        .hero-badge b {
+            color: var(--orange);
+        }
+
+        /* PROBLEM / MISSION */
+        .mission-bg {
+            background: var(--white);
+        }
+
+        .mission-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            margin-top: 36px;
+            align-items: start;
+        }
+
+        .mission-block-title {
+            font-family: var(--font-head);
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--orange);
+            margin-bottom: 10px;
+        }
+
+        .mission-block-text {
+            font-size: 15px;
+            color: #4A6070;
+            line-height: 1.75;
+        }
+
+        .mission-block+.mission-block {
+            margin-top: 32px;
+        }
+
+        /* TEAM */
+        .team-bg {
+            background: var(--off-white);
+        }
+
+        .team-header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 36px;
+        }
+
+        .team-count {
+            font-family: var(--font-head);
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--navy);
+            border: 1px solid var(--gray-light);
+            background: var(--white);
+            padding: 9px 16px;
+        }
+
+        .team-count b {
+            color: var(--orange);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .team-card {
+            background: var(--white);
+            border: 0;
+            border-top: 3px solid var(--navy);
+            border-radius: 0;
+            padding: 24px 22px;
+            transition: .25s ease;
+            cursor: pointer;
+            text-align: left;
+            width: 100%;
+            font: inherit;
+            color: inherit;
+        }
+
+        .team-card:hover {
+            border-top-color: var(--orange);
+            box-shadow: 0 4px 18px rgba(11, 30, 58, .08);
+            transform: translateY(-2px);
+        }
+
+        .team-card:hover .team-name {
+            color: var(--orange);
+        }
+
+        .team-card:focus-visible {
+            outline: 2px solid var(--orange);
+            outline-offset: 2px;
+        }
+
+        .team-avatar {
+            width: 44px;
+            height: 44px;
+            background: var(--navy);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-head);
+            font-weight: 800;
+            font-size: 16px;
+            margin-bottom: 16px;
+        }
+
+        .team-card:hover .team-avatar {
+            background: var(--orange);
+        }
+
+        .team-name {
+            font-family: var(--font-head);
+            font-size: 19px;
+            font-weight: 700;
+            color: var(--navy);
+            text-transform: uppercase;
+            letter-spacing: .2px;
+            margin-bottom: 4px;
+        }
+
+        .team-role {
+            font-size: 12.5px;
+            color: var(--orange);
+            font-weight: 600;
+            letter-spacing: .3px;
+            margin-bottom: 14px;
+        }
+
+        .team-meta-row {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            padding-top: 14px;
+            border-top: 1px solid var(--gray-light);
+        }
+
+        .team-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12.5px;
+        }
+
+        .team-meta-lbl {
+            color: #8FA1B0;
+            text-transform: uppercase;
+            letter-spacing: .4px;
+            font-family: var(--font-head);
+            font-weight: 700;
+            font-size: 11px;
+        }
+
+        .team-meta-val {
+            color: var(--text-body);
+            font-weight: 500;
+            text-align: right;
+        }
+
+        .team-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 12px;
+        }
+
+        .stack-pill {
+            font-size: 11px;
+            font-family: var(--font-head);
+            font-weight: 700;
+            letter-spacing: .3px;
+            text-transform: uppercase;
+            background: var(--off-white);
+            color: var(--navy);
+            padding: 4px 9px;
+            border: 1px solid var(--gray-light);
+        }
+
+        /* TECH STACK strip */
+        .stack-bg {
+            background: var(--navy);
+        }
+
+        .stack-bg .section-h2 {
+            color: var(--white);
+        }
+
+        .stack-bg .section-lead {
+            color: rgba(255, 255, 255, .55);
+        }
+
+        .stack-cat-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1px;
+            background: rgba(255, 255, 255, .08);
+            margin-top: 40px;
+        }
+
+        .stack-cat {
+            background: var(--navy);
+            padding: 26px 24px;
+        }
+
+        .stack-cat-title {
+            font-family: var(--font-head);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--orange);
+            margin-bottom: 14px;
+        }
+
+        .stack-cat-items {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .stack-cat-item {
+            font-size: 13.5px;
+            color: rgba(255, 255, 255, .75);
+            padding-left: 14px;
+            position: relative;
+        }
+
+        .stack-cat-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 9px;
+            width: 6px;
+            height: 2px;
+            background: var(--orange);
+        }
+
+        /* MILESTONES */
+        .milestone-bg {
+            background: var(--white);
+        }
+
+        .milestone-row {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            margin-top: 36px;
+        }
+
+        .milestone-item {
+            display: grid;
+            grid-template-columns: 120px 1fr;
+            gap: 24px;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--gray-light);
+        }
+
+        .milestone-item:first-child {
+            padding-top: 0;
+        }
+
+        .milestone-item:last-child {
+            border-bottom: none;
+        }
+
+        .milestone-tag {
+            font-family: var(--font-head);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--orange);
+        }
+
+        .milestone-title {
+            font-family: var(--font-head);
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--navy);
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .milestone-desc {
+            font-size: 13.5px;
+            color: #5A6E7E;
+        }
+
+        footer {
+            background: var(--navy-dark);
+            padding: 36px 5%;
+            border-top: 2px solid var(--orange);
+        }
+
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .footer-logo {
+            font-family: var(--font-head);
+            font-size: 19px;
+            font-weight: 800;
+            color: var(--white);
+        }
+
+        .footer-logo span {
+            color: var(--orange);
+        }
+
+        .footer-copy {
+            font-size: 12px;
+            color: rgba(255, 255, 255, .3);
+        }
+
+        /* CONTRIBUTIONS */
+        .contrib-bg {
+            background: var(--white);
+        }
+
+        .contrib-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 36px;
+            align-items: stretch;
+        }
+
+        .contrib-card {
+            background: var(--white);
+            border: 1px solid var(--gray-light);
+            border-top: 3px solid var(--navy);
+            border-radius: 8px;
+            padding: 26px 24px;
+            box-shadow: 0 2px 12px rgba(11, 30, 58, .05);
+            transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+        }
+
+        .contrib-card:hover {
+            transform: translateY(-4px);
+            border-top-color: var(--orange);
+            border-left-color: var(--orange);
+            box-shadow: 0 10px 28px rgba(11, 30, 58, .12);
+        }
+
+        .contrib-head {
+            padding-bottom: 14px;
+            margin-bottom: 18px;
+            border-bottom: 1px solid var(--gray-light);
+        }
+
+        .contrib-name {
+            font-family: var(--font-head);
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--navy);
+            text-transform: uppercase;
+            letter-spacing: .2px;
+            margin-bottom: 3px;
+        }
+
+        .contrib-roll {
+            font-family: var(--font-head);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: .6px;
+            text-transform: uppercase;
+            color: var(--orange);
+            margin-bottom: 10px;
+        }
+
+        .contrib-block {
+            margin-bottom: 16px;
+        }
+
+        .contrib-block:last-child {
+            margin-bottom: 0;
+        }
+
+        .contrib-label {
+            font-family: var(--font-head);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            color: var(--orange);
+            margin-bottom: 7px;
+            padding-bottom: 4px;
+            border-bottom: 2px solid var(--orange);
+            display: inline-block;
+        }
+
+        .contrib-text {
+            font-size: 14px;
+            color: #4A6070;
+            line-height: 1.7;
+        }
+
+        .contrib-email {
+            color: var(--orange-dark);
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 1px dashed rgba(217, 102, 14, .45);
+            transition: color .2s ease, border-color .2s ease;
+            word-break: break-all;
+        }
+
+        .contrib-email:hover {
+            color: var(--orange);
+            border-color: var(--orange);
+        }
+
+        .contrib-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        @media (max-width:640px) {
+            .contrib-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width:1024px) {
+            .mission-grid {
+                grid-template-columns: 1fr;
+                gap: 36px;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .stack-cat-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            nav {
+                display: none;
+            }
+        }
+
+        @media (max-width:640px) {
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stack-cat-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .milestone-item {
+                grid-template-columns: 1fr;
+                gap: 6px;
+            }
+        }
+
+        .hamburger {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+            width: 32px;
+            height: 32px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: var(--white);
+            transition: .2s;
+        }
+
+        .hamburger.open span:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+        }
+
+        .hamburger.open span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.open span:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 64px;
+            left: 0;
+            right: 0;
+            background: var(--navy-dark);
+            border-bottom: 2px solid var(--orange);
+            z-index: 99;
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: max-height .32s ease, opacity .28s ease, transform .28s ease, visibility .28s;
+        }
+
+        .mobile-menu.open {
+            max-height: 440px;
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .mobile-menu a {
+            font-family: var(--font-head);
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: .5px;
+            color: rgba(255, 255, 255, .75);
+            text-decoration: none;
+            text-transform: uppercase;
+            padding: 16px 5%;
+            border-bottom: 1px solid rgba(255, 255, 255, .08);
+            opacity: 0;
+            transform: translateY(-8px);
+            transition: opacity .28s ease, transform .28s ease;
+        }
+
+        .mobile-menu.open a {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .mobile-menu.open a:nth-child(1) { transition-delay: .04s; }
+        .mobile-menu.open a:nth-child(2) { transition-delay: .09s; }
+        .mobile-menu.open a:nth-child(3) { transition-delay: .14s; }
+        .mobile-menu.open a:nth-child(4) { transition-delay: .19s; }
+
+        .mobile-menu a.active {
+            color: var(--orange);
+        }
+
+        /* Desktop: inline nav visible, hamburger hidden */
+        @media (min-width: 1025px) {
+            nav.main-nav {
+                display: flex;
+            }
+
+            .hamburger {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: none;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            nav.main-nav {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+        }
+
+        @media (min-width: 1025px) and (max-width: 1180px) {
+            nav.main-nav {
+                gap: 18px;
+            }
+
+            nav.main-nav a {
+                font-size: 14px;
+            }
+        }
+
+/* TEAM MODAL */
+        body.modal-open {
+            overflow: hidden;
+        }
+
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(7, 15, 30, .66);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity .25s ease, visibility .25s;
+        }
+
+        .modal-overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .team-modal {
+            width: 84%;
+            max-width: 900px;
+            background: var(--white);
+            border-top: 4px solid var(--orange);
+            border-radius: 8px;
+            box-shadow: 0 22px 60px rgba(7, 15, 30, .5);
+            overflow: hidden;
+            transform: translateY(14px) scale(.97);
+            opacity: 0;
+            transition: transform .25s ease, opacity .25s ease;
+        }
+
+        .modal-overlay.open .team-modal {
+            transform: translateY(0) scale(1);
+            opacity: 1;
+        }
+
+        .modal-head {
+            display: flex;
+            justify-content: flex-end;
+            padding: 12px 16px 0;
+        }
+
+        .modal-close {
+            background: var(--off-white);
+            border: 1px solid var(--gray-light);
+            color: var(--navy);
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            font-size: 16px;
+            line-height: 1;
+            cursor: pointer;
+            transition: background .2s ease, color .2s ease, border-color .2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-close:hover {
+            background: var(--orange);
+            border-color: var(--orange);
+            color: var(--white);
+        }
+
+        .modal-scroll {
+            max-height: 82vh;
+            overflow-y: auto;
+            padding: 4px 30px 32px;
+        }
+
+        .modal-profile {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            padding-bottom: 20px;
+            margin-bottom: 8px;
+            border-bottom: 2px solid var(--navy);
+        }
+
+        .modal-avatar {
+            width: 64px;
+            height: 64px;
+            flex: 0 0 64px;
+            background: var(--navy);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-head);
+            font-weight: 800;
+            font-size: 22px;
+        }
+
+        .modal-name {
+            font-family: var(--font-head);
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--navy);
+            text-transform: uppercase;
+            letter-spacing: .3px;
+        }
+
+        .modal-roll {
+            font-family: var(--font-head);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: .6px;
+            text-transform: uppercase;
+            color: var(--orange);
+            margin-top: 2px;
+        }
+
+        .modal-email {
+            font-size: 13.5px;
+            color: var(--text-body);
+            margin-top: 6px;
+        }
+
+        .modal-email a {
+            color: var(--orange-dark);
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 1px dashed rgba(217, 102, 14, .45);
+            transition: color .2s ease, border-color .2s ease;
+            word-break: break-all;
+        }
+
+        .modal-email a:hover {
+            color: var(--orange);
+            border-color: var(--orange);
+        }
+
+        .modal-block {
+            margin-top: 22px;
+        }
+
+        .modal-label {
+            font-family: var(--font-head);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.3px;
+            text-transform: uppercase;
+            color: var(--orange);
+            margin-bottom: 8px;
+            padding-bottom: 4px;
+            border-bottom: 2px solid var(--orange);
+            display: inline-block;
+        }
+
+        .modal-text {
+            font-size: 14px;
+            color: #3E5164;
+            line-height: 1.75;
+        }
+
+        .modal-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .modal-empty {
+            margin-top: 22px;
+            font-size: 14px;
+            color: var(--gray-mid);
+            font-style: italic;
+        }
+
+        @media (max-width: 900px) {
+            .team-modal {
+                width: 92%;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .modal-overlay {
+                padding: 12px;
+            }
+
+            .team-modal {
+                width: 94%;
+            }
+
+            .modal-scroll {
+                padding: 4px 18px 24px;
+            }
+
+            .modal-profile {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .modal-name {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <a href="index.html" class="logo">Cyclo<span>Track</span> India</a>
+        <div class="header-right">
+            <nav class="main-nav" aria-label="Primary">
+                <a href="index.html">Home</a>
+                <a href="cyclone_region.html">Cyclone Region</a>
+                <a href="history.html">History</a>
+                <a href="about.html" class="active">About</a>
+            </nav>
+            <a href="#team" class="header-cta">Meet The Team</a>
+            <button class="hamburger" id="hamburgerBtn" aria-label="Menu"><span></span><span></span><span></span></button>
+        </div>
+    </header>
+    <div class="mobile-menu" id="mobileMenu">
+            <a href="index.html">Home</a>
+            <a href="cyclone_region.html">Cyclone Region</a>
+            <a href="history.html">History</a>
+            <a href="about.html" class="active">About</a>
+    </div>
+
+
+    <div class="page-hero">
+        <div class="page-hero-inner">
+            <p class="breadcrumb">Home <span>/</span> About</p>
+            <h1 class="page-hero-h1">Built By <em>Team Nexus</em></h1>
+            <p class="page-hero-sub">CycloTrack India is our Smart India Hackathon 2026 submission under the Disaster
+                Management theme — a dashboard that maps, tracks, and archives cyclone risk across the Indian coastline.
+            </p>
+            <div class="hero-badge-row">
+                <span class="hero-badge">Team <b>Nexus</b></span>
+                <span class="hero-badge">SIH <b>2026</b></span>
+                <span class="hero-badge">Theme: <b>Disaster Management</b></span>
+                <span class="hero-badge"><b>4</b> Core Modules</span>
+            </div>
+        </div>
+    </div>
+
+    <section class="mission-bg">
+        <div class="section-inner">
+            <span class="section-tag">The Project</span>
+            <h2 class="section-h2">Why We're<br><em>Building This</em></h2>
+            <p class="section-lead">India's coastline sees some of the most destructive cyclones on Earth, but risk
+                data, historical records, and live tracking are usually scattered across different agencies and formats.
+            </p>
+            <div class="mission-grid">
+                <div>
+                    <div class="mission-block">
+                        <div class="mission-block-title">The Problem</div>
+                        <p class="mission-block-text">Coastal communities, planners, and researchers often have to piece
+                            together cyclone risk from multiple sources — IMD bulletins, historical news archives, and
+                            static reports — with no single place to see a region's risk, a storm's history, and live
+                            tracking together.</p>
+                    </div>
+                    <div class="mission-block">
+                        <div class="mission-block-title">Our Approach</div>
+                        <p class="mission-block-text">CycloTrack India brings live tracking, a region-by-region risk
+                            map, and a 50-year historical archive into one dashboard, with a built-in agent so anyone
+                            can ask a plain-language question and get an answer grounded in the data.</p>
+                    </div>
+                </div>
+                <div>
+                    <div class="mission-block">
+                        <div class="mission-block-title">Who It's For</div>
+                        <p class="mission-block-text">Built for the people who need coastal risk information fastest:
+                            disaster management authorities, researchers, students, and residents of India's
+                            cyclone-prone coastal states.</p>
+                    </div>
+                    <div class="mission-block">
+                        <div class="mission-block-title">What's Inside</div>
+                        <p class="mission-block-text">Four core modules — Home, Cyclone Region, History, and the Agent —
+                            cover live monitoring, regional risk scoring, a decade-by-decade archive of major cyclones,
+                            and a conversational way to query all of it.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="team-bg" id="team">
+        <div class="section-inner">
+            <div class="team-header-row">
+                <div>
+                    <span class="section-tag">The Team</span>
+                    <h2 class="section-h2">Meet <em>Team Nexus</em></h2>
+                </div>
+                <span class="team-count">Team Size: <b>6</b></span>
+            </div>
+            <p class="section-lead" style="margin-bottom:36px;">The six-member team behind CycloTrack India — collaborating across cyclone data, live mapping, and the web experience for Smart India Hackathon 2026.</p>
+            <div class="team-grid">
+                <button class="team-card" type="button" data-member="pratyaksh" aria-label="View Pratyaksh Srivastava details">
+                    <div class="team-avatar">PS</div>
+                    <div class="team-name">Pratyaksh Srivastava</div>
+                </button>
+                <button class="team-card" type="button" data-member="anshul" aria-label="View Anshul Vats details">
+                    <div class="team-avatar">AV</div>
+                    <div class="team-name">Anshul Vats</div>
+                </button>
+                <button class="team-card" type="button" data-member="yuvraj" aria-label="View Yuvraj Anand details">
+                    <div class="team-avatar">YA</div>
+                    <div class="team-name">Yuvraj Anand</div>
+                </button>
+                <button class="team-card" type="button" data-member="pragyan" aria-label="View Pragyan Singh details">
+                    <div class="team-avatar">PG</div>
+                    <div class="team-name">Pragyan Singh</div>
+                </button>
+                <button class="team-card" type="button" data-member="avipsha" aria-label="View Avipsha Banerjee details">
+                    <div class="team-avatar">AB</div>
+                    <div class="team-name">Avipsha Banerjee</div>
+                </button>
+                <button class="team-card" type="button" data-member="dhanesh" aria-label="View Dhanesh Adhalaka details">
+                    <div class="team-avatar">DA</div>
+                    <div class="team-name">Dhanesh Adhalaka</div>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section class="stack-bg">
+        <div class="section-inner">
+            <span class="section-tag" style="color:var(--orange);">Under The Hood</span>
+            <h2 class="section-h2">What We Built<br><em>It With</em></h2>
+            <p class="section-lead">The stack behind the four modules — Home, Cyclone Region, History, and the Agent.
+            </p>
+            <div class="stack-cat-grid">
+                <div class="stack-cat">
+                    <div class="stack-cat-title">Frontend</div>
+                    <div class="stack-cat-items">
+                        <div class="stack-cat-item">HTML5 &amp; CSS3</div>
+                        <div class="stack-cat-item">Vanilla JavaScript</div>
+                        <div class="stack-cat-item">SVG map rendering</div>
+                    </div>
+                </div>
+                <div class="stack-cat">
+                    <div class="stack-cat-title">Data</div>
+                    <div class="stack-cat-items">
+                        <div class="stack-cat-item">IMD historical bulletins</div>
+                        <div class="stack-cat-item">Regional risk scoring</div>
+                        <div class="stack-cat-item">Cyclone archive dataset</div>
+                    </div>
+                </div>
+                <div class="stack-cat">
+                    <div class="stack-cat-title">Agent</div>
+                    <div class="stack-cat-items">
+                        <div class="stack-cat-item">Intent matching</div>
+                        <div class="stack-cat-item">Archive-grounded answers</div>
+                        <div class="stack-cat-item">Conversational UI</div>
+                    </div>
+                </div>
+                <div class="stack-cat">
+                    <div class="stack-cat-title">Design</div>
+                    <div class="stack-cat-items">
+                        <div class="stack-cat-item">Barlow Condensed / Barlow</div>
+                        <div class="stack-cat-item">Navy &amp; signal-orange palette</div>
+                        <div class="stack-cat-item">Responsive grid layout</div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top:40px; border-top:4px solid var(--orange); overflow:hidden;">
+                <img src="assets/pic3.jpeg" alt="Neural network visualization representing the data pipeline"
+                    style="width:100%; display:block;">
+            </div>
+        </div>
+    </section>
+
+    <section class="milestone-bg">
+        <div class="section-inner">
+            <span class="section-tag">Progress</span>
+            <h2 class="section-h2">Where We Are<br><em>Right Now</em></h2>
+            <p class="section-lead">A running log of what's been built for this SIH 2026 submission.</p>
+            <div class="milestone-row">
+                <div class="milestone-item">
+                    <span class="milestone-tag">Done</span>
+                    <div>
+                        <div class="milestone-title">Home Dashboard</div>
+                        <p class="milestone-desc">Hero, live-status marquee, region snapshot, and the 10 major-cyclones
+                            archive table.</p>
+                    </div>
+                </div>
+                <div class="milestone-item">
+                    <span class="milestone-tag">Done</span>
+                    <div>
+                        <div class="milestone-title">Cyclone Region Page</div>
+                        <p class="milestone-desc">Interactive 2D/3D map, 7 coastal regions, risk filters, and a synced
+                            risk-profile panel.</p>
+                    </div>
+                </div>
+                <div class="milestone-item">
+                    <span class="milestone-tag">Done</span>
+                    <div>
+                        <div class="milestone-title">History Page</div>
+                        <p class="milestone-desc">Full decade-by-decade timeline of 10 major cyclones with era filters
+                            and impact stats.</p>
+                    </div>
+                </div>
+                <div class="milestone-item">
+                    <span class="milestone-tag">Done</span>
+                    <div>
+                        <div class="milestone-title">Agent Page</div>
+                        <p class="milestone-desc">Conversational assistant answering region, cyclone, and warning-signal
+                            questions from the archive.</p>
+                    </div>
+                </div>
+                <div class="milestone-item">
+                    <span class="milestone-tag">Next</span>
+                    <div>
+                        <div class="milestone-title">Live IMD Data Feed</div>
+                        <p class="milestone-desc">Swap the sample archive for a live data source so tracking reflects
+                            real-time storm positions.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-logo">Cyclo<span>Track</span> India</div>
+            <p class="footer-copy">&copy; 2026 Team Nexus — Smart India Hackathon. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+
+    <script>
+        (function () {
+            var btn = document.getElementById('hamburgerBtn');
+            var menu = document.getElementById('mobileMenu');
+            if (!btn || !menu) return;
+            btn.addEventListener('click', function () {
+                btn.classList.toggle('open');
+                menu.classList.toggle('open');
+            });
+            menu.querySelectorAll('a').forEach(function (a) {
+                a.addEventListener('click', function () {
+                    btn.classList.remove('open');
+                    menu.classList.remove('open');
+                });
+            });
+        })();
+    </script>
+<!-- TEAM MEMBER MODAL -->
+    <div class="modal-overlay" id="teamModalOverlay" aria-hidden="true">
+        <div class="team-modal" role="dialog" aria-modal="true" aria-labelledby="teamModalName" tabindex="-1">
+            <div class="modal-head">
+                <button class="modal-close" id="teamModalClose" type="button" aria-label="Close team member details">&times;</button>
+            </div>
+            <div class="modal-scroll" id="teamModalBody"></div>
+        </div>
+    </div>
+
+    <script>
+        (function () {
+            var TEAM = {
+                pratyaksh: {
+                    initials: 'PS',
+                    name: 'Pratyaksh Srivastava',
+                    roll: '24155040',
+                    email: null,
+                    stack: [],
+                    contribution: "I was responsible for the AI/ML part of the project, where I worked on designing the overall workflow for cyclone detection, pattern classification, intensity prediction, and trajectory forecasting using satellite images, weather data, and historical cyclone records. I also worked on data preprocessing and integrating different ML components into a unified pipeline. Additionally, I contributed to building an AI-powered chatbot that helps users understand cyclone information, prediction results, risk levels, and system analysis in a simple and interactive manner.",
+                    challenge: "The main challenges I faced were handling data collected from different sources and formats, dealing with missing, inconsistent, and unbalanced data, and preparing it properly for machine learning models. Predicting cyclone trajectories was also challenging because cyclone movement continuously changes due to various environmental conditions. Another challenge was integrating multiple ML models into a single workflow and ensuring smooth communication with the backend. Building a chatbot that could understand user queries and explain complex predictions clearly was also challenging."
+                },
+                anshul: {
+                    initials: 'AV',
+                    name: 'Anshul Vats',
+                    roll: '24156203',
+                    email: '24156203@kiit.ac.in',
+                    stack: ['HTML', 'CSS', 'JavaScript'],
+                    contribution: 'Frontend Development',
+                    situation: "While working as a Front-End Contributor, I faced difficulty in finding suitable themes, photos, and assets for our project.",
+                    task: "I needed to collect assets that matched our project's design and made the website look attractive and consistent.",
+                    action: "I searched through different sources, compared various themes and images, and selected the ones that best matched our project requirements. I also made sure the assets were suitable for the overall UI design."
+                },
+                pragyan: {
+                    initials: 'PG',
+                    name: 'Pragyan Singh',
+                    roll: '2430048',
+                    email: '2430048@kiit.ac.in',
+                    stack: ['HTML', 'CSS', 'JavaScript'],
+                    contribution: 'Frontend Development',
+                    situation: "While working on CycloTrack India, we needed an interactive map of India's coastline to show cyclone activity and wind turbulence across different regions.",
+                    task: "My role was to make the map responsive and connect it with the region-wise risk information, while keeping the interface smooth and easy to understand.",
+                    action: "I explored both SVG and Canvas approaches and mapped 7 coastal regions using coordinates. I then used HTML, CSS, and JavaScript to add risk indicators and hotspot visuals. One challenge I faced was that the markers were not staying in the correct position on different screen sizes, so I improved the positioning logic to make the map responsive.",
+                    result: "I was able to build a responsive map with synchronized risk indicators and hotspot visuals, making it easier for users to quickly understand which coastal regions are at higher cyclone risk."
+                },
+                yuvraj: { 
+                    initials: 'PG',
+                    name: 'Yuvraj Anand',
+                    roll: '2428046',
+                    email: '2428046@kiit.ac.in',
+                    stack: ['FastAPI', 'Pydantic', 'PostgreSQL', 'PostGIS', 'SQLAlchemy'],
+                    contribution: 'Developed FastAPI backend with PostgreSQL/PostGIS and SQLAlchemy.Created APIs for frontend–backend communication. Implemented interactive cyclone maps, tracks, prediction paths, markers, and timeline controls. Integrated map data with dashboard charts and prediction components.',
+                    problem: 'Synchronizing geospatial data with the map. Handling dynamic cyclone tracks and animations. Integrating APIs with frontend components. Maintaining consistent data between database, backend, and map.'
+                },
+                avipsha: { 
+                    initials: 'AB', 
+                    name: 'Avipsha Banerjee',
+                    roll: '24155018',
+                    email: '24155018@kiit.ac.in',
+                    stack: ['Numpy','Pandas','Matplotlib','scikit-learn'],
+                    contribution: 'My Role was to identify datasets for the patterns and classification used in Cyclone idetification. Data cleaning and Visualisation for the map. Selection and segregation for the ML models to be used for preduction and analysis.',
+                    problem: 'Since it is Supervised ML learning so there was huge traffficing and distortion in the data understanding and analysis. I faced problems in comaparitivie analysis of the ML  models used',
+                },
+                dhanesh: { 
+                    initials: 'DA', 
+                    name: 'Dhanesh Adhalaka',
+                    roll: '24156204',
+                    email: '24156204@kiit.ac.in',
+                    situation: 'During final integration, frontend, backend, and ML modules — though individually functional — werent fully connected into a complete end-to-end workflow.',
+                    task: 'Ensure the backend was functional, connect it to the cloud database, expose the required APIs, and prepare it for integration with the frontend and ML model before the hackathon presentation.',
+                    action: 'Migrated the backend from a temporary H2 database to Supabase PostgreSQL, built and fixed Spring Boot controllers, services, repositories, and entities, imported the historical cyclone dataset, debugged authentication and API issues, and verified endpoints (/health, /history, /upload) to confirm integration-readiness',
+                    result: 'Delivered a fully operational backend with a live cloud database and working REST APIs. While some frontend integration remained for future work, the core backend infrastructure was stable and demo-ready — and he took away the importance of setting integration checkpoints early in team projects.'
+                }
+            };
+var overlay = document.getElementById('teamModalOverlay');
+            var body = document.getElementById('teamModalBody');
+            var closeBtn = document.getElementById('teamModalClose');
+            if (!overlay || !body || !closeBtn) return;
+
+            var lastFocused = null;
+
+            function block(label, content) {
+                return '<div class="modal-block"><div class="modal-label">' + label +
+                    '</div><div class="modal-text">' + content + '</div></div>';
+            }
+
+            function openMember(id) {
+                var m = TEAM[id];
+                if (!m) return;
+                lastFocused = document.activeElement;
+
+                var html = '';
+                html += '<div class="modal-profile">';
+                html += '<div class="modal-avatar">' + m.initials + '</div>';
+                html += '<div><div class="modal-name" id="teamModalName">' + m.name + '</div>';
+                if (m.roll) html += '<div class="modal-roll">Roll No: ' + m.roll + '</div>';
+                if (m.email) {
+                    html += '<div class="modal-email">Email: <a href="mailto:' + m.email + '">' + m.email + '</a></div>';
+                }
+                html += '</div></div>';
+
+                if (m.empty) {
+                    html += '<p class="modal-empty">Profile details for ' + m.name + ' will be added here.</p>';
+                }
+
+                if (m.stack && m.stack.length) {
+                    var pills = m.stack.map(function (s) { return '<span class="stack-pill">' + s + '</span>'; }).join('');
+                    html += block('Tech Stack', '<div class="modal-stack">' + pills + '</div>');
+                }
+                if (m.contribution) html += block('Contribution', m.contribution);
+                if (m.challenge) html += block('Challenges Faced', m.challenge);
+                if (m.situation) html += block('Situation', m.situation);
+                if (m.task) html += block('Task', m.task);
+                if (m.action) html += block('Action', m.action);
+                if (m.result) html += block('Result', m.result);
+
+                body.innerHTML = html;
+
+                overlay.classList.add('open');
+                overlay.setAttribute('aria-hidden', 'false');
+                document.body.classList.add('modal-open');
+
+                var focusables = overlay.querySelectorAll('a, button');
+                (focusables.length ? focusables[0] : closeBtn).focus();
+            }
+
+            function closeMember() {
+                overlay.classList.remove('open');
+                overlay.setAttribute('aria-hidden', 'true');
+                document.body.classList.remove('modal-open');
+                if (lastFocused && lastFocused.focus) lastFocused.focus();
+            }
+
+            document.querySelectorAll('.team-card').forEach(function (card) {
+                card.addEventListener('click', function () {
+                    openMember(this.dataset.member);
+                });
+            });
+
+            closeBtn.addEventListener('click', closeMember);
+
+            overlay.addEventListener('click', function (e) {
+                if (e.target === overlay) closeMember();
+            });
+
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape' && overlay.classList.contains('open')) {
+                    closeMember();
+                }
+                if (e.key === 'Tab' && overlay.classList.contains('open')) {
+                    var focusables = overlay.querySelectorAll('a, button');
+                    if (!focusables.length) return;
+                    var first = focusables[0];
+                    var last = focusables[focusables.length - 1];
+                    if (e.shiftKey && document.activeElement === first) {
+                        e.preventDefault();
+                        last.focus();
+                    } else if (!e.shiftKey && document.activeElement === last) {
+                        e.preventDefault();
+                        first.focus();
+                    }
+                }
+            });
+        })();
+    </script>
+    <script src="assets/chatbot.js" defer></script>
+</body>
+
+</html>

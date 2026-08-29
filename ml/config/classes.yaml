@@ -1,0 +1,79 @@
+# ============================================================
+# CycloneAI — Configurable Class Definitions
+# ============================================================
+# Edit this file to match the final dataset's labels.
+# Nothing in the module folders below should hardcode class names or counts —
+# always read them from here via utils/config.py (Phase 3+).
+
+# ------------------------------------------------------------
+# Cyclone pattern / development-stage classification
+# ------------------------------------------------------------
+pattern_classes:
+  - Developing
+  - Mature
+  - Spiral
+  - Symmetric
+  - Weak
+  - Dissipating
+
+# ------------------------------------------------------------
+# Cyclone detection (binary)
+# ------------------------------------------------------------
+detection_classes:
+  - No Cyclone
+  - Cyclone
+
+# ------------------------------------------------------------
+# Intensity category thresholds (IMD-style classification,
+# wind speed in knots — adjust to match the official scale
+# used by the final dataset / India Meteorological Department)
+# ------------------------------------------------------------
+intensity_categories:
+  - name: "Low Pressure Area"
+    max_wind_kt: 17
+  - name: "Depression"
+    max_wind_kt: 27
+  - name: "Deep Depression"
+    max_wind_kt: 33
+  - name: "Cyclonic Storm"
+    max_wind_kt: 47
+  - name: "Severe Cyclonic Storm"
+    max_wind_kt: 63
+  - name: "Very Severe Cyclonic Storm"
+    max_wind_kt: 89
+  - name: "Extremely Severe Cyclonic Storm"
+    max_wind_kt: 119
+  - name: "Super Cyclonic Storm"
+    max_wind_kt: 999
+
+# ------------------------------------------------------------
+# Intensity category thresholds actually used by the current
+# training data (NOAA HURDAT2, Atlantic + Pacific basins, wind
+# speed in knots). This is the Saffir-Simpson scale, NOT the IMD
+# scale above — the two datasets use different official scales
+# because they cover different basins. Derived empirically from
+# sample_data/processed/cyclone_tracks_features_2000_2015.csv
+# (each band's boundaries matched the file's min/max wind_speed
+# per intensity_category exactly).
+#
+# `preprocessing.trajectory_preprocessing.wind_speed_to_category`
+# reads this section by default. If/when North Indian Ocean (IMD)
+# data becomes available, either retrain against `intensity_categories`
+# above, or add a `basin -> scale` lookup — don't mix the two scales
+# in one model.
+# ------------------------------------------------------------
+dataset_intensity_categories:
+  - name: "Tropical Depression"
+    max_wind_kt: 33
+  - name: "Tropical Storm"
+    max_wind_kt: 63
+  - name: "Category 1"
+    max_wind_kt: 82
+  - name: "Category 2"
+    max_wind_kt: 95
+  - name: "Category 3 (Major)"
+    max_wind_kt: 112
+  - name: "Category 4 (Major)"
+    max_wind_kt: 136
+  - name: "Category 5 (Major)"
+    max_wind_kt: 999
