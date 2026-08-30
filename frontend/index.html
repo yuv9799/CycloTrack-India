@@ -198,6 +198,39 @@
             line-height: 1.7;
         }
 
+        /* ORBIT / SATELLITE HERO — centered, contained, not full-bleed */
+        .orbit-section {
+            padding: 70px 5%;
+        }
+        .orbit-container {
+            max-width: 1440px;
+        }
+        .orbit-media {
+            margin-top: 28px;
+            border-top: 4px solid var(--orange);
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 18px 44px rgba(11, 30, 58, .18);
+        }
+        .orbit-media img {
+            display: block;
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+        .orbit-credit {
+            font-size: 12px;
+            color: #8FA1B0;
+            margin-top: 10px;
+        }
+        @media (max-width: 1024px) {
+            .orbit-container { max-width: 940px; }
+        }
+        @media (max-width: 640px) {
+            .orbit-section { padding: 52px 4%; }
+            .orbit-media { border-radius: 12px; }
+        }
+
         .hero {
             background: var(--navy-dark);
             padding: 60px 5% 50px;
@@ -925,15 +958,18 @@
             <a href="helplines.html" class="btn-solid" style="margin-top:26px;display:inline-block;">View All Helplines →</a>
         </div>
     </section>
+
+    <section class="modules-bg orbit-section">
+        <div class="section-inner orbit-container">
+            <span class="section-tag">Satellite View</span>
             <h2 class="section-h2">Watching Storms<br><em>From Orbit</em></h2>
             <p class="section-lead">A reference satellite photograph of a mature tropical cyclone, the same kind of
                 imagery CycloTrack India's monitoring pipeline watches for storm formation over the Bay of Bengal.</p>
-            <div style="margin-top:28px; border-top:4px solid var(--orange); overflow:hidden;">
+            <div class="orbit-media">
                 <img src="assets/pic4.jpeg"
-                    alt="NASA satellite image of a tropical cyclone viewed from the International Space Station"
-                    style="width:100%; display:block;">
+                    alt="NASA satellite image of a tropical cyclone viewed from the International Space Station">
             </div>
-            <p style="font-size:12px; color:#8FA1B0; margin-top:10px;">Image credit: NASA</p>
+            <p class="orbit-credit">Image credit: NASA</p>
         </div>
     </section>
 
