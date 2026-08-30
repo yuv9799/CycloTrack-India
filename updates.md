@@ -183,3 +183,16 @@ The supplied feature dataset contains GUSTAV (`AL072008`) in the **Atlantic basi
 - Added `frontend/assets/evolution-map-reference.png` from the supplied map screenshot as a reference asset.
 - Reworked the evolutionary India map outline and regional context so the peninsula, northeast, neighbouring landmasses, Sri Lanka and surrounding seas are visually clearer while retaining the existing geographic projection and interactive cyclone layers.
 - Kept the map data-driven: timeline, current marker, historical track and demo prediction continue to update from the selected/user-entered observation.
+
+## Response Center Upgrade — 2026-08-30
+
+Implemented a unified disaster-response layer across the existing CycloTrack India project:
+- Added `frontend/response-center.html` with SOS, live impact map, shelter finder, personalized prototype risk assessment, hazard forecast cards, data-provider status, alerts/notification controls, multilingual CycloBot selector, and missing-person entry point.
+- Added `frontend/missing-person.html` and `frontend/assets/missing-person.js`.
+- Added `frontend/assets/response-center.css` and `response-center.js`.
+- Extended the existing SOS form with optional GPS latitude/longitude capture and a Transportation Required emergency category.
+- Extended FastAPI with provider-ready `/api/v1/` endpoints for shelters, risk assessment, missing-person reports, alerts, data-source status, landfall, storm surge, and flood/rainfall risk.
+- Added clearly labelled demo data and official-warning disclaimers.
+- Added Response Center navigation links to existing pages.
+- Preserved the existing frontend, CycloBot, prediction/history/report functionality and existing SOS offline fallback.
+- Backend syntax and new JavaScript syntax were checked successfully.

@@ -122,7 +122,9 @@
             emergency_types: types,
             description: form.description.value.trim(),
             image: form._imageData || null,
-            consent: form.consent.checked
+            consent: form.consent.checked,
+            latitude: form.latitude && form.latitude.value ? parseFloat(form.latitude.value) : null,
+            longitude: form.longitude && form.longitude.value ? parseFloat(form.longitude.value) : null
         };
     }
 
@@ -296,6 +298,23 @@
                     showMessage('error', err.message);
                     imgInput.value = '';
                 });
+            });
+        }
+
+        var gpsBtn = document.getElementById('getGpsBtn');
+        if (gpsBtn) {
+            gpsBtn.addEventListener('click', function () {
+                var status = document.getElementById('gpsStatus');
+                if (!navigator.geolocation) { if (status) status.textContent = 'GPS is not supported by this browser.'; return; }
+                if (status) status.textContent = 'Requesting your location…';
+                navigator.geolocation.getCurrentPosition(function (pos) {
+                    var lat = document.getElementById('latitude'), lng = document.getElementById('longitude');
+                    if (lat) lat.value = pos.coords.latitude.toFixed(6);
+                    if (lng) lng.value = pos.coords.longitude.toFixed(6);
+                    if (status) status.textContent = 'GPS location captured. You can still edit the location description.';
+                }, function () {
+                    if (status) status.textContent = 'Location permission was not granted. You can enter the location manually.';
+                }, {enableHighAccuracy:true,timeout:10000});
             });
         }
 

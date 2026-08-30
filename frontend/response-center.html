@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CycloTrack India — Disaster Response Center</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/emergency.css">
+<link rel="stylesheet" href="assets/chatbot.css">
+<link rel="stylesheet" href="assets/response-center.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+</head>
+<body>
+<header class="rc-header">
+  <a class="rc-logo" href="index.html">Cyclo<span>Track</span> India</a>
+  <nav>
+    <a href="index.html">Home</a><a href="cyclone_region.html">Live Tracking</a>
+    <a class="active" href="response-center.html">Response Center</a><a href="history.html">History</a>
+    <a href="helplines.html">Helplines</a>
+  </nav>
+  <a class="rc-sos" href="report.html">🆘 GET HELP</a>
+</header>
+
+<main>
+<section class="rc-hero">
+  <div>
+    <div class="rc-kicker">SMART INDIA HACKATHON · DISASTER RESPONSE</div>
+    <h1>CYCLONE <em>RESPONSE CENTER</em></h1>
+    <p>Connect cyclone intelligence with practical help: assess your risk, find a safe shelter, report an emergency, and follow official warnings.</p>
+    <div class="rc-actions"><a class="btn primary" href="#sos">🆘 Get Help</a><a class="btn ghost" href="#map">🗺️ Open Live Map</a><a class="btn ghost" href="helplines.html">📞 Emergency Numbers</a></div>
+  </div>
+  <div class="rc-live-card"><span class="pulse"></span><strong>DEMO DATA MODE</strong><small>Prototype data is clearly labelled. Official IMD/NDMA advisories always take priority.</small></div>
+</section>
+
+<section class="rc-grid">
+  <article class="metric"><span>🌀</span><div><b>ACTIVE CYCLONE</b><strong id="metricCyclone">1</strong><small>Demo North Indian Ocean system</small></div></article>
+  <article class="metric"><span>🆘</span><div><b>SOS REQUESTS</b><strong id="metricSos">24</strong><small>Aggregated demo count</small></div></article>
+  <article class="metric"><span>🏠</span><div><b>SHELTERS</b><strong id="metricShelters">36</strong><small>Demo shelter registry</small></div></article>
+  <article class="metric"><span>⚠️</span><div><b>RISK STATUS</b><strong id="metricRisk">HIGH</strong><small id="metricRiskSub">Use My Risk for a local assessment</small></div></article>
+</section>
+
+<section class="rc-section" id="map">
+  <div class="section-head"><div><span class="rc-kicker">01 · SITUATIONAL AWARENESS</span><h2>LIVE <em>IMPACT MAP</em></h2><p>Explore cyclone track, affected zones, SOS requests, shelters, hospitals, flood and storm-surge risk.</p></div><div class="map-controls">
+    <button data-layer="all" class="active">All</button><button data-layer="sos">SOS</button><button data-layer="shelters">Shelters</button><button data-layer="risk">Risk</button><button data-layer="track">Track</button>
+  </div></div>
+  <div class="map-shell"><div id="responseMap"></div><div class="map-legend"><b>MAP LEGEND</b><span>🌀 Cyclone</span><span>🔴 Critical SOS</span><span>🏠 Shelter</span><span>🔴 Extreme risk</span></div></div>
+</section>
+
+<section class="rc-section" id="risk">
+ <div class="section-head"><div><span class="rc-kicker">02 · PERSONAL SAFETY</span><h2>MY <em>RISK</em></h2><p>A prototype risk assessment combining location, cyclone proximity and hazard indicators. It is not an official warning.</p></div></div>
+ <div class="feature-grid">
+  <form class="panel form-panel" id="riskForm">
+   <label>Location / district<input id="riskLocation" required placeholder="e.g. Puri, Odisha"></label>
+   <div class="two"><label>Distance from coast (km)<input id="coastDistance" type="number" min="0" value="12"></label><label>Wind (km/h)<input id="riskWind" type="number" min="0" value="125"></label></div>
+   <div class="two"><label>Rainfall (mm/24h)<input id="riskRain" type="number" min="0" value="180"></label><label>Storm surge (m)<input id="riskSurge" type="number" min="0" value="2.5"></label></div>
+   <label>Vulnerability <select id="vulnerability"><option value="low">Low</option><option value="medium" selected>Medium</option><option value="high">High</option></select></label>
+   <button class="btn primary" type="submit">ASSESS MY RISK</button>
+  </form>
+  <div class="risk-result panel" id="riskResult"><span class="risk-ring">?</span><div><b>YOUR RISK</b><h3>Enter your details</h3><p>The score combines prototype hazard inputs. Follow official local instructions.</p></div></div>
+ </div>
+</section>
+
+<section class="rc-section" id="shelter">
+ <div class="section-head"><div><span class="rc-kicker">03 · EVACUATION SUPPORT</span><h2>FIND A <em>SAFE SHELTER</em></h2><p>Use your location or search by district. Demo records are replaceable with verified state/district shelter data.</p></div><button class="btn outline" id="useLocation">📍 Use My Location</button></div>
+ <div class="shelter-search"><input id="shelterSearch" placeholder="Search city or district…"><button class="btn primary" id="findShelters">FIND NEAREST</button></div>
+ <div id="shelterList" class="shelter-list"></div>
+</section>
+
+<section class="rc-section" id="sos">
+ <div class="section-head"><div><span class="rc-kicker">04 · EMERGENCY RESPONSE</span><h2>REPORT <em>AN EMERGENCY</em></h2><p>Submit a structured request for food, water, shelter, rescue, medical or missing-person assistance.</p></div><a class="btn primary" href="report.html">OPEN FULL SOS FORM →</a></div>
+ <div class="quick-help"><div><strong>🩺 Medical</strong><span>Immediate medical emergency</span></div><div><strong>🚑 Rescue</strong><span>Trapped / evacuation required</span></div><div><strong>💧 Essentials</strong><span>Food and drinking water</span></div><div><strong>👤 Missing</strong><span>Report a missing person</span></div></div>
+ <div class="privacy-callout">🔒 SOS and missing-person information should only be accessible to authorised responders. For a life-threatening emergency, call <a href="tel:112">112</a>.</div>
+</section>
+
+<section class="rc-section">
+ <div class="section-head"><div><span class="rc-kicker">05 · HAZARD INTELLIGENCE</span><h2>IMPACT <em>FORECAST</em></h2><p>Prototype modules prepared for scientific data/model integration.</p></div></div>
+ <div class="forecast-grid">
+  <article class="forecast"><span>🎯</span><b>LANDFALL</b><strong>Predicted region</strong><p>Near the Odisha–Andhra coastal belt</p><small>Uncertainty: ±85 km · Demo</small></article>
+  <article class="forecast"><span>🌊</span><b>STORM SURGE</b><strong>HIGH</strong><p>Low-lying coastal areas may be exposed.</p><small>Estimated range: 2–3.5 m · Prototype</small></article>
+  <article class="forecast"><span>🌧️</span><b>FLOOD / RAINFALL</b><strong>HIGH</strong><p>Heavy rainfall and waterlogging risk around impact zones.</p><small>Rainfall layer: Demo</small></article>
+  <article class="forecast"><span>📈</span><b>TRACK CONFIDENCE</b><strong>78%</strong><p>Forecast confidence is shown with uncertainty rather than a single certain line.</p><small>Model: Demo ensemble</small></article>
+ </div>
+</section>
+
+<section class="rc-section">
+ <div class="section-head"><div><span class="rc-kicker">06 · OFFICIAL DATA READINESS</span><h2>LIVE DATA <em>STATUS</em></h2><p>Provider adapters are represented separately so real IMD/INSAT/MOSDAC/weather feeds can replace demo sources without rewriting the UI.</p></div></div>
+ <div class="status-grid"><div><b>🛰️ Satellite</b><span>● Demo provider</span></div><div><b>🌦️ Weather</b><span>● Demo provider</span></div><div><b>🌀 Cyclone feed</b><span>● Demo provider</span></div><div><b>🌊 Ocean</b><span>● Demo provider</span></div></div>
+</section>
+
+<section class="rc-section" id="alerts">
+ <div class="section-head"><div><span class="rc-kicker">07 · EARLY WARNING</span><h2>ALERTS & <em>NOTIFICATIONS</em></h2><p>Choose what you want to receive. Browser notification is available when your device grants permission.</p></div></div>
+ <div class="alert-box panel"><div><div><b>HIGH-RISK AREA ALERTS</b><p>Track changes, landfall approach, flood and storm-surge alerts.</p></div><label class="switch"><input type="checkbox" id="notifyToggle"><span></span></label></div><button class="btn outline" id="enableNotifications">ENABLE BROWSER ALERTS</button><div id="notifyStatus" class="tiny"></div></div>
+</section>
+
+<section class="rc-section" id="missing">
+ <div class="section-head"><div><span class="rc-kicker">08 · FAMILY SAFETY</span><h2>MISSING PERSON <em>REPORT</em></h2><p>Use the dedicated form and keep sensitive details private. Only authorised responders should access contact information.</p></div><a class="btn outline" href="missing-person.html">REPORT MISSING PERSON →</a></div>
+</section>
+
+<section class="rc-section bot-section">
+ <div><div><span class="rc-kicker">09 · ASSISTANCE</span><h2>ASK <em>CYCLOBOT</em></h2><p>Ask about cyclone safety, shelters, risk assessment and how to use this response center.</p></div>
+ <div class="language"><label>Language <select id="botLanguage"><option>English</option><option>Hindi</option><option>Bengali</option><option>Odia</option><option>Telugu</option><option>Tamil</option><option>Malayalam</option><option>Marathi</option><option>Gujarati</option></select></label><small>Language selection is also remembered for this device.</small></div></div>
+</section>
+</main>
+<footer class="rc-footer"><b>Cyclo<span>Track</span> India</b><span>Prototype disaster decision-support platform · Follow official IMD/NDMA/local authority instructions.</span><a href="helplines.html">Emergency Helplines →</a></footer>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="assets/response-center.js" defer></script>
+<script src="assets/chatbot.js" defer></script>
+</body>
+</html>

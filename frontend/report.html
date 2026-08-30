@@ -418,6 +418,7 @@
             <nav class="main-nav" aria-label="Primary">
                 <a href="index.html">Home</a>
                 <a href="cyclone_region.html">Live Tracking</a>
+                <a href="response-center.html">Response Center</a>
                 <a href="cyclone_region.html#evolution">Prediction</a>
                 <a href="report.html" class="active">Report / Request Help</a>
                 <a href="helplines.html">Helplines</a>
@@ -493,6 +494,20 @@
                             <span class="field-error" id="currentLocationError" aria-live="polite"></span>
                         </div>
                         <div class="report-field">
+                            <label for="latitude">GPS Latitude (optional)</label>
+                            <input type="number" id="latitude" name="latitude" step="any" min="-90" max="90" placeholder="e.g. 19.8135">
+                            <span class="field-error" id="latitudeError" aria-live="polite"></span>
+                        </div>
+                        <div class="report-field">
+                            <label for="longitude">GPS Longitude (optional)</label>
+                            <input type="number" id="longitude" name="longitude" step="any" min="-180" max="180" placeholder="e.g. 85.8312">
+                            <span class="field-error" id="longitudeError" aria-live="polite"></span>
+                        </div>
+                        <div class="report-field full">
+                            <button type="button" class="btn-emergency" id="getGpsBtn" style="border:0;cursor:pointer;">📍 Use My Current GPS Location</button>
+                            <span class="hint" id="gpsStatus">Allow location access so responders can locate you more accurately.</span>
+                        </div>
+                        <div class="report-field">
                             <label for="peopleAffected">No. of People Affected <span class="req" aria-hidden="true">*</span></label>
                             <input type="number" id="peopleAffected" name="peopleAffected" min="1" step="1" inputmode="numeric" required aria-required="true">
                             <span class="field-error" id="peopleAffectedError" aria-live="polite"></span>
@@ -516,6 +531,7 @@
                                 <label class="pt-chip"><input type="checkbox" name="emergencyTypes" value="Shelter Required"> Shelter Required</label>
                                 <label class="pt-chip"><input type="checkbox" name="emergencyTypes" value="Rescue Required"> Rescue Required</label>
                                 <label class="pt-chip"><input type="checkbox" name="emergencyTypes" value="Missing Person"> Missing Person</label>
+                                <label class="pt-chip"><input type="checkbox" name="emergencyTypes" value="Transportation Required"> Transportation Required</label>
                                 <label class="pt-chip"><input type="checkbox" name="emergencyTypes" value="Other"> Other</label>
                             </div>
                             <span class="field-error" id="emergencyTypesError" aria-live="polite"></span>
@@ -564,6 +580,7 @@
                 <a href="index.html">Home</a>
                 <a href="cyclone_region.html">Live Tracking</a>
                 <a href="history.html">History</a>
+                <a href="response-center.html">Response Center</a>
                 <a href="report.html">Request Help</a>
                 <a href="helplines.html">Helplines</a>
                 <a href="about.html">About</a>

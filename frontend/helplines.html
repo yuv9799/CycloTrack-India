@@ -418,6 +418,7 @@
             <nav class="main-nav" aria-label="Primary">
                 <a href="index.html">Home</a>
                 <a href="cyclone_region.html">Live Tracking</a>
+                <a href="response-center.html">Response Center</a>
                 <a href="cyclone_region.html#evolution">Prediction</a>
                 <a href="report.html">Report / Request Help</a>
                 <a href="helplines.html" class="active">Helplines</a>
@@ -509,6 +510,111 @@
                 </div>
             </div>
 
+
+            <div class="statewise-wrap" id="statewise">
+                <div class="statewise-head">
+                    <div>
+                        <span class="section-tag">State &amp; UT Directory</span>
+                        <h3 class="statewise-title">State-wise <em>Disaster Helplines</em></h3>
+                        <p class="hl-intro">Select your state or Union Territory to find the disaster-management contact. The directory uses official government/SDMA sources where a state-specific control-room number is available; otherwise it falls back to the national disaster/relief number <strong>1070</strong>. For immediate emergencies, call <strong>112</strong>.</p>
+                    </div>
+                    <label class="state-search-label" for="stateHelplineSearch">Search state / UT
+                        <input id="stateHelplineSearch" class="state-search" type="search" placeholder="e.g. Odisha, Kerala, Delhi" autocomplete="off">
+                    </label>
+                </div>
+                <div class="state-filter" id="stateQuickFilters" aria-label="Quick state filters">
+                    <button type="button" class="state-filter-btn active" data-filter="all">All</button>
+                    <button type="button" class="state-filter-btn" data-filter="cyclone">Cyclone-prone</button>
+                    <button type="button" class="state-filter-btn" data-filter="north">North &amp; Central</button>
+                    <button type="button" class="state-filter-btn" data-filter="northeast">North-East</button>
+                    <button type="button" class="state-filter-btn" data-filter="ut">Union Territories</button>
+                </div>
+                <div class="statewise-table-scroll">
+                    <table class="statewise-table">
+                        <thead>
+                            <tr><th>State / UT</th><th>Emergency</th><th>Disaster / SEOC</th><th>Official source</th></tr>
+                        </thead>
+                        <tbody id="stateHelplineBody"></tbody>
+                    </table>
+                </div>
+                <p class="statewise-note"><strong>Important:</strong> Control-room numbers can change during a cyclone. This directory is a convenience layer, not a substitute for official alerts. Verify the latest number on the linked government/SDMA page and follow IMD, NDMA and local authority instructions.</p>
+            </div>
+
+            <script>
+            (function () {
+                const stateHelplines = [
+                    {name:'Andhra Pradesh', group:'cyclone', disaster:'1070 / 1800-425-0101', source:'https://apsdma.ap.gov.in/'},
+                    {name:'Arunachal Pradesh', group:'northeast', disaster:'1070', source:'https://arunachalpradesh.gov.in/'},
+                    {name:'Assam', group:'northeast', disaster:'1070', source:'https://asdma.assam.gov.in/'},
+                    {name:'Bihar', group:'north', disaster:'1070', source:'https://disastermanagement.bihar.gov.in/'},
+                    {name:'Chhattisgarh', group:'north', disaster:'1070', source:'https://cgdma.gov.in/'},
+                    {name:'Goa', group:'cyclone', disaster:'0832-2419550 / 0832-2419446', source:'https://www.sdma.goa.gov.in/contacts'},
+                    {name:'Gujarat', group:'cyclone', disaster:'1070', source:'https://guj-nwrws.gujarat.gov.in/'},
+                    {name:'Haryana', group:'north', disaster:'1070', source:'https://revenueharyana.gov.in/'},
+                    {name:'Himachal Pradesh', group:'north', disaster:'1070', source:'https://hpsdma.nic.in/'},
+                    {name:'Jharkhand', group:'north', disaster:'1070', source:'https://jhar-dmda.jharkhand.gov.in/'},
+                    {name:'Karnataka', group:'cyclone', disaster:'1070', source:'https://ksdma.karnataka.gov.in/'},
+                    {name:'Kerala', group:'cyclone', disaster:'1070 / 1079', source:'https://sdma.kerala.gov.in/contact/'},
+                    {name:'Madhya Pradesh', group:'north', disaster:'1070', source:'https://dm.mp.gov.in/'},
+                    {name:'Maharashtra', group:'cyclone', disaster:'11077 / +91-9321587143', source:'https://sdma.maharashtra.gov.in/en/faqs/'},
+                    {name:'Manipur', group:'northeast', disaster:'1070 / 0385-2443441', source:'https://msdma.mn.gov.in/who_is_who'},
+                    {name:'Meghalaya', group:'northeast', disaster:'1070 / 0364-2502098', source:'https://msdma.gov.in/contact-us.html'},
+                    {name:'Mizoram', group:'northeast', disaster:'1070', source:'https://dmr.mizoram.gov.in/'},
+                    {name:'Nagaland', group:'northeast', disaster:'1070', source:'https://nsdma.nagaland.gov.in/'},
+                    {name:'Odisha', group:'cyclone', disaster:'1070', source:'https://www.osdma.org/'},
+                    {name:'Punjab', group:'north', disaster:'1070', source:'https://punjab.gov.in/'},
+                    {name:'Rajasthan', group:'north', disaster:'1070', source:'https://dmrelief.rajasthan.gov.in/'},
+                    {name:'Sikkim', group:'northeast', disaster:'1070', source:'https://sikkim.gov.in/'},
+                    {name:'Tripura', group:'northeast', disaster:'1070', source:'https://tripura.gov.in/'},
+                    {name:'Tamil Nadu', group:'cyclone', disaster:'1070', source:'https://www.tnsdma.tn.gov.in/'},
+                    {name:'Telangana', group:'north', disaster:'1070', source:'https://tssdma.telangana.gov.in/'},
+                    {name:'Uttar Pradesh', group:'north', disaster:'1070', source:'https://upsdma.up.nic.in/'},
+                    {name:'Uttarakhand', group:'north', disaster:'1070', source:'https://dmmc.uk.gov.in/'},
+                    {name:'West Bengal', group:'cyclone', disaster:'1070', source:'https://wbdmd.gov.in/'},
+                    {name:'Andaman & Nicobar Islands', group:'ut cyclone', disaster:'1070', source:'https://andaman.gov.in/'},
+                    {name:'Chandigarh', group:'ut north', disaster:'1070', source:'https://chandigarh.gov.in/'},
+                    {name:'Dadra & Nagar Haveli and Daman & Diu', group:'ut cyclone', disaster:'1070', source:'https://ddd.gov.in/'},
+                    {name:'Delhi', group:'ut north', disaster:'1070', source:'https://delhi.gov.in/'},
+                    {name:'Jammu & Kashmir', group:'ut north', disaster:'1070', source:'https://jkhudd.gov.in/'},
+                    {name:'Ladakh', group:'ut north', disaster:'1070', source:'https://ladakh.gov.in/'},
+                    {name:'Lakshadweep', group:'ut cyclone', disaster:'1070', source:'https://lakshadweep.gov.in/'},
+                    {name:'Puducherry', group:'ut cyclone', disaster:'1070', source:'https://py.gov.in/'}
+                ];
+
+                const body = document.getElementById('stateHelplineBody');
+                const search = document.getElementById('stateHelplineSearch');
+                const buttons = Array.from(document.querySelectorAll('.state-filter-btn'));
+                let active = 'all';
+
+                function matches(item) {
+                    const q = (search.value || '').trim().toLowerCase();
+                    const textMatch = !q || item.name.toLowerCase().includes(q);
+                    const groupMatch = active === 'all' || item.group.split(' ').includes(active);
+                    return textMatch && groupMatch;
+                }
+
+                function render() {
+                    const rows = stateHelplines.filter(matches);
+                    body.innerHTML = rows.length ? rows.map(item => `
+                        <tr>
+                            <td><strong>${item.name}</strong></td>
+                            <td><a class="state-call" href="tel:112">112</a></td>
+                            <td><a class="state-call" href="tel:${item.disaster.split('/')[0].replace(/[^0-9+]/g,'')}">${item.disaster}</a></td>
+                            <td><a class="state-source" href="${item.source}" target="_blank" rel="noopener noreferrer">Official portal ↗</a></td>
+                        </tr>`).join('') : '<tr><td colspan="4" class="state-empty">No state or UT matched your search.</td></tr>';
+                }
+
+                search.addEventListener('input', render);
+                buttons.forEach(btn => btn.addEventListener('click', () => {
+                    buttons.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    active = btn.dataset.filter;
+                    render();
+                }));
+                render();
+            })();
+            </script>
+
             <div class="submit-row" style="margin-top:30px;">
                 <a href="report.html" class="btn-emergency">Go to Request Help Form</a>
                 <a href="index.html" class="hl-dial" style="background:#0B1E3A;color:#fff;padding:13px 22px;">Back to Home</a>
@@ -526,6 +632,7 @@
                 <a href="index.html">Home</a>
                 <a href="cyclone_region.html">Live Tracking</a>
                 <a href="history.html">History</a>
+                <a href="response-center.html">Response Center</a>
                 <a href="report.html">Request Help</a>
                 <a href="helplines.html">Helplines</a>
                 <a href="about.html">About</a>

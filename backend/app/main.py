@@ -144,7 +144,7 @@ INDIA_STATES = [
 ]
 EMERGENCY_TYPES = [
     "Medical Emergency", "Food Required", "Drinking Water Required",
-    "Shelter Required", "Rescue Required", "Missing Person", "Other",
+    "Shelter Required", "Rescue Required", "Missing Person", "Transportation Required", "Other",
 ]
 HELP_REQUESTS_FILE = Path(os.getenv("HELP_REQUESTS_FILE", "data/help_requests.jsonl"))
 _help_lock = threading.Lock()
@@ -286,6 +286,108 @@ def count_help_requests():
         "total_received": len(records),
         "by_emergency_type": by_type,
     }
+
+
+
+# ---------------------------------------------------------------------------
+# Response Center APIs (prototype-safe, provider-ready)
+# ---------------------------------------------------------------------------
+from math import radians, sin, cos, asin, sqrt
+
+RESPONSE_DATA_DIR = Path(os.getenv("RESPONSE_DATA_DIR", "data"))
+MISSING_PERSONS_FILE = RESPONSE_DATA_DIR / "missing_persons.jsonl"
+
+DEMO_SHELTERS = [
+    {"id":"SH-001","name":"Puri Coastal Shelter","district":"Puri","state":"Odisha","lat":19.8135,"lng":85.8312,"capacity":500,"available":182,"water":True,"food":True,"medical":True,"accessible":True},
+    {"id":"SH-002","name":"Gopalpur Cyclone Shelter","district":"Ganjam","state":"Odisha","lat":19.2676,"lng":84.9050,"capacity":420,"available":96,"water":True,"food":True,"medical":False,"accessible":True},
+    {"id":"SH-003","name":"Kakinada Relief Shelter","district":"Kakinada","state":"Andhra Pradesh","lat":16.9891,"lng":82.2475,"capacity":600,"available":240,"water":True,"food":True,"medical":True,"accessible":False},
+    {"id":"SH-004","name":"Srikakulam Safe Center","district":"Srikakulam","state":"Andhra Pradesh","lat":18.2969,"lng":83.8973,"capacity":350,"available":140,"water":True,"food":False,"medical":True,"accessible":True},
+    {"id":"SH-005","name":"Paradip Community Shelter","district":"Jagatsinghpur","state":"Odisha","lat":20.3160,"lng":86.6080,"capacity":450,"available":210,"water":True,"food":True,"medical":True,"accessible":True},
+    {"id":"SH-006","name":"Digha Emergency Shelter","district":"Purba Medinipur","state":"West Bengal","lat":21.6280,"lng":87.5080,"capacity":380,"available":72,"water":True,"food":True,"medical":False,"accessible":True},
+]
+
+class RiskRequest(BaseModel):
+    location: str = Field(..., min_length=2, max_length=200)
+    coast_distance_km: float = Field(..., ge=0, le=1000)
+    wind_kmh: float = Field(..., ge=0, le=400)
+    rainfall_mm: float = Field(..., ge=0, le=2000)
+    storm_surge_m: float = Field(..., ge=0, le=20)
+    vulnerability: str = Field(default="medium")
+
+@app.get("/api/v1/shelters")
+def get_shelters(q: Optional[str] = None):
+    rows = DEMO_SHELTERS
+    if q:
+        needle = q.strip().lower()
+        rows = [x for x in rows if needle in x["name"].lower() or needle in x["district"].lower() or needle in x["state"].lower()]
+    return {"mode":"demo","data_source":"Demo shelter registry","shelters":rows}
+
+@app.get("/api/v1/shelters/nearest")
+def nearest_shelters(lat: float, lng: float, limit: int = 5):
+    def hav(a,b,c,d):
+        R=6371.0
+        p1,p2=radians(a),radians(c)
+        dp=radians(c-a); dl=radians(d-b)
+        x=sin(dp/2)**2+cos(p1)*cos(p2)*sin(dl/2)**2
+        return R*2*asin(sqrt(x))
+    rows=[]
+    for s in DEMO_SHELTERS:
+        item=dict(s); item["distance_km"]=round(hav(lat,lng,s["lat"],s["lng"]),2); rows.append(item)
+    return {"mode":"demo","data_source":"Demo shelter registry","shelters":sorted(rows,key=lambda x:x["distance_km"])[:max(1,min(limit,20))]}
+
+@app.post("/api/v1/risk/assess")
+def assess_risk(req: RiskRequest):
+    v={"low":0,"medium":8,"high":15}.get(req.vulnerability.lower(),8)
+    score=min(100,(req.wind_kmh/2)+(req.rainfall_mm/8)+(req.storm_surge_m*10)+max(0,30-req.coast_distance_km)+v)
+    level="EXTREME" if score>=75 else "HIGH" if score>=55 else "MODERATE" if score>=30 else "LOW"
+    return {"mode":"demo","score":round(score,1),"level":level,"location":req.location,"official_warning_note":"Prototype assessment only. Follow official IMD/NDMA/local authority warnings."}
+
+class MissingPerson(BaseModel):
+    name: str = Field(..., min_length=1, max_length=120)
+    age: int = Field(..., ge=0, le=120)
+    gender: str = Field(default="", max_length=40)
+    last_seen: str = Field(..., min_length=1, max_length=80)
+    location: str = Field(..., min_length=2, max_length=300)
+    details: str = Field(..., min_length=2, max_length=1500)
+    contact_name: str = Field(..., min_length=1, max_length=120)
+    contact_phone: str = Field(..., min_length=6, max_length=20)
+
+@app.post("/api/v1/missing-persons")
+def create_missing_person(req: MissingPerson):
+    RESPONSE_DATA_DIR.mkdir(parents=True, exist_ok=True)
+    rid=f"MP-{datetime.now(timezone.utc).strftime('%Y%m%d%H%M%S')}-{os.urandom(2).hex().upper()}"
+    record={"id":rid,"created_at":datetime.now(timezone.utc).isoformat(),"status":"Missing",**req.model_dump()}
+    with MISSING_PERSONS_FILE.open("a",encoding="utf-8") as fh:
+        fh.write(json.dumps(record,ensure_ascii=False)+"\n")
+    return {"status":"ok","id":rid,"message":"Missing-person report received. Access is restricted to authorised responders."}
+
+@app.get("/api/v1/alerts")
+def get_alerts():
+    return {"mode":"demo","alerts":[
+        {"id":"AL-001","severity":"HIGH","type":"Track change","title":"Cyclone track update","message":"Review the latest official forecast before making evacuation decisions.","created_at":datetime.now(timezone.utc).isoformat()},
+        {"id":"AL-002","severity":"HIGH","type":"Storm surge","title":"Coastal surge risk","message":"Low-lying coastal areas should follow local evacuation instructions.","created_at":datetime.now(timezone.utc).isoformat()}
+    ]}
+
+@app.get("/api/v1/data-sources/status")
+def data_source_status():
+    return {"mode":"demo","sources":[
+        {"name":"Satellite","status":"demo","provider":"SatelliteDataProvider"},
+        {"name":"Weather","status":"demo","provider":"WeatherDataProvider"},
+        {"name":"Cyclone feed","status":"demo","provider":"CycloneDataProvider"},
+        {"name":"Ocean","status":"demo","provider":"OceanDataProvider"}
+    ]}
+
+@app.get("/api/v1/predictions/landfall/{cyclone_id}")
+def landfall_prediction(cyclone_id: str):
+    return {"mode":"demo","cyclone_id":cyclone_id,"region":"Odisha–Andhra coastal belt","time_window_hours":"18–24","wind_kmh":"130–145","confidence":0.78,"uncertainty_km":85}
+
+@app.get("/api/v1/predictions/storm-surge/{cyclone_id}")
+def storm_surge_prediction(cyclone_id: str):
+    return {"mode":"demo","cyclone_id":cyclone_id,"risk":"HIGH","estimated_range_m":"2–3.5","note":"Prototype estimate; use validated scientific surge guidance for operational decisions."}
+
+@app.get("/api/v1/predictions/flood/{cyclone_id}")
+def flood_prediction(cyclone_id: str):
+    return {"mode":"demo","cyclone_id":cyclone_id,"risk":"HIGH","rainfall_risk":"HIGH","waterlogging":"POSSIBLE","note":"Demo hazard layer; not an official flood warning."}
 
 
 @app.get("/api/health")
