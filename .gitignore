@@ -34,3 +34,6 @@ Thumbs.db
 
 # Logs
 *.log
+
+# Submitted emergency help requests (contains personal data — never commit)
+backend/data/

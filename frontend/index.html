@@ -9,6 +9,7 @@
         href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Barlow:wght@400;500;600&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="assets/chatbot.css">
+    <link rel="stylesheet" href="assets/emergency.css">
     <style>
         *,
         *::before,
@@ -80,7 +81,7 @@
 
         nav {
             display: flex;
-            gap: 28px;
+            gap: 22px;
             align-items: center;
         }
 
@@ -618,6 +619,26 @@
             color: rgba(255, 255, 255, .3);
         }
 
+        .footer-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            align-items: center;
+        }
+
+        .footer-nav a {
+            color: rgba(255, 255, 255, .6);
+            text-decoration: none;
+            font-size: 13px;
+            text-transform: uppercase;
+            font-family: var(--font-head);
+            letter-spacing: .5px;
+        }
+
+        .footer-nav a:hover {
+            color: var(--orange);
+        }
+
         @media (max-width:1024px) {
             .desc-grid {
                 grid-template-columns: 1fr;
@@ -774,13 +795,25 @@
 
 <body>
 
+    <a class="skip-link" href="#main">Skip to main content</a>
+
+    <div class="emergency-bar" role="region" aria-label="Emergency information">
+        <span>🚨 In an emergency, dial <a href="tel:112" class="eb-dial">112</a></span>
+        <span class="eb-links">
+            <a href="helplines.html">Helplines</a>
+            <a href="report.html" class="eb-cta">Request Help</a>
+        </span>
+    </div>
+
     <header>
         <a href="index.html" class="logo">Cyclo<span>Track</span> India</a>
         <div class="header-right">
             <nav class="main-nav" aria-label="Primary">
                 <a href="index.html" class="active">Home</a>
-                <a href="cyclone_region.html">Cyclone Region</a>
-                <a href="history.html">History</a>
+                <a href="cyclone_region.html">Live Tracking</a>
+                <a href="cyclone_region.html#evolution">Prediction</a>
+                <a href="report.html">Report / Request Help</a>
+                <a href="helplines.html">Helplines</a>
                 <a href="about.html">About</a>
             </nav>
             <a href="cyclone_region.html" class="header-cta">View Live Map</a>
@@ -789,8 +822,10 @@
     </header>
     <div class="mobile-menu" id="mobileMenu">
             <a href="index.html" class="active">Home</a>
-            <a href="cyclone_region.html">Cyclone Region</a>
-            <a href="history.html">History</a>
+            <a href="cyclone_region.html">Live Tracking</a>
+            <a href="cyclone_region.html#evolution">Prediction</a>
+            <a href="report.html">Report / Request Help</a>
+            <a href="helplines.html">Helplines</a>
             <a href="about.html">About</a>
     </div>
 
@@ -804,6 +839,7 @@
             <div class="hero-btn-row">
                 <a href="cyclone_region.html" class="btn-solid">Explore Cyclone Regions</a>
                 <a href="history.html" class="btn-outline">View History</a>
+                <a href="report.html" class="btn-solid" style="background:var(--ec-red,#C8102E);">🚨 Submit Emergency Request</a>
             </div>
             <div class="marquee">
                 <div class="marquee-item"><span class="marquee-num">7</span><span class="marquee-lbl">Coastal
@@ -818,9 +854,77 @@
         </div>
     </div>
 
+    <section class="desc-bg" id="main">
+        <div class="section-inner">
+            <span class="section-tag">Need Help?</span>
+            <h2 class="section-h2">Quick Emergency <em>Actions</em></h2>
+            <p class="section-lead">If you or someone near you is in danger during a cyclone, use these shortcuts to
+                request help or reach the right helpline fast.</p>
+            <div class="ec-actions-grid reveal">
+                <a href="report.html?type=Rescue%20Required" class="ec-action">
+                    <span class="ec-action-icon" aria-hidden="true">🆘</span>
+                    <span class="ec-action-label">Request Rescue</span>
+                    <span class="ec-action-sub">People trapped / need evacuation</span>
+                </a>
+                <a href="report.html?type=Medical%20Emergency" class="ec-action">
+                    <span class="ec-action-icon" aria-hidden="true">🏥</span>
+                    <span class="ec-action-label">Medical Help</span>
+                    <span class="ec-action-sub">Injuries or medical need</span>
+                </a>
+                <a href="report.html?type=Shelter%20Required" class="ec-action">
+                    <span class="ec-action-icon" aria-hidden="true">🏠</span>
+                    <span class="ec-action-label">Find Shelter</span>
+                    <span class="ec-action-sub">No safe place to stay</span>
+                </a>
+                <a href="report.html?type=Other" class="ec-action">
+                    <span class="ec-action-icon" aria-hidden="true">⚠️</span>
+                    <span class="ec-action-label">Report Damage</span>
+                    <span class="ec-action-sub">Damaged homes / infrastructure</span>
+                </a>
+                <a href="helplines.html" class="ec-action">
+                    <span class="ec-action-icon" aria-hidden="true">📞</span>
+                    <span class="ec-action-label">Emergency Helplines</span>
+                    <span class="ec-action-sub">Tap-to-call numbers</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
     <section class="modules-bg">
         <div class="section-inner">
-            <span class="section-tag">Satellite View</span>
+            <span class="section-tag">Emergency Contacts</span>
+            <h2 class="section-h2">Cyclone <em>Helplines</em></h2>
+            <p class="hl-intro">National numbers to call in a cyclone emergency. Tap any number to call from your
+                mobile.</p>
+            <div class="hl-grid reveal">
+                <div class="hl-card urgent">
+                    <span class="hl-service">Emergency</span>
+                    <div class="hl-num">112</div>
+                    <p class="hl-desc">All-India unified emergency number.</p>
+                    <a class="hl-dial" href="tel:112">Call 112</a>
+                </div>
+                <div class="hl-card">
+                    <span class="hl-service">Ambulance</span>
+                    <div class="hl-num">108</div>
+                    <p class="hl-desc">Medical ambulance service.</p>
+                    <a class="hl-dial" href="tel:108">Call 108</a>
+                </div>
+                <div class="hl-card">
+                    <span class="hl-service">Fire &amp; Rescue</span>
+                    <div class="hl-num">101</div>
+                    <p class="hl-desc">Fire and rescue emergency.</p>
+                    <a class="hl-dial" href="tel:101">Call 101</a>
+                </div>
+                <div class="hl-card">
+                    <span class="hl-service">Disaster Helpline</span>
+                    <div class="hl-num">1078</div>
+                    <p class="hl-desc">NDMA / National disaster helpline.</p>
+                    <a class="hl-dial" href="tel:1078">Call 1078</a>
+                </div>
+            </div>
+            <a href="helplines.html" class="btn-solid" style="margin-top:26px;display:inline-block;">View All Helplines →</a>
+        </div>
+    </section>
             <h2 class="section-h2">Watching Storms<br><em>From Orbit</em></h2>
             <p class="section-lead">A reference satellite photograph of a mature tropical cyclone, the same kind of
                 imagery CycloTrack India's monitoring pipeline watches for storm formation over the Bay of Bengal.</p>
@@ -1003,8 +1107,18 @@
 
     <footer>
         <div class="footer-inner">
-            <div class="footer-logo">Cyclo<span>Track</span> India</div>
-            <p class="footer-copy">&copy; 2026 Team Nexus — Smart India Hackathon. All Rights Reserved.</p>
+            <div>
+                <div class="footer-logo">Cyclo<span>Track</span> India</div>
+                <p class="footer-copy">&copy; 2026 Team Nexus — Smart India Hackathon. All Rights Reserved.</p>
+            </div>
+            <nav class="footer-nav" aria-label="Footer">
+                <a href="index.html">Home</a>
+                <a href="cyclone_region.html">Live Tracking</a>
+                <a href="history.html">History</a>
+                <a href="report.html">Request Help</a>
+                <a href="helplines.html">Helplines</a>
+                <a href="about.html">About</a>
+            </nav>
         </div>
     </footer>
 
@@ -1027,6 +1141,22 @@
         })();
     </script>
     <script src="assets/chatbot.js" defer></script>
+    <script>
+        (function () {
+            var els = document.querySelectorAll('.reveal');
+            if (!els.length) return;
+            if (!('IntersectionObserver' in window)) {
+                els.forEach(function (el) { el.classList.add('in'); });
+                return;
+            }
+            var io = new IntersectionObserver(function (entries) {
+                entries.forEach(function (e) {
+                    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+                });
+            }, { threshold: 0.12 });
+            els.forEach(function (el) { io.observe(el); });
+        })();
+    </script>
 </body>
 
 </html>

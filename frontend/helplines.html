@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyclone Helplines — CycloTrack India</title>
+    <meta name="description" content="Official emergency contact numbers for cyclone response in India: 112, 108, 101, 1078 and more — tap to call on mobile.">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/chatbot.css">
+    <link rel="stylesheet" href="assets/emergency.css">
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --navy: #0B1E3A;
+            --navy-dark: #070F1E;
+            --orange: #F47B20;
+            --orange-dark: #D9660E;
+            --white: #FFFFFF;
+            --off-white: #F4F6F8;
+            --text-body: #2D3E50;
+            --font-head: 'Barlow Condensed', sans-serif;
+            --font-body: 'Barlow', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--text-body);
+            background: var(--white);
+            line-height: 1.6;
+            font-size: 16px;
+        }
+
+        header {
+            background: var(--navy-dark);
+            padding: 0 5%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 2px solid var(--orange);
+        }
+
+        .logo {
+            font-family: var(--font-head);
+            font-weight: 800;
+            font-size: 22px;
+            color: var(--white);
+            letter-spacing: .5px;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--orange);
+        }
+
+        nav {
+            display: flex;
+            gap: 22px;
+            align-items: center;
+        }
+
+        nav a {
+            font-family: var(--font-head);
+            font-size: 15px;
+            font-weight: 600;
+            letter-spacing: .5px;
+            color: rgba(255, 255, 255, .72);
+            text-decoration: none;
+            text-transform: uppercase;
+            position: relative;
+            padding: 6px 2px 8px;
+            white-space: nowrap;
+            transition: color .25s ease;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            right: 50%;
+            bottom: 0;
+            height: 2px;
+            background: var(--orange);
+            transition: left .25s ease, right .25s ease;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: var(--orange);
+        }
+
+        nav a:hover::after,
+        nav a.active::after {
+            left: 0;
+            right: 0;
+        }
+
+        .header-cta {
+            background: var(--orange);
+            color: var(--white);
+            font-family: var(--font-head);
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: .8px;
+            text-transform: uppercase;
+            padding: 9px 20px;
+            text-decoration: none;
+        }
+
+        .header-cta:hover {
+            background: var(--orange-dark);
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        @media (min-width: 1025px) and (max-width: 1180px) {
+            nav.main-nav {
+                gap: 15px;
+            }
+            nav.main-nav a {
+                font-size: 14px;
+            }
+        }
+
+        section {
+            padding: 62px 5%;
+        }
+
+        .section-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .section-tag {
+            font-family: var(--font-head);
+            font-size: 11px;
+            letter-spacing: 3.5px;
+            text-transform: uppercase;
+            color: var(--orange);
+            font-weight: 700;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-tag::before {
+            content: '';
+            width: 20px;
+            height: 2px;
+            background: var(--orange);
+        }
+
+        .section-h2 {
+            font-family: var(--font-head);
+            font-weight: 800;
+            font-size: clamp(28px, 4vw, 42px);
+            text-transform: uppercase;
+            color: var(--navy);
+            line-height: 1.0;
+            margin-bottom: 14px;
+        }
+
+        .section-h2 em {
+            color: var(--orange);
+            font-style: normal;
+        }
+
+        .section-lead {
+            font-size: 15.5px;
+            color: #4A6070;
+            max-width: 640px;
+            line-height: 1.7;
+        }
+
+        .page-hero {
+            background: var(--navy-dark);
+            padding: 46px 5%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 40%;
+            height: 100%;
+            background: linear-gradient(120deg, transparent, rgba(244, 123, 32, .14));
+        }
+
+        .page-hero-inner {
+            position: relative;
+            z-index: 2;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .breadcrumb {
+            font-family: var(--font-head);
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .45);
+            margin-bottom: 10px;
+        }
+
+        .page-hero-h1 {
+            font-family: var(--font-head);
+            font-weight: 800;
+            font-size: clamp(34px, 4.6vw, 54px);
+            color: var(--white);
+            text-transform: uppercase;
+            line-height: .98;
+            margin-bottom: 12px;
+        }
+
+        .page-hero-h1 em {
+            color: var(--orange);
+            font-style: normal;
+        }
+
+        .page-hero-sub {
+            font-size: 15.5px;
+            color: rgba(255, 255, 255, .6);
+            max-width: 620px;
+        }
+        .form-page-bg {
+            background: var(--off-white);
+            min-height: 60vh;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+            width: 32px;
+            height: 32px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: var(--white);
+            transition: .2s;
+        }
+
+        .hamburger.open span:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+        }
+
+        .hamburger.open span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.open span:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 64px;
+            left: 0;
+            right: 0;
+            background: var(--navy-dark);
+            border-bottom: 2px solid var(--orange);
+            z-index: 99;
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: max-height .32s ease, opacity .28s ease, transform .28s ease, visibility .28s;
+        }
+
+        .mobile-menu.open {
+            max-height: 560px;
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .mobile-menu a {
+            font-family: var(--font-head);
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: .5px;
+            color: rgba(255, 255, 255, .78);
+            text-decoration: none;
+            text-transform: uppercase;
+            padding: 16px 5%;
+            border-bottom: 1px solid rgba(255, 255, 255, .08);
+            display: block;
+        }
+
+        .mobile-menu a.active {
+            color: var(--orange);
+        }
+
+        @media (max-width: 1024px) {
+            nav.main-nav {
+                display: none;
+            }
+            .header-cta {
+                display: none;
+            }
+            .hamburger {
+                display: flex;
+            }
+        }
+
+        @media (min-width: 1025px) {
+            nav.main-nav {
+                display: flex;
+            }
+            .hamburger {
+                display: none;
+            }
+            .mobile-menu {
+                display: none;
+            }
+        }
+        /* __FOOTER_CSS__ */
+        footer {
+            background: var(--navy-dark);
+            padding: 36px 5%;
+            border-top: 2px solid var(--orange);
+        }
+
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .footer-logo {
+            font-family: var(--font-head);
+            font-size: 19px;
+            font-weight: 800;
+            color: var(--white);
+        }
+
+        .footer-logo span {
+            color: var(--orange);
+        }
+
+        .footer-copy {
+            font-size: 12px;
+            color: rgba(255, 255, 255, .3);
+        }
+
+        .footer-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            align-items: center;
+        }
+
+        .footer-nav a {
+            color: rgba(255, 255, 255, .6);
+            text-decoration: none;
+            font-size: 13px;
+            text-transform: uppercase;
+            font-family: var(--font-head);
+            letter-spacing: .5px;
+        }
+
+        .footer-nav a:hover {
+            color: var(--orange);
+        }
+    </style>
+</head>
+
+<body id="top">
+    <a class="skip-link" href="#main">Skip to main content</a>
+
+    <div class="emergency-bar" role="region" aria-label="Emergency information">
+        <span>🚨 In an emergency, dial <a href="tel:112" class="eb-dial">112</a></span>
+        <span class="eb-links">
+            <a href="helplines.html">Helplines</a>
+            <a href="report.html" class="eb-cta">Request Help</a>
+        </span>
+    </div>
+
+    <header>
+        <a href="index.html" class="logo">Cyclo<span>Track</span> India</a>
+        <div class="header-right">
+            <nav class="main-nav" aria-label="Primary">
+                <a href="index.html">Home</a>
+                <a href="cyclone_region.html">Live Tracking</a>
+                <a href="cyclone_region.html#evolution">Prediction</a>
+                <a href="report.html">Report / Request Help</a>
+                <a href="helplines.html" class="active">Helplines</a>
+                <a href="about.html">About</a>
+            </nav>
+            <a href="tel:112" class="header-cta">Call 112</a>
+            <button class="hamburger" id="hamburgerBtn" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+        </div>
+    </header>
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="index.html">Home</a>
+        <a href="cyclone_region.html">Live Tracking</a>
+        <a href="cyclone_region.html#evolution">Prediction</a>
+        <a href="report.html">Report / Request Help</a>
+        <a href="helplines.html" class="active">Helplines</a>
+        <a href="about.html">About</a>
+    </div>
+
+    <div class="page-hero">
+        <div class="page-hero-inner">
+            <p class="breadcrumb">Home <span>/</span> Cyclone Helplines</p>
+            <h1 class="page-hero-h1">Cyclone <em>Helplines</em></h1>
+            <p class="page-hero-sub">National emergency numbers for cyclone response in India — clearly labelled and
+                tap-to-call on mobile. In a crisis, call 112 first.</p>
+        </div>
+    </div>
+<section class="form-page-bg" id="main">
+        <div class="section-inner">
+            <span class="section-tag">Emergency Contacts</span>
+            <h2 class="section-h2">National Emergency <em>Numbers</em></h2>
+            <p class="hl-intro">Keep these numbers handy. On mobile, tap a number to call directly. In a crisis,
+                call <strong>112</strong> first.</p>
+
+            <div class="hl-grid">
+                <div class="hl-card urgent">
+                    <span class="hl-service">Emergency</span>
+                    <div class="hl-num">112</div>
+                    <p class="hl-desc">All-India unified emergency number — police, fire and ambulance. Works across
+                        most of India on any network.</p>
+                    <a class="hl-dial" href="tel:112">Call 112</a>
+                </div>
+                <div class="hl-card">
+                    <span class="hl-service">Ambulance</span>
+                    <div class="hl-num">108</div>
+                    <p class="hl-desc">National ambulance / medical emergency response service.</p>
+                    <a class="hl-dial" href="tel:108">Call 108</a>
+                </div>
+                <div class="hl-card">
+                    <span class="hl-service">Fire &amp; Rescue</span>
+                    <div class="hl-num">101</div>
+                    <p class="hl-desc">Fire, rescue and related life-and-property emergencies.</p>
+                    <a class="hl-dial" href="tel:101">Call 101</a>
+                </div>
+                <div class="hl-card">
+                    <span class="hl-service">Disaster Helpline</span>
+                    <div class="hl-num">1078</div>
+                    <p class="hl-desc">National Disaster Management helpline for disaster situations (NDMA / State
+                        Disaster Management control rooms).</p>
+                    <a class="hl-dial" href="tel:1078">Call 1078</a>
+                </div>
+            </div>
+
+            <div class="hl-notice">
+                <strong>Please verify before you rely on it:</strong> Emergency numbers can vary by state and city.
+                Always follow official government advisories (IMD bulletins, NDMA and your State Disaster Management
+                Authority) for your area. This list is a general national reference, not a guarantee of availability
+                in every district.
+            </div>
+
+            <div class="hl-ext">
+                <h3>More Disaster Response Numbers</h3>
+                <p class="hl-intro" style="margin-bottom:10px;">Common control-room and helpline numbers used during
+                    cyclones and floods.</p>
+                <div class="hl-table-scroll">
+                <table>
+                    <thead><tr><th>Service</th><th>Number</th><th>Notes</th></tr></thead>
+                    <tbody>
+                        <tr><td>Police</td><td><a class="hl-tel" href="tel:100">100</a></td><td>General police emergency</td></tr>
+                        <tr><td>National Emergency</td><td><a class="hl-tel" href="tel:112">112</a></td><td>Unified emergency — reaches 100/108/101 in many regions</td></tr>
+                        <tr><td>Ambulance</td><td><a class="hl-tel" href="tel:108">108</a></td><td>Medical ambulance service</td></tr>
+                        <tr><td>Fire &amp; Rescue</td><td><a class="hl-tel" href="tel:101">101</a></td><td>Fire brigade</td></tr>
+                        <tr><td>Disaster Helpline</td><td><a class="hl-tel" href="tel:1078">1078</a></td><td>NDMA / State disaster management control rooms</td></tr>
+                        <tr><td>IMD Weather Info</td><td><a class="hl-tel" href="tel:01124335276">011-24335276</a></td><td>India Meteorological Department (also mausam.imd.gov.in)</td></tr>
+                        <tr><td>Women Helpline</td><td><a class="hl-tel" href="tel:181">181</a></td><td>Women in distress</td></tr>
+                        <tr><td>Children Helpline</td><td><a class="hl-tel" href="tel:1098">1098</a></td><td>Childline — children in distress</td></tr>
+                        <tr><td>Senior Citizens Helpline</td><td><a class="hl-tel" href="tel:14567">14567</a></td><td>Elderly assistance</td></tr>
+                    </tbody>
+                </table>
+                </div>
+            </div>
+
+            <div class="submit-row" style="margin-top:30px;">
+                <a href="report.html" class="btn-emergency">Go to Request Help Form</a>
+                <a href="index.html" class="hl-dial" style="background:#0B1E3A;color:#fff;padding:13px 22px;">Back to Home</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-inner">
+            <div>
+                <div class="footer-logo">Cyclo<span>Track</span> India</div>
+                <p class="footer-copy">&copy; 2026 Team Nexus — Smart India Hackathon. All Rights Reserved.</p>
+            </div>
+            <nav class="footer-nav" aria-label="Footer">
+                <a href="index.html">Home</a>
+                <a href="cyclone_region.html">Live Tracking</a>
+                <a href="history.html">History</a>
+                <a href="report.html">Request Help</a>
+                <a href="helplines.html">Helplines</a>
+                <a href="about.html">About</a>
+            </nav>
+        </div>
+    </footer>
+
+    <script>
+        (function () {
+            var btn = document.getElementById('hamburgerBtn');
+            var menu = document.getElementById('mobileMenu');
+            if (!btn || !menu) return;
+            btn.addEventListener('click', function () {
+                var open = menu.classList.toggle('open');
+                btn.classList.toggle('open');
+                btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+            });
+            menu.querySelectorAll('a').forEach(function (a) {
+                a.addEventListener('click', function () {
+                    btn.classList.remove('open');
+                    menu.classList.remove('open');
+                    btn.setAttribute('aria-expanded', 'false');
+                });
+            });
+        })();
+    </script>
+    <script src="assets/helpreport.js" defer></script>
+    <script src="assets/chatbot.js" defer></script>
+</body>
+</html>

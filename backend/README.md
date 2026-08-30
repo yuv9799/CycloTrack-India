@@ -81,6 +81,52 @@ Response:
 `history` is optional and capped at the last 12 turns server-side, so the model
 keeps conversational context without an unbounded request growing forever.
 
+## Emergency help-request endpoint
+
+`POST /api/help-requests` — used by the **Report / Request Help** form
+(`frontend/report.html`). Submissions are validated (name, mobile, state,
+district, emergency types, consent, etc.), given a reference id, and appended
+to a local JSON-lines file (`data/help_requests.jsonl` by default; override the
+path with the `HELP_REQUESTS_FILE` env var).
+
+```json
+{
+  "full_name": "Asha Devi",
+  "mobile": "9876543210",
+  "email": null,
+  "state": "Odisha",
+  "district": "Puri",
+  "village_city": "Konark",
+  "current_location": "Roof of the panchayat building, near the beach road",
+  "people_affected": 12,
+  "children": 3,
+  "elderly_disabled": 2,
+  "emergency_types": ["Rescue Required", "Drinking Water Required"],
+  "description": "Water is entering the shelter, we need evacuation.",
+  "image": null,
+  "consent": true
+}
+```
+
+On success it returns `{ "status": "ok", "id": "HR-...", "message": "..." }`.
+
+`GET /api/help-requests` returns only **aggregate counts** (total received and
+requests grouped by emergency type) — personal details are never exposed
+through a public route.
+
+### Offline behaviour on GitHub Pages
+
+The static site is served from GitHub Pages without a live backend. The form
+tries this endpoint first; if it is unreachable, the request is stored in the
+browser's `localStorage` so a person's emergency data is not lost, and a notice
+is shown. Point the frontend at a deployed backend with:
+
+```html
+<script>window.CYCLOTRACK_API_BASE = "https://api.example.com";</script>
+```
+
+See `frontend/assets/helpreport.js`.
+
 ## Pointing the frontend at this server
 
 Open any page (`frontend/index.html`, etc.) and, before the `chatbot.js` script

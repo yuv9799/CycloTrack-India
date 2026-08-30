@@ -24,17 +24,18 @@
 6. [User Flow](#-user-flow)
 7. [ML Pipeline](#-ml-pipeline)
 8. [API Reference](#-api-reference)
-9. [Database Schema](#-database-schema)
-10. [Getting Started](#-getting-started)
-11. [Environment Variables](#-environment-variables)
-12. [Docker Deployment](#-docker-deployment)
-13. [Demo Mode vs Real ML Mode](#-demo-mode-vs-real-ml-mode)
-14. [Model Performance](#-model-performance)
-15. [Report Generation](#-report-generation)
-16. [Security](#-security)
-17. [Roadmap](#-roadmap)
-18. [Team](#-team)
-19. [Disclaimer](#-disclaimer)
+9. [Emergency Response Features](#-emergency-response-features)
+10. [Database Schema](#-database-schema)
+11. [Getting Started](#-getting-started)
+12. [Environment Variables](#-environment-variables)
+13. [Docker Deployment](#-docker-deployment)
+14. [Demo Mode vs Real ML Mode](#-demo-mode-vs-real-ml-mode)
+15. [Model Performance](#-model-performance)
+16. [Report Generation](#-report-generation)
+17. [Security](#-security)
+18. [Roadmap](#-roadmap)
+19. [Team](#-team)
+20. [Disclaimer](#-disclaimer)
 
 ---
 
@@ -309,6 +310,34 @@ Base path: `/api/v1`
 
 ---
 
+## 🚨 Emergency Response Features
+
+The static frontend now ships disaster-response tooling alongside the cyclone
+tracking dashboard:
+
+- **Report / Request Help** (`frontend/report.html`) — a validated emergency
+  form (name, mobile, state, district, village/city, current location, numbers
+  of people/children/elderly, emergency type, description, optional photo, and
+  consent). A prominent **Submit Emergency Request** button is linked from the
+  hero and the navbar on every page.
+- **`POST /api/help-requests`** — the FastAPI backend validates and stores
+  submissions in a JSON-lines file (default `backend/data/help_requests.jsonl`,
+  override with `HELP_REQUESTS_FILE`). On GitHub Pages there is no live backend,
+  so the form falls back to storing the request in the browser's `localStorage`
+  and surfaces a clear notice. Personal details are never exposed through a
+  public route (`GET /api/help-requests` returns only aggregate counts).
+- **Cyclone Helplines** (`frontend/helplines.html`) — clearly labelled national
+  numbers (`112`, `108`, `101`, `1078`) with tap-to-call `tel:` links, an
+  extended disaster-response table, and a disclaimer directing people to verify
+  local/state numbers and follow official IMD/NDMA advisories.
+- **Quick-action cards** on the homepage — Request Rescue, Medical Help, Find
+  Shelter, Report Damage, and Emergency Helplines — which pre-fill the help form.
+- **Accessibility** — labelled form fields, ARIA live regions, visible keyboard
+  focus, a skip-to-content link, high-contrast emergency styling, responsive
+  layouts, and `prefers-reduced-motion` support.
+
+---
+
 ## 🗄️ Database Schema
 
 | Table | Key Columns |
@@ -321,6 +350,11 @@ Base path: `/api/v1`
 | `model_metrics` | id, model_name, model_version, accuracy, precision, recall, f1_score, created_at |
 
 PostGIS geometry columns are used on `analyses` and `trajectories` for spatial querying (e.g. cyclones within a bounding box).
+
+Emergency help requests submitted via `POST /api/help-requests` are stored in a
+JSON-lines file (`backend/data/help_requests.jsonl`, ignored by git) rather than
+the relational database, so a deployed static frontend + minimal FastAPI service
+can accept them without provisioning PostgreSQL.
 
 ---
 

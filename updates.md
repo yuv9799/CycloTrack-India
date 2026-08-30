@@ -1,5 +1,81 @@
 # Cyclone Region — Evolutionary Prototype Updates
 
+## 2026-08-30 — Frontend UI/UX, Emergency Help & Helplines
+
+### UI/UX improvements
+- Added a red **emergency alert bar** (with tap-to-call `112` and Request Help
+  links) to the top of every page: `index.html`, `cyclone_region.html`,
+  `history.html`, `about.html`, `report.html`, `helplines.html`.
+- Added five **quick-action emergency cards** on the homepage: Request Rescue,
+  Medical Help, Find Shelter, Report Damage, Emergency Helplines. They pre-fill
+  the help form (`report.html?type=…`).
+- Added a **Cyclone Helplines** section on the homepage (112 / 108 / 101 / 1078)
+  with tap-to-call `tel:` buttons.
+- Reworked the hero on `index.html` with a prominent **Submit Emergency
+  Request** action, and polished spacing, buttons, and typography.
+- Added lightweight **reveal-on-scroll** animations with `prefers-reduced-motion`
+  support.
+- Improved mobile behaviour: responsive grids and navigation (hamburger menu)
+  for desktop, tablet, and phone widths.
+- Added a **footer navigation** with direct links (Home, Live Tracking, History,
+  Request Help, Helplines, About) on all pages.
+
+### Emergency help form
+- New page `frontend/report.html` — **Report / Request Help** form with: Full
+  Name, Mobile, Email (optional), State, District, Village/City, Current
+  Location, People Affected, Children, Elderly/Disabled, multi-select Emergency
+  Type (Medical, Food, Water, Shelter, Rescue, Missing Person, Other),
+  Description, optional image upload (max 2MB), and a required **consent**
+  checkbox.
+- Prominent **SOS · Submit Emergency Request** button; all required fields are
+  validated client-side with clear error messages and ARIA live regions.
+- `frontend/assets/helpreport.js` — validates, submits to the backend, previews
+  the optional image, and, if the backend is unreachable (e.g. GitHub Pages),
+  stores the request in `localStorage` and shows an offline notice so data is
+  never silently lost.
+- `frontend/assets/emergency.css` — shared styling for the emergency bar, quick
+  actions, helpline cards, the help form, keyboard-focus outlines, and
+  responsive/reduced-motion rules.
+
+### Backend / API changes
+- `backend/app/main.py` — added `POST /api/help-requests` (validated Pydantic
+  model; mobile/email/type/image checks; consent enforcement; JSON-lines
+  persistence to `backend/data/help_requests.jsonl`) returning a reference id.
+- Added `GET /api/help-requests` returning only aggregate counts — personal data
+  is never exposed publicly.
+- `.gitignore` now excludes `backend/data/` so submitted personal data is never
+  committed; `backend/.env.example` documents the optional `HELP_REQUESTS_FILE`.
+
+### Helplines page
+- New page `frontend/helplines.html` — clearly labelled national emergency
+  numbers (112 Emergency, 108 Ambulance, 101 Fire & Rescue, 1078 Disaster
+  Helpline) as tap-to-call cards, plus an extended disaster-response table and a
+  disclaimer asking users to verify local/state numbers and follow official
+  IMD/NDMA advisories.
+
+### Accessibility improvements
+- Proper `<label>` associations, `aria-required`, `role="alert"/status` live
+  regions, a skip-to-content link, visible `:focus-visible` outlines, good
+  contrast, and a responsive keyboard-navigable form.
+
+### Testing performed
+- JavaScript syntax checked with Node for `helpreport.js` and the inline reveal
+  script.
+- Backend module imported and endpoint logic exercised with a local Python test
+  (valid submission writes JSON-lines; invalid payloads are rejected).
+- Verified every HTML page opens, the revised nav links resolve to existing
+  files, the cyclone prediction (`cyclone_region.html#evolution`), regional
+  map, history timeline, about page, and chatbot script remain intact.
+- Confirmed the grid layouts collapse correctly for tablet/mobile widths and
+  that the GitHub Pages workflow (static `frontend/` deploy) is unaffected.
+
+### Files changed
+- `frontend/index.html`, `frontend/history.html`, `frontend/about.html`,
+  `frontend/cyclone_region.html`
+- `frontend/report.html` (new), `frontend/helplines.html` (new)
+- `frontend/assets/emergency.css` (new), `frontend/assets/helpreport.js` (new)
+- `backend/app/main.py`, `backend/README.md`, `backend/.env.example`
+- `.gitignore`, `README.md`, `updates.md`
 ## 2026-08-29
 
 ### Implemented

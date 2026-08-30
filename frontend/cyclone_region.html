@@ -9,6 +9,7 @@
         href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Barlow:wght@400;500;600&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="assets/chatbot.css">
+    <link rel="stylesheet" href="assets/emergency.css">
     <style>
         *,
         *::before,
@@ -81,7 +82,7 @@
 
         nav {
             display: flex;
-            gap: 28px;
+            gap: 22px;
             align-items: center;
         }
 
@@ -1015,6 +1016,26 @@
             color: rgba(255, 255, 255, .3);
         }
 
+        .footer-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            align-items: center;
+        }
+
+        .footer-nav a {
+            color: rgba(255, 255, 255, .6);
+            text-decoration: none;
+            font-size: 13px;
+            text-transform: uppercase;
+            font-family: var(--font-head);
+            letter-spacing: .5px;
+        }
+
+        .footer-nav a:hover {
+            color: var(--orange);
+        }
+
         @media (max-width:1024px) {
             .map-wrap {
                 grid-template-columns: 1fr;
@@ -1229,13 +1250,25 @@
 
 <body>
 
+    <a class="skip-link" href="#main">Skip to main content</a>
+
+    <div class="emergency-bar" role="region" aria-label="Emergency information">
+        <span>🚨 In an emergency, dial <a href="tel:112" class="eb-dial">112</a></span>
+        <span class="eb-links">
+            <a href="helplines.html">Helplines</a>
+            <a href="report.html" class="eb-cta">Request Help</a>
+        </span>
+    </div>
+
     <header>
         <a href="index.html" class="logo">Cyclo<span>Track</span> India</a>
         <div class="header-right">
             <nav class="main-nav" aria-label="Primary">
                 <a href="index.html">Home</a>
-                <a href="cyclone_region.html" class="active">Cyclone Region</a>
-                <a href="history.html">History</a>
+                <a href="cyclone_region.html" class="active">Live Tracking</a>
+                <a href="cyclone_region.html#evolution">Prediction</a>
+                <a href="report.html">Report / Request Help</a>
+                <a href="helplines.html">Helplines</a>
                 <a href="about.html">About</a>
             </nav>
             <a href="#map" class="header-cta">View Live Map</a>
@@ -1244,13 +1277,15 @@
     </header>
     <div class="mobile-menu" id="mobileMenu">
             <a href="index.html">Home</a>
-            <a href="cyclone_region.html" class="active">Cyclone Region</a>
-            <a href="history.html">History</a>
+            <a href="cyclone_region.html" class="active">Live Tracking</a>
+            <a href="cyclone_region.html#evolution">Prediction</a>
+            <a href="report.html">Report / Request Help</a>
+            <a href="helplines.html">Helplines</a>
             <a href="about.html">About</a>
     </div>
 
 
-    <div class="page-hero">
+    <div class="page-hero" id="main">
         <div class="page-hero-inner">
             <p class="breadcrumb">Home <span>/</span> Cyclone Region</p>
             <h1 class="page-hero-h1">India's Coastline,<br><em>Region by Region</em></h1>
@@ -1496,8 +1531,18 @@
 
     <footer id="about">
         <div class="footer-inner">
-            <div class="footer-logo">Cyclo<span>Track</span> India</div>
-            <p class="footer-copy">&copy; 2026 Team Nexus — Smart India Hackathon. All Rights Reserved.</p>
+            <div>
+                <div class="footer-logo">Cyclo<span>Track</span> India</div>
+                <p class="footer-copy">&copy; 2026 Team Nexus — Smart India Hackathon. All Rights Reserved.</p>
+            </div>
+            <nav class="footer-nav" aria-label="Footer">
+                <a href="index.html">Home</a>
+                <a href="cyclone_region.html">Live Tracking</a>
+                <a href="history.html">History</a>
+                <a href="report.html">Request Help</a>
+                <a href="helplines.html">Helplines</a>
+                <a href="about.html">About</a>
+            </nav>
         </div>
     </footer>
 

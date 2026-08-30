@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report / Request Help — CycloTrack India</title>
+    <meta name="description" content="Cyclone-affected? Submit an emergency help request with CycloTrack India — medical, food, water, shelter, rescue, and more.">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/chatbot.css">
+    <link rel="stylesheet" href="assets/emergency.css">
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --navy: #0B1E3A;
+            --navy-dark: #070F1E;
+            --orange: #F47B20;
+            --orange-dark: #D9660E;
+            --white: #FFFFFF;
+            --off-white: #F4F6F8;
+            --text-body: #2D3E50;
+            --font-head: 'Barlow Condensed', sans-serif;
+            --font-body: 'Barlow', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--text-body);
+            background: var(--white);
+            line-height: 1.6;
+            font-size: 16px;
+        }
+
+        header {
+            background: var(--navy-dark);
+            padding: 0 5%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 2px solid var(--orange);
+        }
+
+        .logo {
+            font-family: var(--font-head);
+            font-weight: 800;
+            font-size: 22px;
+            color: var(--white);
+            letter-spacing: .5px;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--orange);
+        }
+
+        nav {
+            display: flex;
+            gap: 22px;
+            align-items: center;
+        }
+
+        nav a {
+            font-family: var(--font-head);
+            font-size: 15px;
+            font-weight: 600;
+            letter-spacing: .5px;
+            color: rgba(255, 255, 255, .72);
+            text-decoration: none;
+            text-transform: uppercase;
+            position: relative;
+            padding: 6px 2px 8px;
+            white-space: nowrap;
+            transition: color .25s ease;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            right: 50%;
+            bottom: 0;
+            height: 2px;
+            background: var(--orange);
+            transition: left .25s ease, right .25s ease;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: var(--orange);
+        }
+
+        nav a:hover::after,
+        nav a.active::after {
+            left: 0;
+            right: 0;
+        }
+
+        .header-cta {
+            background: var(--orange);
+            color: var(--white);
+            font-family: var(--font-head);
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: .8px;
+            text-transform: uppercase;
+            padding: 9px 20px;
+            text-decoration: none;
+        }
+
+        .header-cta:hover {
+            background: var(--orange-dark);
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        @media (min-width: 1025px) and (max-width: 1180px) {
+            nav.main-nav {
+                gap: 15px;
+            }
+            nav.main-nav a {
+                font-size: 14px;
+            }
+        }
+
+        section {
+            padding: 62px 5%;
+        }
+
+        .section-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .section-tag {
+            font-family: var(--font-head);
+            font-size: 11px;
+            letter-spacing: 3.5px;
+            text-transform: uppercase;
+            color: var(--orange);
+            font-weight: 700;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-tag::before {
+            content: '';
+            width: 20px;
+            height: 2px;
+            background: var(--orange);
+        }
+
+        .section-h2 {
+            font-family: var(--font-head);
+            font-weight: 800;
+            font-size: clamp(28px, 4vw, 42px);
+            text-transform: uppercase;
+            color: var(--navy);
+            line-height: 1.0;
+            margin-bottom: 14px;
+        }
+
+        .section-h2 em {
+            color: var(--orange);
+            font-style: normal;
+        }
+
+        .section-lead {
+            font-size: 15.5px;
+            color: #4A6070;
+            max-width: 640px;
+            line-height: 1.7;
+        }
+
+        .page-hero {
+            background: var(--navy-dark);
+            padding: 46px 5%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 40%;
+            height: 100%;
+            background: linear-gradient(120deg, transparent, rgba(244, 123, 32, .14));
+        }
+
+        .page-hero-inner {
+            position: relative;
+            z-index: 2;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .breadcrumb {
+            font-family: var(--font-head);
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .45);
+            margin-bottom: 10px;
+        }
+
+        .page-hero-h1 {
+            font-family: var(--font-head);
+            font-weight: 800;
+            font-size: clamp(34px, 4.6vw, 54px);
+            color: var(--white);
+            text-transform: uppercase;
+            line-height: .98;
+            margin-bottom: 12px;
+        }
+
+        .page-hero-h1 em {
+            color: var(--orange);
+            font-style: normal;
+        }
+
+        .page-hero-sub {
+            font-size: 15.5px;
+            color: rgba(255, 255, 255, .6);
+            max-width: 620px;
+        }
+        .form-page-bg {
+            background: var(--off-white);
+            min-height: 60vh;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+            width: 32px;
+            height: 32px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: var(--white);
+            transition: .2s;
+        }
+
+        .hamburger.open span:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+        }
+
+        .hamburger.open span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.open span:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 64px;
+            left: 0;
+            right: 0;
+            background: var(--navy-dark);
+            border-bottom: 2px solid var(--orange);
+            z-index: 99;
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: max-height .32s ease, opacity .28s ease, transform .28s ease, visibility .28s;
+        }
+
+        .mobile-menu.open {
+            max-height: 560px;
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .mobile-menu a {
+            font-family: var(--font-head);
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: .5px;
+            color: rgba(255, 255, 255, .78);
+            text-decoration: none;
+            text-transform: uppercase;
+            padding: 16px 5%;
+            border-bottom: 1px solid rgba(255, 255, 255, .08);
+            display: block;
+        }
+
+        .mobile-menu a.active {
+            color: var(--orange);
+        }
+
+        @media (max-width: 1024px) {
+            nav.main-nav {
+                display: none;
+            }
+            .header-cta {
+                display: none;
+            }
+            .hamburger {
+                display: flex;
+            }
+        }
+
+        @media (min-width: 1025px) {
+            nav.main-nav {
+                display: flex;
+            }
+            .hamburger {
+                display: none;
+            }
+            .mobile-menu {
+                display: none;
+            }
+        }
+        /* __FOOTER_CSS__ */
+        footer {
+            background: var(--navy-dark);
+            padding: 36px 5%;
+            border-top: 2px solid var(--orange);
+        }
+
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .footer-logo {
+            font-family: var(--font-head);
+            font-size: 19px;
+            font-weight: 800;
+            color: var(--white);
+        }
+
+        .footer-logo span {
+            color: var(--orange);
+        }
+
+        .footer-copy {
+            font-size: 12px;
+            color: rgba(255, 255, 255, .3);
+        }
+
+        .footer-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            align-items: center;
+        }
+
+        .footer-nav a {
+            color: rgba(255, 255, 255, .6);
+            text-decoration: none;
+            font-size: 13px;
+            text-transform: uppercase;
+            font-family: var(--font-head);
+            letter-spacing: .5px;
+        }
+
+        .footer-nav a:hover {
+            color: var(--orange);
+        }
+    </style>
+</head>
+
+<body id="top">
+    <a class="skip-link" href="#main">Skip to main content</a>
+
+    <div class="emergency-bar" role="region" aria-label="Emergency information">
+        <span>🚨 In an emergency, dial <a href="tel:112" class="eb-dial">112</a></span>
+        <span class="eb-links">
+            <a href="helplines.html">Helplines</a>
+            <a href="report.html" class="eb-cta">Request Help</a>
+        </span>
+    </div>
+
+    <header>
+        <a href="index.html" class="logo">Cyclo<span>Track</span> India</a>
+        <div class="header-right">
+            <nav class="main-nav" aria-label="Primary">
+                <a href="index.html">Home</a>
+                <a href="cyclone_region.html">Live Tracking</a>
+                <a href="cyclone_region.html#evolution">Prediction</a>
+                <a href="report.html" class="active">Report / Request Help</a>
+                <a href="helplines.html">Helplines</a>
+                <a href="about.html">About</a>
+            </nav>
+            <a href="tel:112" class="header-cta">Call 112</a>
+            <button class="hamburger" id="hamburgerBtn" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+        </div>
+    </header>
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="index.html">Home</a>
+        <a href="cyclone_region.html">Live Tracking</a>
+        <a href="cyclone_region.html#evolution">Prediction</a>
+        <a href="report.html" class="active">Report / Request Help</a>
+        <a href="helplines.html">Helplines</a>
+        <a href="about.html">About</a>
+    </div>
+
+    <div class="page-hero">
+        <div class="page-hero-inner">
+            <p class="breadcrumb">Home <span>/</span> Report / Request Help</p>
+            <h1 class="page-hero-h1">Report / <em>Request Help</em></h1>
+            <p class="page-hero-sub">If you or your community are affected by a cyclone, tell us what you need so
+                response teams can prioritise and reach you faster.</p>
+        </div>
+    </div>
+<section class="form-page-bg" id="main">
+        <div class="section-inner report-shell">
+            <span class="section-tag">Emergency Request</span>
+            <h2 class="section-h2">Submit Your <em>Situation</em></h2>
+            <p class="section-lead">Fill the form below with as much detail as you can. Nothing you submit is shown
+                publicly — your details go straight to the response team (or are held safely on your device if the
+                server is unreachable).</p>
+
+            <div class="report-card">
+                <form id="helpRequestForm" novalidate>
+                    <div class="report-grid">
+                        <div class="report-field">
+                            <label for="fullName">Full Name <span class="req" aria-hidden="true">*</span></label>
+                            <input type="text" id="fullName" name="fullName" autocomplete="name" maxlength="120" required aria-required="true">
+                            <span class="field-error" id="fullNameError" aria-live="polite"></span>
+                        </div>
+                        <div class="report-field">
+                            <label for="mobile">Mobile Number <span class="req" aria-hidden="true">*</span></label>
+                            <input type="tel" id="mobile" name="mobile" autocomplete="tel" inputmode="tel" maxlength="20" placeholder="e.g. 98765 43210" required aria-required="true">
+                            <span class="field-error" id="mobileError" aria-live="polite"></span>
+                        </div>
+                        <div class="report-field">
+                            <label for="email">Email (optional)</label>
+                            <input type="email" id="email" name="email" autocomplete="email" maxlength="120">
+                            <span class="field-error" id="emailError" aria-live="polite"></span>
+                        </div>
+                        <div class="report-field">
+                            <label for="state">State <span class="req" aria-hidden="true">*</span></label>
+                            <select id="state" name="state" required aria-required="true">
+                                <option value="">Select your state…</option>
+                            </select>
+                            <span class="field-error" id="stateError" aria-live="polite"></span>
+                        </div>
+                        <div class="report-field">
+                            <label for="district">District <span class="req" aria-hidden="true">*</span></label>
+                            <input type="text" id="district" name="district" maxlength="120" required aria-required="true">
+                            <span class="field-error" id="districtError" aria-live="polite"></span>
+                        </div>
+                        <div class="report-field">
+                            <label for="villageCity">Village / City <span class="req" aria-hidden="true">*</span></label>
+                            <input type="text" id="villageCity" name="villageCity" maxlength="140" required aria-required="true">
+                            <span class="field-error" id="villageCityError" aria-live="polite"></span>
+                        </div>
+                        <div class="report-field full">
+                            <label for="currentLocation">Current Location / Landmark <span class="req" aria-hidden="true">*</span></label>
+                            <input type="text" id="currentLocation" name="currentLocation" maxlength="400" placeholder="e.g. Ground floor, near the river bridge, main road" required aria-required="true">
+                            <span class="field-error" id="currentLocationError" aria-live="polite"></span>
+                        </div>
+                        <div class="report-field">
+                            <label for="peopleAffected">No. of People Affected <span class="req" aria-hidden="true">*</span></label>
+                            <input type="number" id="peopleAffected" name="peopleAffected" min="1" step="1" inputmode="numeric" required aria-required="true">
+                            <span class="field-error" id="peopleAffectedError" aria-live="polite"></span>
+                        </div>
+                        <div class="report-field">
+                            <label for="children">No. of Children</label>
+                            <input type="number" id="children" name="children" min="0" step="1" inputmode="numeric" value="0">
+                            <span class="field-error" id="childrenError" aria-live="polite"></span>
+                        </div>
+                        <div class="report-field">
+                            <label for="elderlyDisabled">No. of Elderly / Disabled People</label>
+                            <input type="number" id="elderlyDisabled" name="elderlyDisabled" min="0" step="1" inputmode="numeric" value="0">
+                            <span class="field-error" id="elderlyDisabledError" aria-live="polite"></span>
+                        </div>
+                        <div class="report-field full">
+                            <label id="emergencyTypesLabel">Type of Emergency <span class="req" aria-hidden="true">*</span></label>
+                            <div class="report-types" role="group" aria-labelledby="emergencyTypesLabel">
+                                <label class="pt-chip"><input type="checkbox" name="emergencyTypes" value="Medical Emergency"> Medical Emergency</label>
+                                <label class="pt-chip"><input type="checkbox" name="emergencyTypes" value="Food Required"> Food Required</label>
+                                <label class="pt-chip"><input type="checkbox" name="emergencyTypes" value="Drinking Water Required"> Drinking Water Required</label>
+                                <label class="pt-chip"><input type="checkbox" name="emergencyTypes" value="Shelter Required"> Shelter Required</label>
+                                <label class="pt-chip"><input type="checkbox" name="emergencyTypes" value="Rescue Required"> Rescue Required</label>
+                                <label class="pt-chip"><input type="checkbox" name="emergencyTypes" value="Missing Person"> Missing Person</label>
+                                <label class="pt-chip"><input type="checkbox" name="emergencyTypes" value="Other"> Other</label>
+                            </div>
+                            <span class="field-error" id="emergencyTypesError" aria-live="polite"></span>
+                        </div>
+                        <div class="report-field full">
+                            <label for="description">Describe the Situation <span class="req" aria-hidden="true">*</span></label>
+                            <textarea id="description" name="description" maxlength="3000" placeholder="What is happening, who needs help, and what would help most right now?" required aria-required="true"></textarea>
+                            <span class="field-error" id="descriptionError" aria-live="polite"></span>
+                        </div>
+                        <div class="report-field full">
+                            <label for="imageFile">Upload Image (optional)</label>
+                            <input type="file" id="imageFile" name="imageFile" accept="image/*">
+                            <span class="hint">Max 2MB — JPG, PNG, or similar. Photos help responders see the situation.</span>
+                            <div class="image-preview"><img id="imagePreview" alt="Preview of the photo you are uploading"></div>
+                        </div>
+                        <div class="report-consent">
+                            <label for="consent">
+                                <input type="checkbox" id="consent" name="consent" required aria-required="true">
+                                <span>I confirm the information above is accurate, and I consent to CycloTrack India
+                                    sharing it with authorised disaster-response authorities so they can help me.
+                                    <span class="req" aria-hidden="true">*</span></span>
+                            </label>
+                            <span class="field-error" id="consentError" aria-live="polite"></span>
+                        </div>
+                        <div class="report-privacy-note">
+                            🔒 <strong>Privacy:</strong> Your details are used only to coordinate help. Nothing you
+                            submit is displayed publicly on this website.
+                        </div>
+                        <div class="submit-row">
+                            <input type="submit" class="btn-emergency" id="submitBtn" value="SOS · Submit Emergency Request">
+                            <a href="tel:112" style="color:#C8102E;border:1.5px solid #C8102E;font-family:var(--font-head);font-weight:700;text-transform:uppercase;text-decoration:none;padding:13px 22px;">Call 112 Now</a>
+                        </div>
+                        <div class="report-msg" id="reportMsg" aria-live="polite"></div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <div class="footer-inner">
+            <div>
+                <div class="footer-logo">Cyclo<span>Track</span> India</div>
+                <p class="footer-copy">&copy; 2026 Team Nexus — Smart India Hackathon. All Rights Reserved.</p>
+            </div>
+            <nav class="footer-nav" aria-label="Footer">
+                <a href="index.html">Home</a>
+                <a href="cyclone_region.html">Live Tracking</a>
+                <a href="history.html">History</a>
+                <a href="report.html">Request Help</a>
+                <a href="helplines.html">Helplines</a>
+                <a href="about.html">About</a>
+            </nav>
+        </div>
+    </footer>
+
+    <script>
+        (function () {
+            var btn = document.getElementById('hamburgerBtn');
+            var menu = document.getElementById('mobileMenu');
+            if (!btn || !menu) return;
+            btn.addEventListener('click', function () {
+                var open = menu.classList.toggle('open');
+                btn.classList.toggle('open');
+                btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+            });
+            menu.querySelectorAll('a').forEach(function (a) {
+                a.addEventListener('click', function () {
+                    btn.classList.remove('open');
+                    menu.classList.remove('open');
+                    btn.setAttribute('aria-expanded', 'false');
+                });
+            });
+        })();
+    </script>
+    <script src="assets/helpreport.js" defer></script>
+    <script src="assets/chatbot.js" defer></script>
+</body>
+</html>
